@@ -1,0 +1,13 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Large data and generated indexes
+data/
+chroma_db/
+*.sqlite
+*.db
+
+# Secrets
+.env
