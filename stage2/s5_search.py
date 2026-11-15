@@ -34,12 +34,12 @@ def print_results(results):
     for rank, (doc, distance) in enumerate(results, start=1):
         cosine = distance_to_cosine(distance)
         title = doc.metadata["title"]
-        start_index = doc.metadata.get("start_index", "?")
+        section_path = doc.metadata.get("section_path", "")
 
         preview = doc.page_content[:PREVIEW_CHARS]
         preview = preview.replace("\n", " ")             # one line, easier to read
 
-        print(f"\n  {rank}. [{title}]  distance {distance:.3f}  (cosine ≈ {cosine:.3f})  start_index {start_index}")
+        print(f"\n  {rank}. [{title}]  distance {distance:.3f}  (cosine ≈ {cosine:.3f})  {section_path}")
         print(f"     {preview}...")
 
 

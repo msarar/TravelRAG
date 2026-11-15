@@ -28,20 +28,23 @@ CHROMA_DIR = STAGE_DIR / "chroma_db"       # s4: the vector index
 EMBEDDING_MODEL = "qwen3-embedding:0.6b"
 CHAT_MODEL = "qwen3:4b-instruct"
 
-# Context window for the embedding model, in tokens. Our chunks are ~250 tokens,
-# so 2048 is plenty, and a small window uses much less memory.
+# Context window for the embedding model, in tokens. Our chunks are at most
+# 2000 characters ≈ 500 tokens (more for Thai/Bengali script), so 2048 is
+# enough, and a small window uses much less memory.
 EMBEDDING_NUM_CTX = 2048
 
 # Context window for the CHAT model, in tokens. It must hold everything we send
 # (instructions + all retrieved chunks + the question) AND the answer it writes.
-# 4 chunks x ~250 tokens + ~200 for instructions and question ≈ 1,200 tokens,
-# leaving plenty of room for the answer.
-CHAT_NUM_CTX = 4096
+# 4 chunks x up to ~500 tokens + ~200 for instructions and question ≈ 2,200 tokens,
+# plus the answer. 6144 leaves comfortable room (4096 would be tight).
+CHAT_NUM_CTX = 6144
 
 # --- Chunking --------------------------------------------------------------
-# Measured in CHARACTERS. Rough rule for English: 1 token ≈ 4 characters,
-# so 1000 characters ≈ 250 tokens.
-CHUNK_SIZE = 1000
+# Measured in CHARACTERS, and includes the context line on top of each chunk.
+# Rough rule for English: 1 token ≈ 4 characters, so 2000 characters ≈ 500 tokens.
+# Stage 1 used 1000. Stage 2 uses 2000 so a list stays in the same chunk as the
+# sentence that explains it (e.g. Thailand's "visa-free for up to..." + the country list).
+CHUNK_SIZE = 2000
 
 # Up to this many characters can be repeated between neighbouring chunks
 # (only whole pieces, as we saw in step 3).

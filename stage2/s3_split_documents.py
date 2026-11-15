@@ -1,4 +1,4 @@
-"""Stage 2, piece 3: split the Documents into chunks.
+"""Stage 2, piece 3: split the Documents into section-aware chunks, and check them.
 
 WHY SPLIT?
   - An embedding is ONE vector for a whole piece of text. If you embed the entire
@@ -10,12 +10,14 @@ WHY SPLIT?
     small enough that several of them fit.
 
 HOW? (the code is in chunking.py)
-LangChain's RecursiveCharacterTextSplitter tries to cut at the most natural
-boundary first, and only falls back to rougher cuts when a piece is still too big:
-    1. blank lines ("\n\n")  -> between paragraphs
-    2. single newlines ("\n") -> between list items (our restaurant listings!)
-    3. spaces (" ")           -> between words
-    4. "" (anywhere)          -> last resort, mid-word
+  1. MarkdownHeaderTextSplitter cuts each article at its headings (## Eat, ### Budget...)
+  2. RecursiveCharacterTextSplitter cuts sections that are still too long
+  3. Every chunk gets a context line on top: "Ao Nang (Krabi Province) > Eat > Budget"
+
+This script also MEASURES the two Stage 1 problems, so we can check they're fixed
+before spending ~35 minutes building the index:
+  - Stage 1: 49 heading-only chunks (under 60 characters)
+  - Stage 1: about half the chunks never mentioned their place name
 
 Run (from the project root):  python -m stage2.s3_split_documents
 It also writes stage2/data/chunks.jsonl so you can look through every chunk.
@@ -29,6 +31,25 @@ from stage2.chunking import split_into_chunks
 from stage2.config import CHUNK_OVERLAP, CHUNK_SIZE, CHUNKS_FILE
 from stage2.documents import load_documents
 
+# A chunk whose text (not counting the context line) is shorter than this is
+# "tiny". In Stage 1, chunks this small were almost all bare headings.
+TINY_CHUNK_CHARS = 60
+
+# Stage 1 numbers, printed next to Stage 2's for comparison.
+STAGE1_CHUNKS = 1910
+STAGE1_TINY = 49
+STAGE1_ORPHAN_PERCENT = 0.52
+
+
+def chunk_body(chunk) -> str:
+    """The chunk's text WITHOUT the context line on top.
+
+    page_content = "Dhaka > Old Dhaka > Drink\nNope. Not in Dhaka."
+    body         = "Nope. Not in Dhaka."
+    """
+    context_line, _newline, body = chunk.page_content.partition("\n")
+    return body
+
 
 def print_length_stats(chunks):
     """Show how long the chunks are, so we can check the splitter did what we asked."""
@@ -37,9 +58,14 @@ def print_length_stats(chunks):
         lengths.append(len(chunk.page_content))
 
     average = sum(lengths) / len(lengths)
+    over_limit = 0
+    for length in lengths:
+        if length > CHUNK_SIZE:
+            over_limit += 1
 
-    print(f"Chunk length (characters): min {min(lengths)}, "
+    print(f"Chunk length incl. context line (characters): min {min(lengths)}, "
           f"average {average:.0f}, max {max(lengths)}")
+    print(f"Chunks longer than CHUNK_SIZE ({CHUNK_SIZE}): {over_limit}")
 
 
 def print_chunks_per_article(chunks):
@@ -59,28 +85,48 @@ def print_chunks_per_article(chunks):
         print(f"  {title:<32} {counts[title]:>4}")
 
 
-def count_orphan_chunks(chunks):
+def find_tiny_chunks(chunks):
+    """Chunks whose text (without the context line) is very short.
+
+    Stage 1's tiny chunks were bare headings with NO content. Stage 2's should
+    be short but real sections, e.g. "Drink: Nope. Not in Dhaka."
+    """
+    tiny = []
+    for chunk in chunks:
+        if len(chunk_body(chunk)) < TINY_CHUNK_CHARS:
+            tiny.append(chunk)
+    return tiny
+
+
+def count_orphan_chunks(chunks) -> int:
     """How many chunks never mention the place they're about?
 
-    Example: a chunk that is just "- Hotel Star — Taher Bagh Lane. Fantastic biryani."
-    The embedding of that text has no idea it's in Dhaka, so the question
-    "biryani in Dhaka" may not find it. Keep this number in mind: this stage will fix it.
+    In Stage 1 this was about half. Now every chunk starts with a context line
+    containing the place, so this should be 0.
     """
     orphans = 0
-    example = None
-
     for chunk in chunks:
         place = chunk.metadata["place"]                 # e.g. "Dhaka"
-        text = chunk.page_content
-
-        if place.lower() not in text.lower():
+        if place.lower() not in chunk.page_content.lower():
             orphans += 1
-            if example is None:
-                example = chunk
+    return orphans
 
-    percent = orphans / len(chunks)
-    print(f"\nChunks that never mention their place name: {orphans} of {len(chunks)} ({percent:.0%})")
-    return example
+
+def find_chunk_containing(chunks, title, text):
+    """The first chunk of article `title` whose text contains `text`, or None."""
+    for chunk in chunks:
+        if chunk.metadata["title"] == title and text in chunk.page_content:
+            return chunk
+    return None
+
+
+def print_chunk(label, chunk, max_chars=600):
+    print(f"\n--- {label} ---")
+    if chunk is None:
+        print("(not found)")
+        return
+    print("metadata:", chunk.metadata)
+    print(chunk.page_content[:max_chars])
 
 
 def save_chunks(chunks):
@@ -101,29 +147,37 @@ def main():
     docs = load_documents()
     print(f"Loaded {len(docs)} Documents.")
 
-    # 2. Split (see chunking.py). Each chunk is a NEW Document that gets a
-    #    COPY of its parent's metadata, plus "start_index".
+    # 2. Split (see chunking.py).
     print(f"Splitting with chunk_size={CHUNK_SIZE}, chunk_overlap={CHUNK_OVERLAP}")
     chunks = split_into_chunks(docs)
-    print(f"Split into {len(chunks)} chunks.\n")
+    print(f"Split into {len(chunks)} chunks  (Stage 1: {STAGE1_CHUNKS}).\n")
 
-    # 3. Look at the result.
+    # 3. Sizes.
     print_length_stats(chunks)
     print_chunks_per_article(chunks)
-    orphan_example = count_orphan_chunks(chunks)
 
-    # 4. Show one chunk in full, with its metadata.
-    sample = chunks[5]
-    print("\n--- Example chunk ---")
-    print("metadata:", sample.metadata)
-    print(sample.page_content)
+    # 4. The two Stage 1 problems, measured again.
+    tiny = find_tiny_chunks(chunks)
+    orphans = count_orphan_chunks(chunks)
+    orphan_percent = orphans / len(chunks)
 
-    if orphan_example is not None:
-        print("\n--- Example chunk that doesn't mention its place ---")
-        print("metadata:", orphan_example.metadata)
-        print(orphan_example.page_content[:500])
+    print("\nStage 1 problems, re-measured:")
+    print(f"  Tiny chunks (< {TINY_CHUNK_CHARS} chars of text): {len(tiny)}   (Stage 1: {STAGE1_TINY}, all bare headings)")
+    print(f"  Chunks not mentioning their place:  {orphans} ({orphan_percent:.0%})   (Stage 1: about {STAGE1_ORPHAN_PERCENT:.0%})")
 
-    # 5. Save everything for you to browse.
+    print("\nFirst 10 tiny chunks (should be short REAL sections, not bare headings):")
+    for chunk in tiny[:10]:
+        one_line = chunk.page_content.replace("\n", "  |  ")
+        print(f"  {one_line}")
+
+    # 5. Two chunks that Stage 1 got wrong.
+    biryani = find_chunk_containing(chunks, "Dhaka/Old Dhaka", "Haji Biryani")
+    print_chunk("Old Dhaka biryani chunk", biryani)
+
+    visa_list = find_chunk_containing(chunks, "Thailand", "60 days")
+    print_chunk("Thailand visa-free list chunk (missed by retrieval in Stage 1)", visa_list)
+
+    # 6. Save everything for you to browse.
     save_chunks(chunks)
     print(f"\nAll chunks written to {CHUNKS_FILE}")
 

@@ -108,8 +108,15 @@ def print_sources(results):
     print("\n\nSources:")
     for number, (doc, distance) in enumerate(results, start=1):
         title = doc.metadata["title"]
+        section_path = doc.metadata.get("section_path", "")
         url = doc.metadata["source"]
-        print(f"  [{number}] {title}  (distance {distance:.3f})  {url}")
+
+        # The article's intro has no section, so only add " > ..." when there is one.
+        where = title
+        if section_path:
+            where = f"{title} > {section_path}"
+
+        print(f"  [{number}] {where}  (distance {distance:.3f})  {url}")
 
 
 # ---------------------------------------------------------------------------
