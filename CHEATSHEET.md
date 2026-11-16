@@ -10,7 +10,7 @@ Plain-Python data cleaning (`common/wikitext.py` etc.) is left out on purpose.
 **Contents**
 - [Stage 0: Setup](#stage-0-setup): Ollama CLI, `OllamaEmbeddings`, `ChatOllama.invoke`
 - [Stage 1: Basic RAG](#stage-1-basic-rag): `Document`, text splitter, `Chroma`, `ChatPromptTemplate`, streaming, retriever, LCEL
-- [Stage 2: Real ingestion](#stage-2-real-ingestion): *(to come)*
+- [Stage 2: Real ingestion](#stage-2-real-ingestion): `MarkdownHeaderTextSplitter`, two-step splitting with context lines, test runner (`questions.yaml`, `llm.invoke`)
 
 ---
 
@@ -341,4 +341,95 @@ s6  ChatPromptTemplate.from_messages → prompt.invoke → ChatOllama.stream    
 
 ## Stage 2: Real ingestion
 
-*(to come: only what's new in Stage 2 goes here)*
+**New packages:** none to install. `PyYAML` (for the test runner) already came with LangChain.
+
+### 2.1 Splitting by headings: `MarkdownHeaderTextSplitter`  *(stage2/chunking.py, explore_sections.py)*
+
+```python
+from langchain_text_splitters import MarkdownHeaderTextSplitter
+
+header_splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=[("#", "h1"), ("##", "h2"), ("###", "h3"), ("####", "h4")],
+)
+sections = header_splitter.split_text(article.page_content)
+```
+
+| Argument | Meaning |
+|---|---|
+| `headers_to_split_on` | List of `(heading marker, metadata key)`. A new section starts at each of these headings |
+| `strip_headers` | *(default `True`)* Removes the heading line from the section's text |
+
+| Method | Input | Returns |
+|---|---|---|
+| `split_text(text)` | `str` | `list[Document]`, **one per section** |
+
+Each section's metadata holds **only the headings above it**:
+```python
+{"h1": "Thailand", "h2": "Get in", "h3": "Entry requirements"}
+```
+
+Watch out for:
+- **No size limit.** A section can be any length, so long sections need splitting again (2.2).
+- **Takes a string, not Documents.** The article's metadata (`title`, `place`, `source`...) is
+  **not** copied into the sections. Copy it yourself.
+- **Headings are stripped from the text.** That's why each chunk gets a context line (2.2).
+- **Empty sections are skipped.** A heading followed directly by a sub-heading gives no section of its own.
+- Headings must be real Markdown (`## Get in` at the start of a line). `common/wikitext.py` makes them.
+
+### 2.2 Two-step splitting with a context line  *(stage2/chunking.py)*
+
+Step 1 splits by headings, step 2 splits long sections by size, and each chunk starts with
+a line saying where it comes from:
+
+```python
+for section in sections:
+    context_line = "Thailand > Get in > Entry requirements"        # place > section path
+    room_for_text = CHUNK_SIZE - len(context_line) - 1             # leave room for the line + "\n"
+
+    piece_splitter = RecursiveCharacterTextSplitter(chunk_size=room_for_text, chunk_overlap=150)
+    for piece in piece_splitter.split_text(section.page_content):  # str -> list[str]
+        metadata = dict(article.metadata)                          # copy the article's metadata
+        metadata.update({"section": "Get in", "subsection": "Entry requirements",
+                         "subsubsection": "", "section_path": "Get in > Entry requirements"})
+        chunk = Document(page_content=context_line + "\n" + piece, metadata=metadata)
+```
+
+| Where it goes | Embedded? | Used for |
+|---|---|---|
+| Context line, in `page_content` | **Yes** | Every chunk "knows" its place and section, so it can be found by meaning |
+| `section`, `section_path`... in `metadata` | No | Showing sources, filtering (e.g. `filter={"section": "Get in"}`) |
+
+`split_text` is used here instead of `split_documents` because we build the Documents
+ourselves. So there's no `start_index` in Stage 2. Chunk IDs stay `"<title>#<counter>"`.
+
+### 2.3 Automatic test runs: `questions.yaml` + `s7`  *(stage2/s7_run_questions.py)*
+
+```python
+import yaml
+questions = yaml.safe_load(QUESTIONS_FILE.read_text(encoding="utf-8"))  # YAML -> list of dicts
+
+results = vector_store.similarity_search_with_score(question, k=TOP_K)   # retrieval, with distances
+messages = prompt.invoke({"context": context, "question": question})    # same prompt as s6
+reply = llm.invoke(messages)                                             # invoke, not stream
+answer = reply.content
+```
+
+| Call | Why here |
+|---|---|
+| `yaml.safe_load(text)` | Reads the question list. `safe_load` (not `load`) won't run code hidden in the file |
+| `llm.invoke(messages)` | Returns the whole `AIMessage` at once. No one is watching it type, so no need to `stream` |
+| Reusing `prompt`, `format_context`, `TOP_K` from `s6_ask` | The runner tests **exactly** what `s6` does |
+
+Output: `stage2/results/run_<date>_<time>.md` (to read) and `.json` (to compare runs later).
+
+### 2.4 Order of use in Stage 2
+
+Only the changed steps; everything else works as in Stage 1.
+
+```
+s3  MarkdownHeaderTextSplitter.split_text → RecursiveCharacterTextSplitter.split_text
+    → Document(context_line + "\n" + piece, metadata)                (section-aware chunks)
+s4  unchanged: Chroma(...) → add_documents(documents, ids)
+s5  shows metadata["section_path"] instead of start_index
+s7  yaml.safe_load → similarity_search_with_score → prompt.invoke → ChatOllama.invoke   (all test questions)
+```

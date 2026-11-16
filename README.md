@@ -37,15 +37,18 @@ TravelRAG/
 ├── README.md
 ├── BLUEPRINT.md          roadmap, decisions, findings per stage
 ├── CHEATSHEET.md         every Ollama / LangChain / Chroma call used, with arguments
-├── test_questions.md     test questions and results, re-run after each change
+├── test_questions.md     test results, Stage 1 vs Stage 2 side by side
+├── questions.yaml        the test questions, read by the test runner
 ├── requirements.txt
 ├── data/                 the Wikivoyage dump (shared by all stages, not in git)
 ├── common/               helpers used by every stage
-└── stage1/               basic RAG pipeline: its own config, data and index
+├── stage1/               basic RAG pipeline: its own config, data and index
+└── stage2/               section-aware chunking + automatic test runner
 ```
 
 Each stage has its own folder with its own `config.py`, `data/` and `chroma_db/`,
-so stages can be run and compared side by side.
+so stages can be run and compared side by side. Each stage also has a `RESULTS.md`:
+what changed, the numbers, and the good and the bad.
 
 ## Setup
 
@@ -90,19 +93,35 @@ Stage 1 covers: Dhaka (+ districts), Bangkok (+ districts), Chiang Mai, Phuket,
 Phuket Town, Patong, Krabi Town, Ao Nang, Ko Phi Phi and Thailand: 26 articles,
 1,910 chunks. Settings are in `stage1/config.py`.
 
+## Running Stage 2
+
+Same steps and same 26 articles, with `stage2` instead of `stage1`
+(e.g. `python -m stage2.s4_build_index`), plus:
+
+| Step | Command | What it does |
+|---|---|---|
+| 7 | `python -m stage2.s7_run_questions` | Runs every question in `questions.yaml`, writes a report to `stage2/results/` (~10 min) |
+| – | `python -m stage2.explore_sections` | Shows how one article splits into sections (for inspection) |
+
+What's new: articles are split **by section first** (`MarkdownHeaderTextSplitter`), and
+every chunk starts with a context line like `Thailand > Get in > Entry requirements`.
+`CHUNK_SIZE` is 2000, giving 1,211 chunks. Settings are in `stage2/config.py`;
+results are in `stage2/RESULTS.md`.
+
 ## Status
 
 - [x] **Stage 0**: setup
 - [x] **Stage 1**: basic RAG pipeline
-- [ ] **Stage 2**: real ingestion (section-aware chunking, more of Wikivoyage)
+- [ ] **Stage 2**: real ingestion: section-aware chunking ✓, test runner ✓; scaling to more of Wikivoyage in progress
 - [ ] **Stage 3**: evaluation
 - [ ] **Stage 4**: better retrieval (hybrid search, reranking)
 - [ ] **Stage 5**: tool calling with a SQLite database
 - [ ] **Stage 6**: agent (LangGraph)
 - [ ] **Stage 7**: production (API, UI, tracing, Docker)
 
-Known Stage 1 issues (heading-only chunks, chunks that lose their place name, LLM
-answer errors) are documented in `BLUEPRINT.md` and `test_questions.md`.
+Stage 2 fixed Stage 1's chunking problems (heading-only chunks, chunks that lose
+their place name). Remaining issues (ranking within an article, small-model answer
+slips) are documented in `stage2/RESULTS.md`, `BLUEPRINT.md` and `test_questions.md`.
 
 ## Notes
 
