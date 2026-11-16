@@ -1,0 +1,104 @@
+# Test questions, shared by every stage.
+#
+# Each stage's  sN_run_questions.py  answers ALL of these and writes the results
+# to that stage's results/ folder, so stages can be compared on exactly the same questions.
+#
+# Fields:
+#   id:             short name, used in the results file
+#   question:       exactly what a user would type. "@place: ..." filters by place, as in s5/s6
+#   expect_title:   the article the best chunk should come from
+#   expect_section: the section it should come from (matched as part of section_path)
+#                   Leave "" if any section of that article is fine.
+#   note:           why this question is in the set
+#   covered:        (optional) set to false for questions the guides DON'T cover.
+#                   The runner then checks that retrieval was weak instead.
+#
+# If expect_title and expect_section are both "", the runner doesn't check the
+# source automatically: read the results file and judge it yourself.
+#
+# To add a question: copy a block, give it a new id, fill in the fields.
+
+- id: biryani
+  question: where can I eat biryani in Old Dhaka?
+  expect_title: Dhaka/Old Dhaka
+  expect_section: Eat
+  note: "Stage 1: answer merged Hajjee Beryani and Haji Biryani"
+
+- id: visa
+  question: do I need a visa for Thailand?
+  expect_title: Thailand
+  expect_section: Entry requirements
+  note: "Stage 1: visa-free list not retrieved; answer misread the visa-on-arrival list"
+
+- id: bangkok_street_food
+  question: "@bangkok: street food at night"
+  expect_title: Bangkok/Yaowarat and Phahurat
+  expect_section: Eat
+  note: "Stage 1: 3 of 4 results were bare headings. Stage 2: Yaowarat dropped out"
+
+- id: khao_san_hotel
+  question: cheap hotel near Khao San Road
+  expect_title: Bangkok/Khao San Road
+  expect_section: Sleep
+  note: "Specific place + accommodation"
+
+- id: dhaka_vague
+  question: "@dhaka: how is it?"
+  expect_title: Dhaka
+  expect_section: ""
+  note: "Deliberately vague: retrieval should look weak"
+
+- id: chiang_mai_clinics
+  question: medical clinics in Chiang Mai
+  expect_title: Chiang Mai
+  expect_section: Medical
+  note: "Stage 1: the clinic listings lost their '### Medical' heading"
+
+- id: phuket_phi_phi_how
+  question: how do I get from Phuket to Ko Phi Phi?
+  expect_title: ""
+  expect_section: By boat
+  note: "Stage 2: 'Get in > By car' outranked 'By boat'. Phuket or Ko Phi Phi article both fine"
+
+- id: phuket_phi_phi_ferry
+  question: ferry from Phuket to Ko Phi Phi
+  expect_title: ""
+  expect_section: By boat
+  note: "Same need as above, different wording"
+
+- id: krabi_beaches
+  question: beaches near Krabi
+  expect_title: ""
+  expect_section: ""
+  note: "Tests is_part_of in the context line: Ao Nang chunks say 'Ao Nang (Krabi Province)'"
+
+- id: yaowarat_food
+  question: street food in Yaowarat
+  expect_title: Bangkok/Yaowarat and Phahurat
+  expect_section: Eat
+  note: "Is the Yaowarat street-food chunk findable when asked about directly?"
+
+- id: vaping
+  question: can I vape in Thailand?
+  expect_title: Thailand
+  expect_section: Vaping
+  note: "Specific legal fact in a short section. Stage 2 answer contradicted its source once"
+
+- id: best_time
+  question: what is the best time of year to visit Thailand?
+  expect_title: Thailand
+  expect_section: Climate
+  note: "Paragraph-style content, not listings"
+
+- id: greeting
+  question: how do I greet people in Thailand?
+  expect_title: Thailand
+  expect_section: The wai
+  note: "Question words ('greet') differ from the heading ('The wai')"
+
+- id: off_topic
+  question: what is the capital of France?
+  expect_title: ""
+  expect_section: ""
+  covered: false
+  note: "Not covered: retrieval should be weak and the answer should say it couldn't find it"

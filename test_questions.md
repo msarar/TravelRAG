@@ -1,40 +1,58 @@
 # Test questions
 
-Questions to re-run after every change, so we can tell whether retrieval got
-better or worse. In Stage 3 this becomes a proper evaluation set with scores.
+The same questions, re-run after every stage, so we can see what got better or worse.
 
-Results below are from the first index (Stage 1: 1000-char chunks, qwen3-embedding:0.6b).
-Distances are Chroma's squared L2: smaller is better (~0.57 strong, ~1.0 weak).
+- **The questions themselves** live in [`questions.yaml`](questions.yaml) (with where each answer *should* come from).
+- **Run them all automatically** with `python -m stage2.s7_run_questions` → full report in `stage2/results/`.
+- **This file** is the human summary across stages. Details per stage: `stage1/RESULTS.md`, `stage2/RESULTS.md`.
 
-| # | Question | Should come from | Stage 1 result |
-|---|---|---|---|
-| 1 | where can I eat biryani in Old Dhaka? | Dhaka/Old Dhaka, Eat | Good: top 2 are the biryani listings (0.568, 0.701) |
-| 2 | do I need a visa for Thailand? | Thailand, Get in / visas | Good: all 4 from the visa section (0.79-0.89) |
-| 3 | @Bangkok: street food at night | Bangkok districts, Eat | Bad: #1 good (Yaowarat), #2-4 are heading-only chunks ("### Shopping malls", "## Drink") |
-| 4 | cheap hotel near Khao San Road | Bangkok/Khao San Road, Sleep | Good: top 2 budget-accommodation chunks (0.568, 0.571) |
-| 5 | @Dhaka: how is it? | Dhaka, Understand | Weak: vague question; all distances ~1.0, heading-only chunks returned |
-| 6 | medical clinics in Chiang Mai | Chiang Mai, Stay healthy | Not tried yet (Loi Kroh Clinic chunk lost its "### Medical" heading) |
-| 7 | how do I get from Phuket to Ko Phi Phi? | Ko Phi Phi / Phuket, Get in | Good: Phuket, Patong, Ko Phi Phi chunks (0.59-0.62) |
-| 8 | what is the capital of France? | (not covered) | Correctly weak: best 0.971 |
+Distances are Chroma's squared L2: **smaller is better** (~0.5 strong, ~1.0 weak).
+✅ good · ⚠️ partly · ❌ wrong · — not tested
 
-## Answers from the LLM (s6_ask.py, qwen3:4b-instruct, Stage 1)
+Latest Stage 2 run: [`stage2/results/run_2026-11-16_2141.md`](stage2/results/run_2026-11-16_2141.md)
+(Stage 1 results were collected by hand in `s5_search` / `s6_ask`; Stage 1 had no automatic runner.)
 
-Retrieval and generation can fail separately, so each answer is judged on its own.
+## Retrieval: did the right chunks come back?
 
-| # | Answer | Verdict |
+| id | Question | Expected source | Stage 1 | Stage 2 |
+|---|---|---|---|---|
+| biryani | where can I eat biryani in Old Dhaka? | Dhaka/Old Dhaka › Eat | ✅ biryani listings #1 (0.568) | ✅ `Eat > Dhakaiya Biryani` #1 (0.480) |
+| visa | do I need a visa for Thailand? | Thailand › Entry requirements | ❌ visa-free list not retrieved | ✅ visa-free list #1 (0.722), visa-on-arrival #2 |
+| bangkok_street_food | @bangkok: street food at night | Yaowarat › Eat | ❌ 3 of 4 bare headings | ❌ 4 real food chunks, but Yaowarat not in top 4 (0.89–1.02) |
+| khao_san_hotel | cheap hotel near Khao San Road | Khao San Road › Sleep | ✅ budget chunks #1 (0.568) | ⚠️ article intro #1 (0.525), `Sleep` #2–4 |
+| dhaka_vague | @dhaka: how is it? | Dhaka (any) | ⚠️ weak (~1.0), bare headings | ⚠️ weak (1.29), tiny `Old Dhaka > Drink` #1 |
+| chiang_mai_clinics | medical clinics in Chiang Mai | Chiang Mai › Medical | — | ✅ `Cope > Medical` #1 (0.485) |
+| phuket_phi_phi_how | how do I get from Phuket to Ko Phi Phi? | › By boat | ✅ ferry chunk #1 (0.591) | ⚠️ `By boat` #2 (0.601), behind `By car` (0.533) |
+| phuket_phi_phi_ferry | ferry from Phuket to Ko Phi Phi | › By boat | — | ✅ `By boat` #1 (0.582) |
+| krabi_beaches | beaches near Krabi | (judge by hand) | — | ⚠️ Krabi Town intro #1 (0.727); no Ao Nang chunks |
+| yaowarat_food | street food in Yaowarat | Yaowarat › Eat | — | ⚠️ all 4 from Yaowarat, `Eat` #4 (0.741) |
+| vaping | can I vape in Thailand? | Thailand › Vaping | — | ✅ `Stay safe > Vaping` #1 (0.475) |
+| best_time | best time of year to visit Thailand? | Thailand › Climate | — | ✅ `Understand > Climate` #1 (0.644) |
+| greeting | how do I greet people in Thailand? | Thailand › The wai | — | ⚠️ `Respect > The wai` #2 (0.710), behind `What to do` |
+| off_topic | what is the capital of France? | (not covered) | ✅ correctly weak (0.971) | ✅ correctly weak (1.283) |
+
+**Stage 2 retrieval:** 7 ✅ expected source #1 · 5 ⚠️ #2–4 · 1 ❌ · 1 judged by hand.
+
+## Answers: correct and faithful to the excerpts?
+
+Checked by hand against the exact chunks the model received.
+
+| id | Stage 1 | Stage 2 |
 |---|---|---|
-| 1 | Lists "Haji Biryani — 70 Kazi Alauddin Road" and Nanna Biryani | **Wrong (merged two places).** Excerpt [1] has *Hajjee Beryani* at 70 Kazi Alauddin Road; excerpt [2] has a different *Haji Biryani* (phone only). The model blended them. Also left out other listings. |
-| 2 | Says Bulgaria, Bhutan, Cyprus... "do not need a visa" | **Wrong (misread).** That list in excerpt [1] is the *visa-on-arrival* list (pay 2,000 baht), not visa-free. The real visa-exempt list is in the chunk just before it, which was NOT retrieved (it starts "- 14 days: Myanmar..." and never says "visa": an orphan chunk). Same answer from the LCEL version. |
-| 3 | Yaowarat street food, ~50 baht per dish | **OK but thin.** Used only excerpt [1]; the other 3 were heading-only chunks, so there was nothing else to use. Did not invent anything. |
-| 7 | Ferry from Rassada Port, 90-120 min, 600 / 1,000 baht | **Good.** Correct and cited [1]. |
-| 8 | "I couldn't find that in the travel guides." + weak-match note | **Good.** Grounding works: it did not answer "Paris". |
+| biryani | ❌ merged two places: *Haji Biryani* given *Hajjee Beryani*'s address | ✅ **fixed:** Haji Biryani and Hajjee Beryani listed separately, each with correct details; flags that Star Hotel is in Dhanmondi, not Old Dhaka |
+| visa | ❌ read the visa-on-arrival list as visa-free | ✅ **fixed:** visa-free (e.g. Australia, UK, US, 60 days) vs visa-on-arrival (2,000 baht, 30 days) kept apart |
+| bangkok_street_food | ⚠️ correct but thin | ⚠️ grounded (Train Night Market Ratchada, Ramkhamhaeng Night Market, Khao San), but misses Yaowarat because retrieval did |
+| khao_san_hotel | — | ⚠️ **merged two listings:** gave *Bella Bella House* the "no drinking water or soap" note of *Bella Bella Riverview*; called mid-range Khaosan Palace "budget" |
+| dhaka_vague | — | ✅ "I couldn't find that in the travel guides" |
+| chiang_mai_clinics | — | ✅ CM Mediclinic and Loi Kroh Clinic with correct addresses and hours |
+| phuket_phi_phi_how | ✅ ferry, 90–120 min, 600/1,000 baht | ✅ ferry from Rassada Port, 90–120 min (no prices this time) |
+| phuket_phi_phi_ferry | — | ⚠️ times, duration, 20-baht fee correct; **prices muddled** ("300 to 600"; source: 600 one-way / 1,000 return at the pier, 300–350 as a guesthouse deal) |
+| krabi_beaches | — | ✅ Had Yao, Ao Nang, Rai Leh (correct, but thin) |
+| yaowarat_food | — | ✅ every detail correct (three generations, sunset queues, ~50 baht) |
+| vaping | — | ⚠️ bottom line right (illegal), but **one false claim** ("no vape shops"; source: *sold openly in Bangkok and Pattaya*) and **two citations swapped** |
+| best_time | — | ✅ Nov–Feb cool season, busy around Christmas / Chinese New Year |
+| greeting | — | ✅ the wai and its rules, all correct and correctly cited |
+| off_topic | ✅ "I couldn't find that in the travel guides" | ✅ same |
 
-## Known problems (Stage 1)
-
-- **Heading-only chunks:** 49 of 1,910 chunks are just a heading. Their vague
-  vectors match many questions and push real content out. Fix: Stage 2.
-- **Orphan chunks:** about half the chunks never mention their place name, and
-  some lists lose their introduction (the visa-exempt list above). Fix: Stage 2.
-- **Generation errors even with good excerpts:** the 4B model merged two restaurants
-  and misread a visa list. Ideas to test in Stage 3/4: a 7-8B chat model, a stricter
-  prompt ("copy names exactly, never combine listings"), chunks that keep a list's intro.
+**Stage 2 answers:** 10 ✅ · 4 ⚠️ · 0 ❌. The remaining errors are all **generation** errors from the 4B model
+(merging neighbouring listings, smoothing over numbers, swapped citations), not missing information.

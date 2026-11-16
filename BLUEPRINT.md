@@ -85,28 +85,54 @@ Stages are **not frozen**: a fix in `common/` applies to every stage. A new stag
 - [x] Concepts: retrievers, `ChatPromptTemplate`, streaming, LCEL (`|` pipes, `RunnablePassthrough`, `RunnableLambda`, `StrOutputParser`)
 - **Done when:** "Where can I eat biryani in Old Dhaka?" is answered correctly from the guide, with sources. ✅ Pipeline complete; answer quality issues logged below.
 
-### Findings from Stage 1 (see `test_questions.md`)
-- **Embeddings are normalised** (length ≈ 1.0), so Chroma's default squared L2 distance ranks exactly like cosine. Reading scores: `cosine = 1 − distance / 2`; ~0.57 = strong match, ~1.0 = weak.
-- **Heading-only chunks (problem):** 49 of 1,910 chunks are just a heading (`### Shopping malls`, `### Splurge`). Their vague vectors match many questions and push out real content (e.g. 3 of 4 results for `@Bangkok: street food at night`). Checked what follows each one:
-  - **45: content exists, but got separated.** The splitter cuts on blank lines first; the heading is one small piece, and the text up to the next blank line (a long paragraph, or a long run of listings with no blank lines) is one piece over `CHUNK_SIZE`. So the heading is flushed as a chunk on its own.
-  - **2: parent headings** followed directly by a sub-heading (`## Drink` → `### Coffee`), so no text of their own.
-  - **1: genuinely empty in the source** (`Dhaka/Central` → `## Connect` contains only page-status templates, which the cleaner removes).
-  - Fix in Stage 2: keep headings attached to their content; skip sections with no text, but carry their heading into sub-sections as context.
-- **Orphan chunks (problem):** about half the chunks never mention their place name (e.g. a Dhaka restaurant listing without the word "Dhaka"), so the vector doesn't know where it is. Lists can also lose their introduction: the Thailand **visa-free list** chunk starts "- 14 days: Myanmar..." and never says "visa", so it wasn't retrieved for "do I need a visa for Thailand?" (and the LLM then misread the visa-on-arrival list instead). Fix in Stage 2.
-- **Chunk IDs** use `<title>#<counter>`, not `start_index`: the same text can appear twice in an article (e.g. two `### Splurge` headings), so `start_index` isn't guaranteed unique.
-- **Metadata is uniform:** `None` is stored as `""` so every chunk has the same keys and "no district" can be filtered (`{"district": ""}`).
-- **The LLM can get it wrong even with good excerpts:** it merged two different restaurants (Hajjee Beryani's address under "Haji Biryani") and read a visa-on-arrival list as a visa-free list. Retrieval and generation must be evaluated separately (Stage 3).
-- **Grounding works:** "what is the capital of France?" → "I couldn't find that in the travel guides" (did not say Paris).
-- **Indexing is slow on CPU:** ~1.1 s per chunk. All of Wikivoyage would take weeks → Stage 2 needs a subset, a faster embedding model, or incremental re-indexing.
+### Stage 1 results → full details in [`stage1/RESULTS.md`](stage1/RESULTS.md)
+
+**Setup:** 26 articles → 1,910 chunks (1,000 chars, 150 overlap) · index built in 35m 48s (~1.1 s/chunk, CPU) · chat ~8 tokens/s
+
+**Good**
+- **Pipeline works end to end:** question → top 4 chunks → grounded answer with numbered sources; step-by-step and LCEL versions give the same answers.
+- **Specific questions retrieve well:** "biryani in Old Dhaka" → the biryani listings (distance 0.568); "cheap hotel near Khao San Road" → budget accommodation (0.568).
+- **Correct answer when retrieval is right:** Phuket → Ko Phi Phi ferry from Rassada Port, 90–120 min, 600/1,000 baht.
+- **Grounding works:** "what is the capital of France?" → *"I couldn't find that in the travel guides"*, with a weak-match warning (0.971).
+- **Distances are meaningful:** embeddings are normalised, so `cosine = 1 − distance / 2`; ~0.5 strong, ~1.0 weak.
+
+**Bad**
+- **49 heading-only chunks** (`### Shopping malls`, `### Splurge`): 45 separated from their content by the splitter, 2 parent headings, 1 empty in the source. They took 3 of 4 slots for `@bangkok: street food at night`.
+- **~52% orphan chunks:** never name their place, so their vectors don't know where they are.
+- **Lists lost their introduction:** the Thailand visa-free list chunk started "- 14 days: Myanmar…", never said "visa", and wasn't retrieved.
+- **Wrong answers from the LLM:** merged two restaurants (*Hajjee Beryani*'s address under *Haji Biryani*); read the visa-on-arrival list as visa-free.
+- **Slow indexing:** ~1.1 s/chunk; all of Wikivoyage (~35,000 articles, ~440,000 chunks) ≈ 135 hours.
 
 ### Stage 2 — Real ingestion
 - [ ] Parse all of Wikivoyage (wikitext → clean text; `mwxml` / `mwparserfromhell`)
-- [ ] Section-aware chunking with metadata (city, country, section): keep every heading attached to its content (fixes heading-only chunks)
-- [ ] Add a context line like `Dhaka > Old Dhaka > Eat` to the start of every chunk before embedding (fixes orphan chunks)
+- [x] Section-aware chunking with metadata (`MarkdownHeaderTextSplitter` → `RecursiveCharacterTextSplitter`): keeps every heading attached to its content
+- [x] Context line like `Dhaka > Old Dhaka > Eat` at the start of every chunk (fixes orphan chunks); `CHUNK_SIZE` 2,000
+- [x] Rebuild index (1,211 chunks, 39m 13s) and re-run test questions (14 questions, automatic runner `s7_run_questions.py`)
 - [ ] Decide how much of Wikivoyage to index, given ~1.1 s/chunk on CPU
 - [ ] Metadata filtering (e.g. only *Eat* sections in Portugal)
 - [ ] Persist the index; incremental updates via LangChain's indexing API
 - **Done when:** the whole corpus is indexed and any destination is queryable.
+
+### Stage 2 results → full details in [`stage2/RESULTS.md`](stage2/RESULTS.md)
+
+**Setup:** same 26 articles → 1,211 chunks (section-aware, context line on every chunk, 2,000 chars incl. context line) · index built in 39m 13s
+
+**Good**
+- **Heading-only chunks fixed:** 49 → 0. Only 6 chunks are under 60 characters of text, and all are real content (e.g. `Old Dhaka > Drink: Nope. Not in Dhaka.`).
+- **Orphan chunks fixed:** ~52% → 0%. Every chunk starts with e.g. `Thailand (Southeast Asia) > Get in > Entry requirements`.
+- **Visa question fixed at retrieval:** the visa-free list (now in the same chunk as "may enter Thailand for tourism visa-free…") is #1 (0.722), visa-on-arrival rules #2.
+- **Better scores on specific questions:** biryani 0.568 → 0.480; "medical clinics in Chiang Mai" → `Cope > Medical` (0.485).
+- **Only `chunking.py` changed** (plus settings); every chunk now also has `section` metadata for filtering.
+
+**Bad**
+- **Bigger chunks can blur topics:** Yaowarat (Stage 1's best Bangkok street-food result) dropped out of the top 4; scores weaker (0.89–1.02).
+- **Same-section chunks look alike:** for Phuket → Ko Phi Phi, `Get in > By car` (0.533) outranks the ferry chunk `Get in > By boat` (0.601).
+- **Tiny chunks attract vague questions:** `Drink: Nope. Not in Dhaka.` is #1 for "@dhaka: how is it?" (correctly weak: 1.29–1.40).
+- **Near-duplicates across articles:** the same Dhakaiya Biryani paragraph in `Dhaka` and `Dhaka/Old Dhaka` takes two result slots.
+- **Indexing speed unchanged:** 39m 13s for about the same amount of text.
+- **The 4B model still makes generation errors:** merged two neighbouring hotel listings (Khao San), muddled ferry prices, one claim contradicting its source (vaping), swapped citations.
+
+**Answers (14 questions, checked by hand): 10 ✅ · 4 ⚠️ · 0 ❌.** Both Stage 1 answer failures are fixed: the biryani places are no longer merged, and the visa answer separates visa-free from visa-on-arrival.
 
 ### Stage 3 — Evaluation (before optimizing)
 - [ ] Write 30–50 test questions with known answers

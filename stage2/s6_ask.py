@@ -52,7 +52,7 @@ TOP_K = 4
 WEAK_DISTANCE = 0.95
 
 # False = use answer_step_by_step(),  True = use answer_with_lcel()
-USE_LCEL = True
+USE_LCEL = False
 
 
 # ---------------------------------------------------------------------------
