@@ -149,6 +149,7 @@ Stages are **not frozen**: a fix in `common/` applies to every stage. A new stag
 - [ ] Write 30–50 test questions with known answers
 - [ ] Measure retrieval (right chunk in top k?) and answer quality (correct, grounded), using the local model as judge
 - [ ] Score retrieval and generation **separately**: Stage 1 showed both can fail on their own (merged restaurants, misread visa list)
+- [ ] Allow several acceptable sources per question in `questions.yaml` (Stage 2: `bangkok_street_food` marked ❌ with a good #1 source and a ✅ answer)
 - **Why:** every later change gets a score, so you know whether it actually helped.
 
 ### Stage 4 — Better retrieval (measure each against Stage 3)
@@ -157,6 +158,9 @@ Stages are **not frozen**: a fix in `common/` applies to every stage. A new stag
 - [ ] Query rewriting / multi-query
 - [ ] Parent-document retrieval
 - [ ] Metadata filtering by section (e.g. only *Eat* or *Sleep* chunks), using the `section` metadata every chunk already has (moved from Stage 2)
+- [ ] Merge tiny sections (under ~200 chars) into a neighbour when chunking (Stage 2: a 64-char "minimart nearby" chunk beat Yaowarat's `Eat`)
+- [ ] `country` metadata + filter, so "tea gardens in Bangladesh" can't return Thailand (adding a field re-embeds every chunk)
+- [ ] Rank within one article: reranker for `@place` questions (Stage 2: Cox's Bazar `Sleep` dropped out of the top 4)
 - [ ] Generation fixes, measured on the Stage 1 failures: a 7–8B chat model; a stricter prompt ("copy names, addresses and prices exactly; never combine two listings")
 
 ### Stage 5 — Tools and structured data

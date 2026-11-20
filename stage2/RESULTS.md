@@ -76,6 +76,17 @@ Two changes at once: 350 instead of 47 articles, and the `@place` fix. Their eff
 - **Answers held up anyway:** 16 ✅ · 5 ⚠️ · 0 ❌ (was 15 · 6 · 0), because the right chunk was usually still in the top 4.
   Retrieval: 10 ✅ · 7 ⚠️ · 3 ❌ (was 11 · 8 · 1).
 
+**Findings in short** (one example each, with the proposed fix):
+
+| # | Finding | Example | Proposed fix |
+|---|---|---|---|
+| 1 | Questions naming something specific didn't change | "Sajek Valley from Dhaka": identical sources and answer | none needed |
+| 2 | **Tiny chunks win** | "street food in Yaowarat" → #1 `Laem Yai > Eat`: "There is a minimart nearby for snacks." (64 chars) | merge sections under ~200 chars into a neighbour when chunking |
+| 3 | **Topic beats place** | "tea gardens in Bangladesh" → a tea village in Thailand (Ban Rak Thai) above Srimangal | `country` metadata + filter; hybrid search (BM25) |
+| 4 | `@place` fix: better scores, one worse ranking | `@cox's bazar: where can I stay?`: 1.31 → 0.69, but `Sleep` left the top 4 | reranker |
+| 5 | The model reads better than search finds | "best time to visit Thailand": right chunk only #4, answer still correct | fix retrieval first, not the model |
+| 6 | The automatic check is too strict | `bangkok_street_food` ❌, yet `Eat > Street food` #1 and the answer is ✅ | several acceptable sources per question |
+
 ## Retrieval: Stage 1 vs Stage 2 (`s5_search`)
 
 | Question | Stage 1 | Stage 2 |
