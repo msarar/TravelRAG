@@ -10,7 +10,7 @@ Plain-Python data cleaning (`common/wikitext.py` etc.) is left out on purpose.
 **Contents**
 - [Stage 0: Setup](#stage-0-setup): Ollama CLI, `OllamaEmbeddings`, `ChatOllama.invoke`
 - [Stage 1: Basic RAG](#stage-1-basic-rag): `Document`, text splitter, `Chroma`, `ChatPromptTemplate`, streaming, retriever, LCEL
-- [Stage 2: Real ingestion](#stage-2-real-ingestion): `MarkdownHeaderTextSplitter`, two-step splitting with context lines, test runner (`questions.yaml`, `llm.invoke`), `index()` + `SQLRecordManager`, `BaseLoader`
+- [Stage 2: Real ingestion](#stage-2-real-ingestion): `MarkdownHeaderTextSplitter`, two-step splitting with context lines, test runner (`questions.yaml`, `llm.invoke`), `index()` + `SQLRecordManager`, `BaseLoader`, place-aware search
 
 ---
 
@@ -341,7 +341,11 @@ s6  ChatPromptTemplate.from_messages → prompt.invoke → ChatOllama.stream    
 
 ## Stage 2: Real ingestion
 
-**New packages:** none to install. `PyYAML` (for the test runner) already came with LangChain.
+**New packages:**
+```powershell
+pip install langchain-classic "sqlalchemy[asyncio]"    # SQLRecordManager (2.4); [asyncio] adds greenlet
+```
+`PyYAML` (for the test runner) already came with LangChain.
 
 ### 2.1 Splitting by headings: `MarkdownHeaderTextSplitter`  *(stage2/chunking.py, explore_sections.py)*
 
@@ -461,6 +465,52 @@ Watch out for:
 - `index()` ignores your own IDs: the hash IS the ID.
 - Delete `chroma_db/` **and** `record_manager.db` together, never one alone.
 - The embedding model isn't in the hash: changing it re-embeds nothing unless you change the collection/namespace.
+- Interrupting is safe (Ctrl+C): every finished batch of 32 is in Chroma **and** the logbook, so the next run skips it.
+
+**The record manager's methods** (`index()` calls them; you only call `create_schema()`):
+
+| Method | What it does to the logbook table |
+|---|---|
+| `create_schema()` | creates the table if missing |
+| `get_time()` | current time **from the database's clock** (start of a run) |
+| `exists(keys)` | which hashes are already there → skip or add |
+| `update(keys, group_ids=...)` | insert rows / refresh `updated_at` |
+| `list_keys(group_ids=..., before=start)` | rows not seen this run → stale |
+| `delete_keys(keys)` | remove those rows |
+
+`InMemoryRecordManager` (in `langchain_core`) has the same methods but forgets everything when the script ends.
+
+#### Recipes: adding to (and changing) the index
+
+**How chunks get in:** never by calling `add_documents` yourself anymore. You change *what s1 extracts*,
+then `s4` runs `index()`, which adds only what's new. Always with `REBUILD = False` unless stated.
+
+| I want to… | Change | Run | What `s4` reports |
+|---|---|---|---|
+| **add articles** (a region) | `WANTED_REGIONS` in `s1`, e.g. `["Thailand", "Bangladesh", "Laos"]` | `s1` → `s4` | old articles `skipped`, new ones `added` |
+| **add only better articles** | `MIN_QUALITY = "usable"` in `s1` (or lower it to add outlines) | `s1` → `s4` | new ones `added` (see "remove" below for dropped ones) |
+| **pick up Wikivoyage edits** | download a newer dump into `data/` | `s1` → `s4` | changed chunks `added` + old versions `deleted`, the rest `skipped` |
+| **resume after Ctrl+C / a crash** | nothing | `s4` | finished work `skipped`, the rest `added` |
+| **try it on a few articles first** | `MAX_ARTICLES = 3` in `s4` (back to `None` after) | `s4` | only those 3 processed; nothing else touched |
+| **change chunking** (`CHUNK_SIZE`, context line, metadata fields) | `config.py` / `chunking.py` / `documents.py` | (`s3` to inspect) → `s4` | everything `added` + old chunks `deleted`: the text/metadata changed, so every hash did |
+| **change the embedding model** | `EMBEDDING_MODEL` **and** `COLLECTION_NAME` in `config.py` | `s4` | everything `added` into the new collection (new namespace); the old one is untouched |
+| **start completely over** | `REBUILD = True` in `s4` (back to `False` after) | `s4` | deletes `chroma_db/` + `record_manager.db`, then everything `added` |
+
+**Removing articles** is the one thing that doesn't happen by itself: `scoped_full` only cleans up articles
+it *sees* in a run, so an article that's no longer extracted keeps its chunks. Use a run with
+`cleanup="full"` over the complete article set (deletes every chunk not seen in that run), or rebuild.
+
+#### Chroma details that matter here
+
+```python
+stored = vector_store.get(include=[])     # IDs only: no text, metadata or vectors
+count = len(stored["ids"])                # how many chunks are in the collection
+```
+
+| Behaviour | Why it matters |
+|---|---|
+| `add_documents(docs, ids=...)` with an ID that **already exists** overwrites it (LangChain's Chroma does an *upsert*) | a crash between "written to Chroma" and "written to the logbook" can't create duplicates: the re-run writes the same hash ID again |
+| `include=[]` / `include=["metadatas"]` in `get()` | read only what you need; `get()` never runs a similarity search |
 
 ### 2.5 Document loaders: `BaseLoader`  *(stage2/documents.py)*
 
@@ -490,15 +540,39 @@ docs = loader.load()                  # all at once, as a list (s3): free from B
 Generators: no `len()`, no slicing (`itertools.islice` instead), and they can only be
 looped over **once**: a second loop silently gets nothing.
 
-### 2.6 Order of use in Stage 2
+### 2.6 Searching with a place filter: keep the place in the search text  *(s5, s6, s7)*
+
+```python
+question, typed_place = parse_input("@cox's bazar: where can I stay?")  # ("where can I stay?", "cox's bazar")
+place = resolve_place(typed_place, places)                              # "Cox's Bazar" (exact stored spelling)
+search_text = build_search_text(question, place)                        # "Cox's Bazar: where can I stay?"
+
+results = vector_store.similarity_search_with_score(
+    search_text,                       # what gets EMBEDDED and compared
+    k=4,
+    filter={"place": place},           # which chunks are ALLOWED (exact match on metadata)
+)
+```
+
+The **filter** and the **search text** do different jobs. The filter only narrows *which* chunks can come back;
+it does nothing to the vector. Searching `"where can I stay?"` alone gave weak distances (1.31+)
+even with the right article. The same `search_text` is also what the LLM sees as the question.
+
+### 2.7 Order of use in Stage 2
 
 Only the changed steps; everything else works as in Stage 1. (Stage 2 has no s2.)
 
 ```
+s1  pass 1: title -> parent / quality / redirect   pass 2: save articles whose IsPartOf chain reaches WANTED_REGIONS
 s3  MarkdownHeaderTextSplitter.split_text → RecursiveCharacterTextSplitter.split_text
     → Document(context_line + "\n" + piece, metadata)                (section-aware chunks)
 s4  WikivoyageLoader.count() / lazy_load() → split_one_article → SQLRecordManager.create_schema()
     → index(chunks, record_manager, vector_store, cleanup="scoped_full", ...)   (per article, streamed)
-s5  shows metadata["section_path"] instead of start_index
-s7  yaml.safe_load → similarity_search_with_score → prompt.invoke → ChatOllama.invoke   (all test questions)
+s5  parse_input → resolve_place → build_search_text → similarity_search_with_score(search_text, k, filter)
+    (shows metadata["section_path"] instead of start_index)
+s6  same search text and filter → prompt.invoke → ChatOllama.stream
+s7  yaml.safe_load → (same as s6, with llm.invoke) → report .md + .json   (all test questions)
 ```
+
+Plain-Python helpers (not LangChain) used above: `parse_input`, `resolve_place`, `build_search_text`
+(`common/query_parsing.py`), `split_one_article` (`stage2/chunking.py`).

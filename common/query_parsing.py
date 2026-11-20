@@ -22,6 +22,24 @@ def parse_input(user_input: str) -> tuple[str, str | None]:
     return text, None
 
 
+def build_search_text(question: str, place: str | None) -> str:
+    """Put the place back into the text we search with (and show the LLM).
+
+    "@cox's bazar: where can I stay?" is split into a FILTER (place == "Cox's Bazar")
+    and the question "where can I stay?". The filter picks the right article, but
+    the embedding of "where can I stay?" alone knows nothing about Cox's Bazar, so
+    every chunk scores weak. Searching "Cox's Bazar: where can I stay?" matches
+    chunks whose context line starts "Cox's Bazar ... > Sleep" much better.
+
+    No place -> the question unchanged.
+    """
+    if place is None:
+        return question
+
+    search_text = place + ": " + question      # "Cox's Bazar: where can I stay?"
+    return search_text
+
+
 def resolve_place(typed_place: str, known_places: list[str]) -> str | None:
     """Match what the user typed against the real place names, ignoring case.
 

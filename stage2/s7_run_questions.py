@@ -22,7 +22,7 @@ from datetime import datetime
 import yaml                                   # reads questions.yaml (PyYAML comes with LangChain)
 from langchain_ollama import ChatOllama
 
-from common.query_parsing import list_places, parse_input, resolve_place
+from common.query_parsing import build_search_text, list_places, parse_input, resolve_place
 from common.vector_store import open_vector_store
 from stage2.config import (
     CHAT_MODEL,
@@ -155,6 +155,9 @@ def run_one_question(q: dict, vector_store, llm, places: list[str]) -> dict:
         if place is not None:
             search_filter = {"place": place}
 
+            # Same as s5/s6: keep the place in the search text, not only in the filter.
+            question = build_search_text(question, place)
+
     # 1. RETRIEVE (with distances).
     results = vector_store.similarity_search_with_score(
         question,
@@ -189,6 +192,7 @@ def run_one_question(q: dict, vector_store, llm, places: list[str]) -> dict:
     return {
         "id": q["id"],
         "question": q["question"],
+        "search_text": question,       # what was actually embedded (place added back for @place questions)
         "note": q.get("note", ""),
         "filter": search_filter,
         "best_distance": round(best_distance, 3),

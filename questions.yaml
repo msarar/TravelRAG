@@ -102,3 +102,47 @@
   expect_section: ""
   covered: false
   note: "Not covered: retrieval should be weak and the answer should say it couldn't find it"
+
+# --- Bangladesh (added with the 21 new articles in step 2.5) -----------------
+
+- id: saint_martin_ferry
+  question: how do I get from Teknaf to Saint Martins Island?
+  expect_title: Saint Martins Island
+  expect_section: Get in
+  note: "Ferry details sit under 'Get in > By bus' (bus to Teknaf, then the ship). Good answer: ships at 9-9:30AM, ~2 h, none in the off-season (May-Aug/Sep)"
+
+- id: bd_visa_on_arrival
+  question: can I get a visa on arrival in Bangladesh, and how much does it cost?
+  expect_title: Bangladesh
+  expect_section: Visa On Arrival
+  note: "Deep heading (Get in > Visas > Visa On Arrival). Good answer: US$51 or EUR 51 in cash, 30 days, extendable by 30"
+
+- id: sundarbans_from_khulna
+  question: how can I visit the Sundarbans from Khulna?
+  expect_title: Sundarbans (Bangladesh)
+  expect_section: Get in
+  note: "Good answer: multi-day safaris/package tours from Khulna (or Dhaka); DIY needs a permit and a boat from Mongla"
+
+- id: sundarbans_permit
+  question: do I need a permit to visit the Sundarbans?
+  expect_title: Sundarbans (Bangladesh)
+  expect_section: ""
+  note: "The fact is in both 'Get in' and the tiny 'Fees and permits' section, so any section of the article is fine. Good answer: yes, from the Divisional Forest Office in Khulna"
+
+- id: tea_gardens
+  question: where can I see tea gardens in Bangladesh?
+  expect_title: Srimangal
+  expect_section: ""
+  note: "No place name in the question: tests whether a short 'outline' article is found across 47 articles. Good answer: Srimangal (Sreemangal), 'tea capital of Bangladesh'"
+
+- id: sajek_from_dhaka
+  question: how do I get to Sajek Valley from Dhaka?
+  expect_title: Sajek Valley
+  expect_section: From Dhaka
+  note: "Good answer: bus to Khagrachhari, then a jeep ('Chander Gari'), CNG or motorbike, 2-3 h; vehicles often go in security convoys"
+
+- id: coxs_bazar_sleep
+  question: "@cox's bazar: where can I stay?"
+  expect_title: Cox's Bazar
+  expect_section: Sleep
+  note: "Place filter with an apostrophe in the name. Long Sleep section, so it splits into several chunks"

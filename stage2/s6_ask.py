@@ -33,7 +33,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_ollama import ChatOllama
 
-from common.query_parsing import list_places, parse_input, resolve_place
+from common.query_parsing import build_search_text, list_places, parse_input, resolve_place
 from common.vector_store import open_vector_store
 from stage2.config import (
     CHAT_MODEL,
@@ -236,6 +236,10 @@ def main():
                 print(f"Unknown place {typed_place!r}. Choose from: {', '.join(places)}\n")
                 continue
             search_filter = {"place": place}
+
+            # Keep the place in the text we search with (and that the LLM sees):
+            # "where can I stay?" -> "Cox's Bazar: where can I stay?"
+            question = build_search_text(question, place)
 
         print()
         if USE_LCEL:

@@ -46,9 +46,35 @@ Only 2,000 kept the visa-free sentence ("may enter Thailand for tourism visa-fre
 | Rebuild (`REBUILD = True`) | 26 | 1,211 | 1,211 | 0 | 0 | 37m 06s |
 | + 21 Bangladesh articles | 47 | 1,623 | **412** | **1,211** | 0 | 8m 14s |
 | Same data again (streaming loader) | 47 | 1,623 | **0** | **1,623** | 0 | **3s** |
+| All of Thailand + Bangladesh (rule-based `s1`) | 350 | 5,909 | **4,286** | **1,623** | 0 | 95m 28s |
 
 Every run ended with "now in Chroma" = chunks produced (no duplicates, nothing lost).
 The old 26 articles took ~0.1 s each to skip; only new chunks reached the embedding model.
+The 350-article run averaged ~1.3 s per new chunk. It produced more chunks than estimated from text size
+(5,909 vs ~4,700): the new articles are mostly short outlines with many small sections, so fewer characters per chunk.
+
+### Step 2.5: test run on 47 articles (`run_2026-11-20_1521`, 21 questions, 17.8 min)
+
+- **No regressions from adding 21 articles:** 13 of the first 14 questions got identical sources and answers.
+- **7 new Bangladesh questions:** retrieval 4 ✅ #1 · 3 ⚠️ #2; answers 5 ✅ · 2 ⚠️ · 0 ❌.
+- **All 21:** retrieval 11 ✅ · 8 ⚠️ · 1 ❌ · 1 by hand; answers 15 ✅ · 6 ⚠️ · 0 ❌.
+
+### Step 2.5: final run on 350 articles (`run_2026-11-20_1723`, 21 questions, 17.1 min)
+
+Two changes at once: 350 instead of 47 articles, and the `@place` fix. Their effects are easy to tell apart.
+
+- **`@place` fix (3 questions): better scores, mixed ranking.** Distances dropped from ~1.3 to ~0.7
+  (`dhaka_vague` 1.287 → 0.768, `coxs_bazar_sleep` 1.312 → 0.687, `bangkok_street_food` 0.894 → 0.671), so these
+  no longer look like "nothing found". Dhaka now gets `Understand` #1, Bangkok `Eat > Street food` #1. But Cox's
+  Bazar lost its `Sleep` chunks: inside a filtered article every chunk starts with the place name, so adding it
+  makes all chunks look alike and drowns out "where can I stay".
+- **Bigger index (other 18): more competitors with the same section names.** Generic, country-level questions now
+  match small articles' identically named sections: three national parks' `Climate` beat `Thailand > Climate`;
+  `Ko Yao > Get in` (boats from Phuket) beats `Phuket > Get in > By boat`; `Ban Rak Thai` (a tea village in Thailand)
+  beats Srimangal for "tea gardens in **Bangladesh**"; `Laem Yai > Eat` beats Yaowarat for "street food in **Yaowarat**".
+  The embedding matches the *topic* strongly and the *place/country* only weakly.
+- **Answers held up anyway:** 16 ✅ · 5 ⚠️ · 0 ❌ (was 15 · 6 · 0), because the right chunk was usually still in the top 4.
+  Retrieval: 10 ✅ · 7 ⚠️ · 3 ❌ (was 11 · 8 · 1).
 
 ## Retrieval: Stage 1 vs Stage 2 (`s5_search`)
 
@@ -110,11 +136,19 @@ Every answer was checked by hand against the exact chunks the model received.
 
 ## Still open
 
+- **Topic beats place in a big index:** fix with a country filter (needs a `country` metadata field: adding it
+  re-embeds every chunk, ~2 h), hybrid search (BM25 matches "Yaowarat" / "Bangladesh" exactly) and a reranker → **Stage 4**
+- **`@place` within one article:** keep the place in the search text (good distances) but rank within the article
+  by the question alone, or let a reranker decide (Cox's Bazar `Sleep`) → **Stage 4**
+
 - Generation errors (merged listings, numbers, citations): try a 7–8B chat model and a stricter prompt → **Stage 3/4**
 - Re-rank results so the most relevant chunk within a section wins (By boat vs By car) → **Stage 4** (reranker)
 - Possibly merge tiny sections into a neighbour; de-duplicate near-identical chunks
 - Cleaning glitch: Thailand `Work` section starts "Thailand. Thailand has also..." (a dropped template)
 - ~~Incremental/resumable indexing~~ and ~~streaming~~: done (step 2.5)
 - Choose which articles to index for the full run (all ~35k at ~1.2–1.8 s/chunk is days) → **step 2.5c**
-- No test questions yet for the 21 Bangladesh articles
+- **`@place:` drops the place name from the search text:** `@cox's bazar: where can I stay?` searches for just "where can I stay?", so even the right `Sleep` chunks score weak (1.31–1.35). Keeping the place in the query (e.g. "Cox's Bazar: where can I stay?") should help
+- **Junk in the source data:** a spam listing ("All Result BD — free, 9am–5pm") in Cox's Bazar `Sleep` was passed on as a budget hotel; listings with no address/phone/description could be dropped when cleaning
+- **Underscore in a context line:** Bangladesh's parent is written `South_Asia`, so its chunks start "Bangladesh (South_Asia) > ...". Fixing it in `build_metadata` re-embeds those chunks (the text changes)
+- Numbers still get twisted by the 4B model (Sundarbans: a wildlife centre's fee presented as park entry; "no less than" → "as much as")
 - An article deleted from Wikivoyage is never cleaned up by `scoped_full` (needs an occasional `cleanup="full"` run)

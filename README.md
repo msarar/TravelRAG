@@ -100,28 +100,38 @@ just **s1 → s4**; the other scripts are for inspecting, searching and testing:
 
 | Step | Command | What it does |
 |---|---|---|
-| 1 | `python -m stage2.s1_extract_articles` | Pulls the chosen articles out of the dump |
+| 1 | `python -m stage2.s1_extract_articles` | Pulls every article under `WANTED_REGIONS` out of the dump (two passes, ~1 min) |
 | 3 | `python -m stage2.s3_split_documents` | *Optional:* shows the chunks and their stats, writes `chunks.jsonl` |
 | 4 | `python -m stage2.s4_build_index` | Embeds into Chroma with LangChain's indexing API: only new or changed chunks are embedded, and it resumes after a crash |
 | 5 | `python -m stage2.s5_search` | Search only |
 | 6 | `python -m stage2.s6_ask` | Full RAG with sources |
-| 7 | `python -m stage2.s7_run_questions` | Runs every question in `questions.yaml`, writes a report to `stage2/results/` (~10 min) |
+| 7 | `python -m stage2.s7_run_questions` | Runs every question in `questions.yaml`, writes a report to `stage2/results/` (~18 min for 21 questions) |
 | – | `python -m stage2.explore_sections` | Shows how one article splits into sections |
 
 There is no `s2` in Stage 2: it only wrote cleaned copies for reading, which
 `s3`'s `chunks.jsonl` now covers. In `s4`, set `REBUILD = True` only to start
 from zero (it deletes `chroma_db/` and `record_manager.db` together).
 
-What's new: articles are split **by section first** (`MarkdownHeaderTextSplitter`), and
-every chunk starts with a context line like `Thailand > Get in > Entry requirements`.
-`CHUNK_SIZE` is 2000. Stage 2 covers 47 articles (the Stage 1 set plus 21 more in Bangladesh): 1,623 chunks. Settings are in `stage2/config.py`;
-results are in `stage2/RESULTS.md`.
+What's new in Stage 2:
+- **Section-aware chunks:** articles are split by section first (`MarkdownHeaderTextSplitter`), and every
+  chunk starts with a context line like `Thailand > Get in > Entry requirements`. `CHUNK_SIZE` is 2000.
+- **Articles chosen by rule:** `s1` keeps every article whose `IsPartOf` chain reaches a region in
+  `WANTED_REGIONS` (now `["Thailand", "Bangladesh"]`), optionally above `MIN_QUALITY`.
+  That's **350 articles → 5,909 chunks** (first full build: ~95 min of embedding on CPU).
+- **Incremental indexing:** `s4` uses LangChain's indexing API, so re-runs only embed new or changed
+  chunks and an interrupted run picks up where it stopped. Articles are streamed one at a time
+  (`WikivoyageLoader`, a LangChain `BaseLoader`).
+- **`@place:` searches keep the place name:** `@cox's bazar: where can I stay?` searches for
+  "Cox's Bazar: where can I stay?" inside Cox's Bazar's chunks.
+
+Settings are in `stage2/config.py` (and `WANTED_REGIONS` / `MIN_QUALITY` at the top of `s1`);
+results are in `stage2/RESULTS.md`. How to add regions, re-index and start over: `CHEATSHEET.md` §2.4.
 
 ## Status
 
 - [x] **Stage 0**: setup
 - [x] **Stage 1**: basic RAG pipeline
-- [ ] **Stage 2**: real ingestion: section-aware chunking ✓, test runner ✓; scaling to more of Wikivoyage in progress
+- [x] **Stage 2**: real ingestion: section-aware chunking ✓, test runner ✓, incremental indexing ✓, all of Thailand + Bangladesh ✓, final test run ✓
 - [ ] **Stage 3**: evaluation
 - [ ] **Stage 4**: better retrieval (hybrid search, reranking)
 - [ ] **Stage 5**: tool calling with a SQLite database

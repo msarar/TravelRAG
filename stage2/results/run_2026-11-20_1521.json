@@ -1,0 +1,785 @@
+[
+  {
+    "id": "biryani",
+    "question": "where can I eat biryani in Old Dhaka?",
+    "note": "Stage 1: answer merged Hajjee Beryani and Haji Biryani",
+    "filter": null,
+    "best_distance": 0.48,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "You can eat biryani in Old Dhaka at:\n\n- Haji Biryani — Phone: +880 1884887208 [1]  \n- Nanna Biryani [1]  \n- Hajjee Beryani — 70 Kazi Alauddin Road; in Nazira Bazar, close to Bango Bazar [3]  \n\nThese are all biryani restaurants located in Old Dhaka.",
+    "answer_seconds": 34.2,
+    "sources": [
+      {
+        "where": "Dhaka/Old Dhaka > Eat > Dhakaiya Biryani",
+        "distance": 0.48,
+        "url": "https://en.wikivoyage.org/wiki/Dhaka/Old_Dhaka",
+        "text": "Dhaka > Old Dhaka > Eat > Dhakaiya Biryani\nTraditional Dhakaiya spicy dish available in every corner of old Dhaka. Some famous biryani restaurants in old Dhaka are:\n- Haji Biryani — Phone: +880 1884887208.\n- Nanna Biryani."
+      },
+      {
+        "where": "Dhaka > Eat > Traditional food > Dhakaiya Biryani",
+        "distance": 0.521,
+        "url": "https://en.wikivoyage.org/wiki/Dhaka",
+        "text": "Dhaka (Dhaka Division) > Eat > Traditional food > Dhakaiya Biryani\nTraditional Dhakaiya spicy dish available in every corner of old Dhaka."
+      },
+      {
+        "where": "Dhaka/Old Dhaka > Eat",
+        "distance": 0.581,
+        "url": "https://en.wikivoyage.org/wiki/Dhaka/Old_Dhaka",
+        "text": "Dhaka > Old Dhaka > Eat\nRestaurants are crammed throughout the narrow alleys and along the main streets - duck into one of them and you'll likely not be too disappointed. A full meal will usually cost around Tk 70, although fish costs more.  \n- Bismillah Kabab — 104 Kazi Alauddin Rd; next to Nazira Bazaar.\n- Hajjee Beryani — 70 Kazi Alauddin Road; in Nazira Bazar, close to Bango Bazar. Old Dhaka was famed for its lines of biryani restaurants. Some of the more famous outfits are still going and Hajjee Beryani is one of them. It revels in its eccentric reputation for opening only at certain times and only cooking a certain amount (well-below demand).\n- Hotel Al-Razzaque — 29/1 North South Road; Nazira Bazaar; Phone: +880 2 956 1990; Price: Tk 50-150. On the ground floor of the hotel is a large and popular restaurant, busy anytime of the day with Bangladeshi families and businessmen. Food is pretty darn good, if unpredictable in its timing. Sometimes you'll have a choice of chicken and mutton curries, fish and vegetables, other times it's chicken biryani or the highway. Fish will double the price of a meal, at least. It is located between a clean and well-stocked fruit juice bar and a clean and well-stocked sweet shop. Each plate cost Tk 80.\n- Hotel Star — Taher Bagh Lane; Thatari Bazaar. Does fantastic biryani and goat leg roast.\n- Beauty laccha faluda — 30, 1 Kazi Alauddin Road; near Shakhari Bazar; Phone: +880 1823181180.\n- Xindian Restaurant — Road No 16 (old 27); Phone: +880 2-8123830. High-end Chinese restaurant\n- BBQ Tonight — Road No 16 (old 27). Kebab and Mughlai food. Mouth-watering and unbelievably tasty.\n- Star Hotel and Restaurant — Dhanmondi Road 2; near the corner of Road 3; Price: Tk. 50-300. Very inexpensive local food, famous for Kacchi Biryani and kebabs. A meal for one can run you Tk 50-300."
+      },
+      {
+        "where": "Bangladesh > Eat",
+        "distance": 0.597,
+        "url": "https://en.wikivoyage.org/wiki/Bangladesh",
+        "text": "Bangladesh (South_Asia) > Eat\nTo enjoy the tastes of Dhaka you must go to old Dhaka. The Haji biriyani, Nanna biriyani are a must. Also Al Razzak restaurant is famous for its Shahi food. To savour local food you must go to Korai Gost at Dhanmondi Satmosjid road, Kasturi restaurant at Gulshan & Purana Paltan area. No one should leave Bangladesh without tasting the Phuchka and Chatpati available in the streets of Dhaka and Chittagong. Also there are loads of Chinese and Thai restaurants in Bangladesh which serve localized Chinese and Thai dishes. Bailey road in Dhaka is the unofficial food street of the nation followed by Satmoshjid Road. Dhaka also has Japanese, Korean and Indian restaurants mostly in Gulshan area. For world class ice creams try Movenpick or Club Gelato in Gulshan. For kebabs, Barbecue tonight in Dhanmondi is the best followed by Koyla in Gulshan."
+      }
+    ]
+  },
+  {
+    "id": "visa",
+    "question": "do I need a visa for Thailand?",
+    "note": "Stage 1: visa-free list not retrieved; answer misread the visa-on-arrival list",
+    "filter": null,
+    "best_distance": 0.722,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "You do not need a visa for Thailand if you are a citizen of a country listed in the visa-free entry category. For example, citizens of Australia, the United Kingdom, or the United States can enter Thailand for tourism without a visa for up to 60 days [1].\n\nHowever, if you are a citizen of a country not listed in the visa-free category, you may need to apply for a visa-on-arrival or obtain a visa in advance. For instance, citizens from Bulgaria, Bhutan, or Ethiopia can apply for a visa-on-arrival for up to 30 days, which costs 2,000 baht [1][2].\n\nIf you are from a country not widely known or one with issues related to document forgery, it is recommended to obtain a visa in advance from the nearest Thai embassy, even if visa-on-arrival is permitted [2].\n\nIn summary:\n- Visa-free entry: Available for citizens of many countries (e.g., Australia, UK, US) for up to 60 days [1].\n- Visa-on-arrival: Available for citizens of countries like Bulgaria, Bhutan, Ethiopia, etc., for up to 30 days at a cost of 2,000 baht [1][2].\n- No visa exemption applies for entry by land or sea beyond twice per year [1].\n\nTherefore, whether you need a visa depends on your nationality. Check the official website of Thailand Electronic Visa for the most current information [1].",
+    "answer_seconds": 62.1,
+    "sources": [
+      {
+        "where": "Thailand > Get in > Entry requirements",
+        "distance": 0.722,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Get in > Entry requirements\nCitizens of the following countries may enter Thailand for tourism visa-free for up to the following number of days:  \n- 14 days: Myanmar (for entry by air only).\n- 60 days: Andorra, Australia, Austria, Bahrain, Belgium, Bhutan, Brunei, Bulgaria, Cambodia, Canada, China (mainland) (limited to a total of 90 days in any 180-day period), Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Fiji, Georgia, Germany, Greece, Hong Kong, Hungary, Iceland, India, Indonesia, Ireland, Israel, Italy, Japan, Kazakhstan, Kuwait, Laos, Latvia, Liechtenstein, Lithuania, Luxembourg, Macau, Malta, Malaysia, Maldives, Mauritius, Mexico, Monaco, Mongolia, Netherlands, New Zealand, Norway, Oman, Papua New Guinea, the Philippines, Poland, Portugal, Qatar, Romania, Russia, San Marino, Saudi Arabia, Singapore, Slovakia, Slovenia, Spain, South Africa, Sweden, Switzerland, Taiwan, Turkey, Ukraine, United Arab Emirates, United Kingdom, United States, Uzbekistan, and Vietnam.\n- 90 days: Argentina, Brazil, Chile, Peru and South Korea.  \nCheck the latest information from the Official Website of Thailand Electronic Visa. The visa exemption is only granted up to twice per calendar year if entering by land or sea.  \nCitizens of the following countries may apply for a visa-on-arrival for a stay of up to 30 days: Bulgaria, Bhutan, Cyprus, Ethiopia, Fiji, Georgia, Kazakhstan, Malta, Mexico, Nauru, Papua New Guinea, Romania, Taiwan, Uzbekistan and Vanuatu."
+      },
+      {
+        "where": "Thailand > Get in > Entry requirements",
+        "distance": 0.772,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Get in > Entry requirements\nThe visa-on-arrival costs 2,000 baht. Travellers using the visa-on-arrival facility need to provide more documentation than visa-free travellers, and are only allowed to use specific entry points (which includes all international airports and the major land border crossings). You will need to present a passport-sized photograph taken within the last 6 months, a confirmed ticket out of Thailand, a confirmed accommodation booking in Thailand, and show evidence of sufficient finances to cover your stay (at least 10,000 baht per individual or 20,000 baht per family).  \nThose with passports from countries not widely known, including European city-states, or that have problems with document forgery, should obtain a visa in advance from the nearest Thai embassy. This is true even if visa on arrival is permitted. There are reports of tourists being detained using valid passports not commonly presented in Thailand. In addition, ask for a business card from the person or embassy which granted the visa, so they may be contacted on arrival, if necessary. Anyone whose nationality does not have its own embassy in Bangkok, should find out which third country represents your interests there, along with local contact information.  \nThose arriving via air from most African and South American countries are required to show yellow fever certificates and receive a stamp on their entry forms from the onsite health centre prior to clearing immigration."
+      },
+      {
+        "where": "Thailand > Stay safe > Identification",
+        "distance": 0.881,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Stay safe > Identification\nIn accordance with Thai law, everyone is required to carry a form of identification with them at all times.  \nMake a photocopy of your passport and the page with your visa stamp. A picture of your passport, shot from your phone, will work as well. Always keep your passport or the photocopy with you (the law requires that you carry your actual passport at all times, but in practice a photocopy will usually suffice). Many night clubs insist on a passport (and ONLY a passport) as proof of age. It is not required that you leave your passport with a hotel when you check in.  \nMotorcycle rental places are likely to ask for you passport as collateral. Leaving another document (drivers license, int. drivers licence, second passport, ID card) might be the better option. Or consider offering a cash deposit instead."
+      },
+      {
+        "where": "Thailand > Get in > Entry requirements",
+        "distance": 0.91,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Get in > Entry requirements\n- Refuse entry unless the traveller books an onward travel ticket at the border.\n- Disregard visas, work permits, visa or visa-exempt stay extensions in passports (such as those granted by the Thai government earlier in the COVID pandemic), or any other paperwork that one would assume proves a history of legal stay and legal basis for current entry, by assuming those may be fake.\n- From a traveller who upon questioning informs officials about working remotely while being in Thailand, require evidence they don’t work for Thai businesses (such as a freelancing portfolio, supporting documentation listing former customers, and so on).\n- Inform travellers that they’ve violated the \"maximum of 90 days within the last 6 months\" rule (even if the passport issuing country is not listed in the relevant category above).\n- Subject travellers to impolite and informal treatment, such as calling them rude names.  \nOverstaying in Thailand is risky. If you make it to Immigration and are fewer than 10 days over, you'll probably be allowed out with a fine of 500 baht per day. However, if for any reason you're caught overstaying by the police you'll be carted off to the notoriously unpleasant illegal immigrant holding pens and may be blacklisted from Thailand entirely. For most people it's not worth the risk: get a legal extension or do a visa run to the nearest border instead. Now that the number of visa exemptions at the land borders is limited it is even more attractive to visit an immigration office to extend your visa or visa exemption with 30 days.  \nThai immigration officers at the land border with Malaysia are known to ask foreigners for bribes of about RM2/20 baht per person before they stamp your passport. Immigration officers at airports generally do not ask for bribes."
+      }
+    ]
+  },
+  {
+    "id": "bangkok_street_food",
+    "question": "@bangkok: street food at night",
+    "note": "Stage 1: 3 of 4 results were bare headings. Stage 2: Yaowarat dropped out",
+    "filter": {
+      "place": "Bangkok"
+    },
+    "best_distance": 0.894,
+    "retrieval_check": "❌ expected source not in top 4",
+    "answer_check": "👀 check by hand",
+    "answer": "Street food at night can be found at the Train Night Market Ratchada, located along Ratchadaphisek Road in Din Daeng, where there are open-air food vendors and engaging bars [1]. Additionally, the Ramkhamhaeng Night Market, located next to Ramkhamhaeng University, is a good place to find halal food and offers a variety of street food options [2]. Khao San Road also has street food stalls, including those selling pad thai, roti, falafel, and hummus, though much of it is geared toward backpackers and may be less refined [4].",
+    "answer_seconds": 27.5,
+    "sources": [
+      {
+        "where": "Bangkok/Ratchadaphisek > Drink > Train Night Market Ratchada",
+        "distance": 0.894,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Ratchadaphisek",
+        "text": "Bangkok > Ratchadaphisek > Drink > Train Night Market Ratchada\nThis venue along Ratchadaphisek Road in Din Daeng is full of open air food vendors and engaging bars like RUST Bar and Cocktail, Dot Box Bar, SquidBar, and Sixty Nine Bar."
+      },
+      {
+        "where": "Bangkok > Eat",
+        "distance": 0.962,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok",
+        "text": "Bangkok (Bangkok Metropolitan Area) > Eat\nFor Muslims, the alleys around Haroon Mosque in the Bang Rak area are home to many Muslim families, and hence full of stalls selling halal food. Another good place to find halal food is the Ramkhamhaeng Night Market, located next to the campus of Ramkhamhaeng University.  \nDon't miss out on a cold ice cream in hot Bangkok. Western chain stores Dairy Queen and Swensen's have booths in many malls and shopping centres. Or better yet, try an exotic fruit-flavoured ice cream at an Iberry shop. Their ice creams are tasty, cheap and safe to eat. Korean-style shaved ice has become very popular, and local chain After You has many branches in Bangkok, and is a very popular hangout spot among Thai youths and young adults.  \nIf you need a late-night snack or basic supplies, look for a convenience store. They are open around the clock and accept cash or card."
+      },
+      {
+        "where": "Bangkok > Eat > Street food",
+        "distance": 0.99,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok",
+        "text": "Bangkok (Bangkok Metropolitan Area) > Eat > Street food\nAround the corner from Khao San Road in front of the department store and supermarkets the street is lined with a myriad stalls selling all manner of tempting delicacies: sweets and crackers, coconut jellies, candied fruits, fish balls on skewers, tamarind sweets dipped in chili and sugar and a host of other delights."
+      },
+      {
+        "where": "Bangkok/Khao San Road > Eat",
+        "distance": 1.02,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Khao_San_Road",
+        "text": "Bangkok > Khao San Road > Eat\nPrice ranges — Budget: Under 100 baht; Mid-range: 100-500 baht; Splurge: Over 500 baht.  \nKhao San Road offers some of the cheapest and most diverse food selections anywhere in Bangkok. Travellers from all over the world attend the road, so there is a high demand for all kinds of ethnic food. Alongside the usual Thai dishes, Indian, Italian and Jewish cuisine are especially well-represented, as are restaurants specialised in vegetarian food.  \nStreet carts on the road sell decent pad thai (fried noodles), quail eggs, roti (like a pancake), falafel, hummus, various bugs and some sell just cocktails. However, much of it is specifically geared for backpackers — even the local pad thai, especially the 10-baht variety, saves money on the ingredients and uses soy sauce instead of the traditional tamarind sauce.  \nAs Khao San Road leaves its backpacker roots, standards (and prices) are rising. In the last ten years, many popular international food outlets have set up branches in Khao San Road, including Burger King, McDonald's and Subway. More mid-range restaurants are opened on a daily basis, but don't expect to splurge. Those looking for truly good food should head elsewhere, such as to Sukhumvit."
+      }
+    ]
+  },
+  {
+    "id": "khao_san_hotel",
+    "question": "cheap hotel near Khao San Road",
+    "note": "Specific place + accommodation",
+    "filter": null,
+    "best_distance": 0.525,
+    "retrieval_check": "⚠️ expected source #2",
+    "answer_check": "👀 check by hand",
+    "answer": "A cheap hotel near Khao San Road is **Bella Bella House**, located at 74 Soi Chana Songkhram, Bangkok. It offers shared bathroom rooms for 200 Baht and is somewhat spartan with no elevator. Upper floor rooms offer a view over Wat Chana Songkhram. Internet access is available for a fee, and food and beer are available in the 1st floor restaurant. The staff can be gruff, and the building has no drinking water or soap provided [3].\n\nAnother option is **Khaosan Palace**, located at 139 Khao San Rd, directly on Khao San Road. It costs 1,000 baht and offers clean rooms with cable TV, showers, and air-conditioning or fan. However, it is noisy, especially at night, due to nearby cafes [4].\n\nNote: While these are budget-friendly, prices are under 1,000 baht for the cheapest options, and Khaosan Palace is priced at the budget range [2].",
+    "answer_seconds": 68.1,
+    "sources": [
+      {
+        "where": "Bangkok/Khao San Road",
+        "distance": 0.525,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Khao_San_Road",
+        "text": "Bangkok > Khao San Road\nKhao San Road (Thai: ถนนข้าวสาร) is a small road about a block from the Chao Phraya River at the northern side of Rattanakosin. Backpackers and budget travellers are drawn here by some of the cheapest accommodation and travel deals in Thailand. This article also deals with the wider Banglamphu area that hosts a few interesting temples, and lots more places to stay and eat."
+      },
+      {
+        "where": "Bangkok/Khao San Road > Sleep",
+        "distance": 0.551,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Khao_San_Road",
+        "text": "Bangkok > Khao San Road > Sleep\nPrice ranges — Budget: Under 1,000 baht; Mid-range: 1,000 baht to 2,500 baht; Splurge: Over 2,500 baht.\nAccommodation directly on Khao San Road can be noisy late into the night due to bars and street activity. Travellers who prefer a quieter environment often choose guesthouses and small hotels on surrounding streets in Banglamphu or slightly further into Phra Nakhon, which remain within walking distance while offering a more relaxed atmosphere.  \nKhao San Road is Bangkok's main backpacker drag. Cheap new guest houses spring up and disappear on a monthly basis, therefore accommodation is hard to recommend, but there is always something available for a small budget. As hipsters and upper class folks have been starting to discover the road, it is more and more becoming an area that has accommodations for every price class.  \nBefore checking into an unfamiliar place, always ask to see a room first, and don't be afraid to test the fan or the air-conditioning if you think you will need it. Some Khao San Road guest houses do not accept Thai guests, or any extra guests at all in some cases."
+      },
+      {
+        "where": "Bangkok/Khao San Road > Sleep > Budget",
+        "distance": 0.598,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Khao_San_Road",
+        "text": "Bangkok > Khao San Road > Sleep > Budget\nMost backpackers head straight for Khao San Road as it has the cheapest accommodation in all of Bangkok. Don't have high hopes on luxury if you're staying here. Most of these places are dark, dingy, unclean and if you're unlucky, you might have to spend the night with bedbugs. Any lodging on Khao San Road will be loud, and anything with exterior windows will get hot.  \nTry walking a block or two off Khao San proper to find something a little quieter. Soi Rambuttri, the small street past the police station, has reasonable guest houses, though can still be loud in the evenings. The street gets darker and quieter as it wraps around the temple grounds of Wat Chana Songkhram, where you can find some quiet guest houses. Samsen Road and the surrounding area is another escape from the noise and chaos with cheap guest houses at a further distance of the action.  \n- Bella Bella House (เบลล่า เบลล่า เฮ้าส์) — 74 Soi Chana Songkhram; Phone: +66 2 629-3090; Price: 200 Baht for shared bathroom rooms. Somewhat spartan rooms with shared bathrooms. No elevator. Upper floor rooms offer view over Wat Chana Songkhram. Internet access for a fee. Food and beer available in 1F restaurant. Staff can be gruff and unfriendly.\n- Bella Bella Riverview — 6 Samsen 3 Alley, Wat Sam Phraya, Phra Nakhon; Phone: +66 2 628 8077, +66 849939073 (WhatsApp); Price: 350 Baht (single) 400 Baht (twin). Fan, no A/C. Basic but clean facilities. Private bathrooms. No drinking water or soap provided. Friendly service. Drinking water and cold drinks for sale at reception. Quiet location in alley. Free WIFI. Ten minute walk to Khao San and Phra Athit Pier. Reception closes at 21:00, but gate code sent after receipt of passport copy through WhatsApp."
+      },
+      {
+        "where": "Bangkok/Khao San Road > Sleep > Mid-range",
+        "distance": 0.642,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Khao_San_Road",
+        "text": "Bangkok > Khao San Road > Sleep > Mid-range\n- Khaosan Palace (ข้าวสาร พาเลซ อินน์) — 139 Khao San Rd; in the middle of Khao San Road; Phone: +66 2 282-0578; Price: 1,000 baht. A fairly basic guest house right in the middle of the action with an impressive Thai-style entrance and rooftop pool. The rooms are a bit on the small side, but always clean and include cable television, cold or hot shower and air-conditioning or fan. The pictures on their website do seem nicer than they are in reality though. Big downside of this hotel is the noise from nearby cafes, expect excessive noise till about 04:00 if your room is at the road side.\n- New Siam River Side (นิวสยาม ริเวอร์ไซด์) — 21 Phra Athit Rd; from Phra Athit pier, take a right into Phra Athit Road and walk; Phone: +66 2 629-3535; Price: 1,590-2,590 baht. A great location at the banks of the Chao Phraya River, with the express boat pier and the Khao San Road area closeby. If you're willing to pay extra for it, make sure that you actually book a \"river view room\", as many of the other ones face the road! Rooms are quiet, clean and just good. The breakfast is big and varied, and served buffet-style beside the pool and river. Definitely worth it. The attached restaurant can also be visited by non-guests and mains go for 100 baht or less.\n- New World City Hotel (โรงแรม นิวเวิลด์ ซิตี้) — 2 Samsen Rd; immediately take a right after crossing the canal at Chakrabongse Road; Phone: +66 2 281-5596; Price: 1,200-4,500 baht. This hotel is for those on a lower mid-range budget. Rooms are okay, and some of them have a fun view over the canal. Some rooms are a bit dated though. It's only a short walk to Khao San Road, but is still far enough not to be annoyed by noise."
+      }
+    ]
+  },
+  {
+    "id": "dhaka_vague",
+    "question": "@dhaka: how is it?",
+    "note": "Deliberately vague: retrieval should look weak",
+    "filter": {
+      "place": "Dhaka"
+    },
+    "best_distance": 1.287,
+    "retrieval_check": "⚠️ expected source #2",
+    "answer_check": "⚠️ said it couldn't find it",
+    "answer": "I couldn't find that in the travel guides.",
+    "answer_seconds": 12.9,
+    "sources": [
+      {
+        "where": "Dhaka/Old Dhaka > Drink",
+        "distance": 1.287,
+        "url": "https://en.wikivoyage.org/wiki/Dhaka/Old_Dhaka",
+        "text": "Dhaka > Old Dhaka > Drink\nNope. Not in Dhaka."
+      },
+      {
+        "where": "Dhaka > Drink",
+        "distance": 1.396,
+        "url": "https://en.wikivoyage.org/wiki/Dhaka",
+        "text": "Dhaka (Dhaka Division) > Drink\nThere is a party network between the different expat clubs (Dutch Club, Canadian Club, Nordic Club, International Club, American Club, etc.) and some Bangladeshi clubs (Heritage, Privilege, etc.) These clubs usually require membership to enter, or befriend a member and have them sign you in. From there, you can purchase a book of tickets or a cash card and then use it to order your drinks.  \nAlthough alcohol is most easily available at the international clubs and top hotels, there are quite a few local places to find a drink for the enterprising traveller. Local bars are to be found in most neighbourhoods but can be difficult to locate due to lack of advertising. Popular brands of beer (Heineken, Carlsberg, Tuborg, Foster's etc.) and major types of spirits are available at these places, and at much lower prices than at hotel bars.  \nYou can try:\n- The Dip, like most other Bengali bars, is a smoke-filled darkened room where many of its patrons would rather not be recognized too easily. Definitely an experience, nonetheless. Beers cost upwards of Tk 150 and \"tots,\" which are single ounce servings of gin, vodka or whisky, are available from Tk 70 (local brands) to Tk 200. Female patrons may feel slightly uncomfortable."
+      },
+      {
+        "where": "Dhaka > Connect",
+        "distance": 1.398,
+        "url": "https://en.wikivoyage.org/wiki/Dhaka",
+        "text": "Dhaka (Dhaka Division) > Connect\nInternet is now widely available in all over Dhaka at Internet cafes hidden in the various shopping complexes - ask around. Tk 20-30 per hour.  \nMany 5-star hotels and restaurants also give free WiFi. Be sure to ask employees for the password in case it's protected.  \nAnother one new restaurant in Mohakhali, opposite the East West University, named Newsroom Cafe - provides free Wi-Fi and Internet kiosks for their customers. Free Wi-Fi is also available in Kozmo Lounge situated in Dhanmondi."
+      },
+      {
+        "where": "Dhaka > Eat > Traditional food > Dhakaiya Biryani",
+        "distance": 1.4,
+        "url": "https://en.wikivoyage.org/wiki/Dhaka",
+        "text": "Dhaka (Dhaka Division) > Eat > Traditional food > Dhakaiya Biryani\nTraditional Dhakaiya spicy dish available in every corner of old Dhaka."
+      }
+    ]
+  },
+  {
+    "id": "chiang_mai_clinics",
+    "question": "medical clinics in Chiang Mai",
+    "note": "Stage 1: the clinic listings lost their '### Medical' heading",
+    "filter": null,
+    "best_distance": 0.485,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "Medical clinics in Chiang Mai:\n\n- CM Mediclinic — 155/28 Moo 2, Yu Yen Soi 10, Tambon Changphueak; opposite A-Plus Gallery Place, near TK Mansion, Ban Jed Yod & Sahataya Mansion at the back of Wat Jed Yod, Wat Chet Yot, (Google Maps spelling); Phone: +66 805 362362; Hours: Mon-Fri 16:30–20:00; Sat 08:00–17:00. Thai- and English-speaking healthcare centre/medical clinic providing comprehensive medical services for travelers, such as vaccinations and full health check-ups. [1]\n\n- Loi Kroh Clinic — 62/2 Loi Kroh Rd; corner of Loi Kroh Rd and Loi Kroh Soi 3; Phone: +66 53-271571; Hours: Mon-Fri 08:00–13:00, 16:30–20:30; Sat 08:00–13:00; Sun 16:30–20:30. Small clinic for the treatment of minor ailments. Experienced, English-speaking doctor. Small pharmacy on the premises. In and out in 15 min, drugs in hand. [1]",
+    "answer_seconds": 74.7,
+    "sources": [
+      {
+        "where": "Chiang Mai > Cope > Medical",
+        "distance": 0.485,
+        "url": "https://en.wikivoyage.org/wiki/Chiang_Mai",
+        "text": "Chiang Mai (Chiang Mai Province) > Cope > Medical\n- Maharaj Nakorn Chiang Mai Hospital — 110 Suthep Rd; Phone: +66 53 947700.\n- Bangkok Hospital — 88/8 Moo. 6, T. Nong Pa Khrang; at Highway to Lampang; Phone: +66 52 089888.\n- Chiang Mai Central Memorial Hospital — 186/2 Chang Khan Rd, T. Chang Khan; Phone: +66 53 819340.\n- Chiangmai Ram Hospital — 8 Boonruangrit Road, Sripoom District; Phone: +66 53 224851 or +66 53 224861.\n- McCormick Hospital — 133 Kaeo Nawarat Road, T. Wat Ket, A. Mueang, Chiang Mai 50000; Phone: +66 53 921777.\n- CM Mediclinic — 155/28 Moo 2, Yu Yen Soi 10, Tambon Changphueak; opposite A-Plus Gallery Place, near TK Mansion, Ban Jed Yod & Sahataya Mansion at the back of Wat Jed Yod, Wat Chet Yot, (Google Maps spelling); Phone: +66 805 362362; Hours: Mon-Fri 16:30-20:00; Sat 08:00-17:00. Thai- and English-speaking healthcare centre/medical clinic providing comprehensive medical services for travelers, such as vaccinations and full health check-ups.\n- Loi Kroh Clinic — 62/2 Loi Kroh Rd; corner of Loi Kroh Rd and Loi Kroh Soi 3; Phone: +66 53-271571; Hours: Mon-Fri 08:00-13:00, 16:30-20:30; Sat 08:00-13:00; Sun 16:30-20:30. Small clinic for the treatment of minor ailments. Experienced, English-speaking doctor. Small pharmacy on the premises. In and out in 15 min, drugs in hand."
+      },
+      {
+        "where": "Chiang Mai > Sleep",
+        "distance": 0.724,
+        "url": "https://en.wikivoyage.org/wiki/Chiang_Mai",
+        "text": "Chiang Mai (Chiang Mai Province) > Sleep\nAccommodation in Chiang Mai is generally cheap, even by Thai standards. All types of lodging are available from inexpensive guest-houses with little or no service to the typical high rise hotels and elaborate garden resorts. The latest boom is Thai-style boutique resorts located near the old city centre — several have been built since mid-2005, and offer excellent service in quiet garden settings; most are fairly small with as few as 8 rooms and a pool, and are decorated with Thai crafts and antiques.  \nEvenings in Chiang Mai are cooler than Bangkok and the south during the dry season, so air conditioning may be less of a priority.  \nSome of the cheapest accommodation may refuse guests who are not also booking a trekking package. If so, please remove them from Wikivoyage."
+      },
+      {
+        "where": "Chiang Mai > Cope > Dental",
+        "distance": 0.742,
+        "url": "https://en.wikivoyage.org/wiki/Chiang_Mai",
+        "text": "Chiang Mai (Chiang Mai Province) > Cope > Dental\n- Grace Dental Care Clinic — 45 Soi 11 Nimmanhemin Rd; Phone: +66 53-894568-69; Hours: Mon-Fri 09:00-20:30; Sat Sun 09:00-17:00. Modern, state-of-the-art dental clinic. Many of the practitioners there, about 15 total, have studied abroad. Most, if not all, speak excellent English, as does the staff.\n- Mukmai Dental Clinic — 11/3-4 Jaban Rd; behind the 3 Kings Monument inside moat; Phone: +66 53-416328; Hours: Mon-Sat 09:00-20:00. Dr Suttipong is a terrific dentist, almost painless treatment. Friendly and accommodating staff and English spoken. Reasonable rates."
+      },
+      {
+        "where": "Chiang Mai > Work",
+        "distance": 0.747,
+        "url": "https://en.wikivoyage.org/wiki/Chiang_Mai",
+        "text": "Chiang Mai (Chiang Mai Province) > Work\nChiang Mai is a hotspot for digital nomads. As such, there are lots of services catering to help them with visas and finding medium-term rentals."
+      }
+    ]
+  },
+  {
+    "id": "phuket_phi_phi_how",
+    "question": "how do I get from Phuket to Ko Phi Phi?",
+    "note": "Stage 2: 'Get in > By car' outranked 'By boat'. Phuket or Ko Phi Phi article both fine",
+    "filter": null,
+    "best_distance": 0.533,
+    "retrieval_check": "⚠️ expected source #2",
+    "answer_check": "👀 check by hand",
+    "answer": "You can get from Phuket to Ko Phi Phi by ferry. Ferry services connect Rassada Port in Phuket Town to Ko Phi Phi twice a day, taking 90 to 120 minutes. It's usually a pleasant ride, but can be rather bumpy when it's windy [2].",
+    "answer_seconds": 32.0,
+    "sources": [
+      {
+        "where": "Phuket > Get in > By car",
+        "distance": 0.533,
+        "url": "https://en.wikivoyage.org/wiki/Phuket",
+        "text": "Phuket (Southern Thailand) > Get in > By car\nPhuket is directly connected to the mainland by the Sarasin Bridge. From Bangkok, take Hwy 4 through Nakhon Pathom, Prachuap Khiri Khan, Chumphon, through Ranong province’s Kra Buri and Kapoe districts, Phang Nga Province’s Takua Pa and Thai Muang districts and onto Phuket Island. The total distance is 862 km. You may be better off getting to Phuket by public transport and renting a car on the island."
+      },
+      {
+        "where": "Phuket > Get in > By boat",
+        "distance": 0.601,
+        "url": "https://en.wikivoyage.org/wiki/Phuket",
+        "text": "Phuket (Southern Thailand) > Get in > By boat\nFerry services connect from Rassada Port in Phuket Town to Ko Phi Phi and to Krabi Province on the mainland twice a day, taking 90 to 120 minutes. It's usually a pleasant ride, but can be rather bumpy when it's windy.  \nFrom the harbour, you could avoid the minibuses and take a songthaew to Phuket Town. If it doesn't show up at the bus stop right outside the terminal, you'll have to walk past the gate outside the harbour and along the road, turning left at the first T-junction, about 600 m, then on the main road you can catch a cheap songthaew. There's a picture of all the routes posted just outside the terminal near the bus stop inside the complex. Last one leaves at 19:00.  \nThere are speedboats from/to Ko Racha (45 minutes), Phi Phi (1–1.5 hours), the Similan Islands (about 3 hours) and other islands. Boats and yachts can be chartered all year from Phuket at Chalong Bay, Rawai Beach, the Boot Lagoon, the Yacht Haven and Royal Phuket Marina. Boats from Phi Phi and Phang Nga can be found by visiting the local beaches. A search for Phuket speedboat charters will turn up many companies providing inter-island charters and services.  \nPhi Phi speedboat transfers (no tour) are provided by the Zeavola Resort, which has dedicated speedboats for Phi Phi transfers. Most companies doing Phi Phi speedboat tours will not accommodate transfers that include baggage due to space limitations.  \nPrices for speedboat charters to/from Phuket depend on distance/size of boat.  \nIt's possible to visit Phuket by cruise ship. However with the collapse of Star Cruises, the main operator, options are severely limited. As of Feb 2023, no cruise ships are scheduled to visit."
+      },
+      {
+        "where": "Ko Phi Phi > Get in > By car",
+        "distance": 0.64,
+        "url": "https://en.wikivoyage.org/wiki/Ko_Phi_Phi",
+        "text": "Ko Phi Phi (Krabi Province) > Get in > By car\nFrom Bangkok:  \n- Take Hwy 4, passing Phetchaburi–Prachuap Khiri Khan–Chumphon–Ranong–Phang Nga-Krabi. The total distance is 946 km.\n- Travel Hwy 4 to Hwy 41 at Chumphon via Lang Suan-Chaiya-Surat Thani. Proceed towards Wiang Sa, change to Hwy 4035 for Baan Ao Luek, and switch back to Hwy 4 again to Krabi. This route is 814 km.\n- From Phuket: Take Hwy 402 and Hwy 4. The total distance is 176 km."
+      },
+      {
+        "where": "Phuket > Get in > By train",
+        "distance": 0.643,
+        "url": "https://en.wikivoyage.org/wiki/Phuket",
+        "text": "Phuket (Southern Thailand) > Get in > By train\nThere are no direct train services to Phuket. But many trains leave from Bangkok central station going south. The most comfortable are the sleeper trains. Travellers by train disembark at Phun Phin railway station near the city of Surat Thani and continue for another 5 hours by regular bus to Phuket. Do not buy the bus ticket until you actually see the bus and can make sure it is not standing room only, as it picks up passengers at the popular Ko Samui ferry. If full, wait for the next one."
+      }
+    ]
+  },
+  {
+    "id": "phuket_phi_phi_ferry",
+    "question": "ferry from Phuket to Ko Phi Phi",
+    "note": "Same need as above, different wording",
+    "filter": null,
+    "best_distance": 0.582,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "Ferry services from Phuket to Ko Phi Phi leave from Rassada Port in Phuket Town and take 1.5 to 2 hours, with departures at 09:00, 11:00 (only during high season), and 14:30 [4]. The ticket price ranges from 300 to 600 baht depending on the point of purchase and whether it's a one-way or round-trip ticket. Tickets can be bought at the dock, tourist offices, local guesthouses, or online at Phi Phi Ferry [4]. There is a 20-baht fee per person for \"keeping Ko Phi Phi clean\" at the pier [4].",
+    "answer_seconds": 76.5,
+    "sources": [
+      {
+        "where": "Phuket > Get in > By boat",
+        "distance": 0.582,
+        "url": "https://en.wikivoyage.org/wiki/Phuket",
+        "text": "Phuket (Southern Thailand) > Get in > By boat\nFerry services connect from Rassada Port in Phuket Town to Ko Phi Phi and to Krabi Province on the mainland twice a day, taking 90 to 120 minutes. It's usually a pleasant ride, but can be rather bumpy when it's windy.  \nFrom the harbour, you could avoid the minibuses and take a songthaew to Phuket Town. If it doesn't show up at the bus stop right outside the terminal, you'll have to walk past the gate outside the harbour and along the road, turning left at the first T-junction, about 600 m, then on the main road you can catch a cheap songthaew. There's a picture of all the routes posted just outside the terminal near the bus stop inside the complex. Last one leaves at 19:00.  \nThere are speedboats from/to Ko Racha (45 minutes), Phi Phi (1–1.5 hours), the Similan Islands (about 3 hours) and other islands. Boats and yachts can be chartered all year from Phuket at Chalong Bay, Rawai Beach, the Boot Lagoon, the Yacht Haven and Royal Phuket Marina. Boats from Phi Phi and Phang Nga can be found by visiting the local beaches. A search for Phuket speedboat charters will turn up many companies providing inter-island charters and services.  \nPhi Phi speedboat transfers (no tour) are provided by the Zeavola Resort, which has dedicated speedboats for Phi Phi transfers. Most companies doing Phi Phi speedboat tours will not accommodate transfers that include baggage due to space limitations.  \nPrices for speedboat charters to/from Phuket depend on distance/size of boat.  \nIt's possible to visit Phuket by cruise ship. However with the collapse of Star Cruises, the main operator, options are severely limited. As of Feb 2023, no cruise ships are scheduled to visit."
+      },
+      {
+        "where": "Thailand > Get in > By boat",
+        "distance": 0.597,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Get in > By boat\nIt is possible to travel by ferries in high season (Nov-May) from Phuket and island hop your way down the coast all the way to Indonesia.  \nThis can now be done without ever touching the mainland,  \nPhuket (Thailand) to Penang (Malaysia), islands en route:  \n- Ko Phi Phi\n- Ko Lanta\n- Ko Ngai\n- Ko Mook\n- Ko Bulon\n- Ko Lipe— Ko Lipe being the hub on the border between Thailand and Malaysia having a Thai immigration office.\n- Langkawi- Malaysian immigration here.\n- Penang  \nThe Thai portion can be done in a day.  \nFerries cross from Satun in southern Thailand to the Malaysian island of Langkawi, while over in Narathiwat Province, a vehicular ferry shuttles between Tak Bai and Pengkalan Kubur, near Kota Bharu in Malaysia's Kelantan state.  \nThere are also occasional cruises from Malaysia and Singapore to Phuket and Bangkok, however the main operator Star Cruises collapsed in 2022.  \nSmall wooden longtail boats shuttle between Kawthoung in Myanmar and Ranong. There is no fixed schedule. You negotiate directly with the boat operator, and leave once a price has been agreed upon. Be sure to bargain hard, or you might get ripped off. Boat operators may try to hustle you onto the boat before you find the immigration office but do not let them do so, as you will be departing the country illegally. Ensure you get stamped out before getting on the boat."
+      },
+      {
+        "where": "Bangkok/Yaowarat and Phahurat > Get in > By boat",
+        "distance": 0.604,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Yaowarat_and_Phahurat",
+        "text": "Bangkok > Yaowarat and Phahurat > Get in > By boat\nDue to its location at the Chao Phraya River, most visitors enter Yaowarat and Phahurat using the Chao Phraya Express Boat service. A single trip from Rattanakosin or Silom takes about 20 minutes and costs around 18 baht. The most important stops are the Rachawongse and Si Phraya piers, both of which are served by all lines. Rachawongse is an ideal stop for central Yaowarat, while Si Phraya is close to the southeastern part of the district. Phahurat can best be reached using the Memorial Bridge pier (Saphan Phut), which is only attended by no-flag and orange flag lines. Other piers that could be useful are Rachini and Marine Department, both of which are only served by no-flag lines.  \nIf you're coming from Thonburi, you can cross the river by taking a ferry. There is a ferry service from Kanlayanamit to Pak Khlong Talat, from Dindaeng to Rachawongse and from Klongsan to Si Phraya. Ferries leave about every 15 minutes for just 3 baht."
+      },
+      {
+        "where": "Ko Phi Phi > Get in > By boat",
+        "distance": 0.608,
+        "url": "https://en.wikivoyage.org/wiki/Ko_Phi_Phi",
+        "text": "Ko Phi Phi (Krabi Province) > Get in > By boat\nTravelling to Ko Phi Phi by boat is how almost everyone arrives. Ferries leave from Phuket and Mainland Krabi daily (from Krabi, two ferries a day, 09:00, and 14:30, and from Phuket at 09:00, 11:00, and 14:30 (11:00 during high season only). Sailing time from Phuket or Krabi is 1.5-2 hours. Tickets can be purchased on the dock, from tourist offices, most local guesthouses and hotels or online at Phi Phi Ferry, Phi Phi Island Ferry. There is a 20-baht per person fee on the pier for \"keeping Ko Phi Phi clean\". There is still plenty of rubbish on the beaches.  \nTicket prices:\n- From Ko Lanta: 350 baht.\n- From Krabi Town: 300 baht from PP Family, office right by the pier in town. Includes songthaew to the pier outside town. The normal passenger ferry does not leave from the centre of town any more, but from a new passenger port (Klong Jilard Pier +66 75 620052) about 3 km outside Krabi Town. Free taxi transfer to the pier should be included in the price of your ticket. Many times they'll take you to a travel agent near the Chao Fah Pier and sell you additional accommodations or services. Only ever buy the ticket you need. Additional ferries are added during peak season.\n- From Ao Nang: 400 baht one way (including transfer from hotel to Noppharat Peir) 0930 and 1530.\n- From Phuket Airport: To Rassada Pier (Phuket) by meter taxi for around 500 baht. It's about a 30 km drive and takes 45 minutes depending on traffic and weather.\n- From Phuket Pier (Rassada): 600 baht one-way/1,000 baht round trip when bought at the pier. It's possible to get 300-350 baht one-way tickets as part of a deal with a guesthouse stay."
+      }
+    ]
+  },
+  {
+    "id": "krabi_beaches",
+    "question": "beaches near Krabi",
+    "note": "Tests is_part_of in the context line: Ao Nang chunks say 'Ao Nang (Krabi Province)'",
+    "filter": null,
+    "best_distance": 0.727,
+    "retrieval_check": "👀 check by hand",
+    "answer_check": "👀 check by hand",
+    "answer": "Beaches near Krabi include Had Yao, Ao Nang, and Rai Leh (aka Railay) [1].",
+    "answer_seconds": 18.9,
+    "sources": [
+      {
+        "where": "Krabi Town",
+        "distance": 0.727,
+        "url": "https://en.wikivoyage.org/wiki/Krabi_Town",
+        "text": "Krabi Town (Krabi Province)\nKrabi (กระบี่), the capital of Krabi Province, sits a little upstream from the mouth of the Krabi River and is mainly visited en route to the nearby beaches of Had Yao, Ao Nang or Rai Leh (aka Railay). Krabi is 784 km south of Bangkok by road."
+      },
+      {
+        "where": "Krabi Town > Do",
+        "distance": 0.771,
+        "url": "https://en.wikivoyage.org/wiki/Krabi_Town",
+        "text": "Krabi Town (Krabi Province) > Do\n- Dhara Massage and Spa — 1/9 Ruamjit Alley; just off Issara Rd on the small street near Soi Ruamjit; if you're walking away from the water on Issara, pass major street Ma Ha Rat Rd on your right, then take your first left and it will be on your left. Go get a relaxing but powerful (and wildly inexpensive) massage, or couples massage here. The two women working here have real certifications and training, and they are very focused on their work.\n- Snorkelling, kayaking tours. Examples one-day tour: 4 islands, Hong island, Phi Phi islands for 1000-300 baht depending if long-tail or speed boat. Include usually hotel transfer, snorkel mask, life jacket, lunch, frsh fruit, drinking water, basic insurance, and guide, sometimes dry bag.\n- Mangrove tour, half-day. 1500-2500 baht."
+      },
+      {
+        "where": "Ko Phi Phi > Do > Diving > Sailing and cruising",
+        "distance": 0.779,
+        "url": "https://en.wikivoyage.org/wiki/Ko_Phi_Phi",
+        "text": "Ko Phi Phi (Krabi Province) > Do > Diving > Sailing and cruising\nKrabi has plenty of anchorages, usually deserted and all so beautiful. There are many charter sailing boats available and some even offer \"join-in\" day trips for two or more people. Phi Phi offers a variety of ways for sailing and cruising. Longtails can be hired for sunset tours and island excursions. They can be found on any beach.  \n- DragonHeart — at the Deaf Gecko on Nice Beach. Daily sunset and snorkel tours. Tour Phi Phi Leh and cruise into the sunset. Climbing, slacklining, weddings."
+      },
+      {
+        "where": "Krabi Town > Get in > By car",
+        "distance": 0.784,
+        "url": "https://en.wikivoyage.org/wiki/Krabi_Town",
+        "text": "Krabi Town (Krabi Province) > Get in > By car\nKrabi is just off Hwy 4. It is 784 km south of Bangkok, 165 km by road to Phuket, and 80 km to Phang Nga."
+      }
+    ]
+  },
+  {
+    "id": "yaowarat_food",
+    "question": "street food in Yaowarat",
+    "note": "Is the Yaowarat street-food chunk findable when asked about directly?",
+    "filter": null,
+    "best_distance": 0.638,
+    "retrieval_check": "⚠️ expected source #4",
+    "answer_check": "👀 check by hand",
+    "answer": "Street food in Yaowarat is very authentic, made from original recipes passed down by Chinese immigrants over three generations. It is served at numerous hawker stalls and street restaurants, each specialising in one particular dish, and has been refined over decades. The street food scene becomes lively at sunset, with long queues forming on the roads. Simple meals cost around 50 baht per dish and are best shared in a group. These stalls are internationally acclaimed among food enthusiasts [4].",
+    "answer_seconds": 61.9,
+    "sources": [
+      {
+        "where": "Bangkok/Yaowarat and Phahurat",
+        "distance": 0.638,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Yaowarat_and_Phahurat",
+        "text": "Bangkok > Yaowarat and Phahurat\nYaowarat and Phahurat (Thai: เยาวราชและพาหุรัด) is Bangkok's multicultural district, located west of Silom and southeast of Rattanakosin. Yaowarat Road is the home of Bangkok's sizeable Chinese community, while those of Indian ethnicity have congregated around Phahurat Road. By day, Yaowarat doesn't look that much different from any other part of Bangkok, though the neighbourhood feels like a big street market and there are some hidden gems waiting to be explored. But at night, the neon signs blazing with Chinese characters are turned on and crowds from the restaurants spill out onto the streets, turning the area into a miniature Hong Kong (minus the skyscrapers). Phahurat is an excellent place for buying fabrics, accessories and religious paraphernalia. A visit to the area is not complete without having some of its amazing delicacies that sell for an absolute bargain — such as bird's nest soup or some Indian curries."
+      },
+      {
+        "where": "Bangkok/Yaowarat and Phahurat > Understand > Orientation",
+        "distance": 0.696,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Yaowarat_and_Phahurat",
+        "text": "Bangkok > Yaowarat and Phahurat > Understand > Orientation\nOrientation in Yaowarat is even trickier than elsewhere in Bangkok. The area is filled with narrow alleys and obscure pedestrian-only routes, and is crossed by a few giant roads that feel like small highways. Finding your way around is difficult as road signs are blocked by the bulk of neon-signs and other merchandise that sellers hang up to attract customers. The perfect map for the district still has to be created, so adapt to the situation and expect to get lost often. Also take note that alleys often bear the name trok instead of the usual soi and that many have multiple names attached to them. For example, Trok Issaranuphap is often signposted as Soi Issaranuphap or as Soi 16, while Soi Phadung Dao is also known as Soi Texas.  \nYaowarat is centred, as could be expected, around Yaowarat Road, a big road bursting with neon signs. North of it is Charoen Krung Road, which is also one of Bangkok's major traffic arteries. Running parallel to the south of Yaowarat Road is Sampheng Lane, which is also known as Soi Wanit 1, a narrow pedestrian-only lane with many small department stores. Crossing these three streets is the pedestrian-only Trok Issaranuphap, another interesting lane for shopping and having small snacks. Another small lane crossing Yaowarat Road is Soi Phadung Dao, the place to go when you're hungry.  \nPhahurat is centred around Phahurat Road, which starts immediately west of Sampheng Lane. It is crossed by Chakphet Road and Tri Phet Road, both major roads that have to cope with the immense traffic coming from the Memorial Bridge."
+      },
+      {
+        "where": "Bangkok/Yaowarat and Phahurat > Buy > Street markets",
+        "distance": 0.718,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Yaowarat_and_Phahurat",
+        "text": "Bangkok > Yaowarat and Phahurat > Buy > Street markets\nTypical of Yaowarat are its small crowded lanes filled with markets, that sell... well, inauthentic can find to sell. You'll stumble on items for sale as diverse as Chinese medicine, snake blood, Buddhist paraphernalia, toys, ant-killer chalk, car spare parts, typical teenager stuff and more.  \nParallel to the big Yaowarat Road lies Sampheng Lane (sometimes signposted as Soi Wanit 1, 08:00-18:00 daily) which is probably the most characteristic (if tacky) shopping lane of the area. This narrow lane, at some places having a width of less than one metre, used to be a shady area thriving on brothels, gambling houses and opium dens, but has now turned into a crowded lane of endless ramshackle department stores. The lane can roughly be divided into three sections, all of them selling different kind of products at bargain rates. The lower eastern part of Sampheng Lane focuses on cheap teenager accessories, such as cheap jewellery, toys, and hair products. In the middle part, there is more of a focus on shoes, Chinese ceramics and lanterns. Indian merchants have mostly taken over the part west of Rachawongse Road, where you can find fabrics, silk and other clothing. Don't expect any quality here, just shop for fun."
+      },
+      {
+        "where": "Bangkok/Yaowarat and Phahurat > Eat",
+        "distance": 0.741,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok/Yaowarat_and_Phahurat",
+        "text": "Bangkok > Yaowarat and Phahurat > Eat\nIt's better to go for the high-end seafood. While pricey, it can be enjoyed here for relatively affordable prices compared with other large cities in the world. Most seafood dishes cost around 300-500 baht per head, but crab costs more than 1,000 baht. Seafood is best ordered in the large restaurants around Yaowarat Road and Soi Phadung Dao (often known as Soi Texas). These restaurants specialise mainly in Southern Chinese fare. Dim sum is a staple and some of the restaurants are fully specialised in it. Other popular dishes are Cantonese-style roasted duck, Peking duck and abalone in oyster sauce. Forget about any sort of ambience as these restaurants serve in very noisy rooms with overly bright lighting.  \nTravellers on a budget might want to venture into the little side-streets and take a bite at one of the numerous hawker stalls and street restaurants. The hawker stalls here have been internationally acclaimed among food enthusiasts. The street food here is very authentic as original recipes from Chinese immigrants have been passed on for three generations. Each street restaurant specialises in one particular dish and the owners have been fine-tuning it to perfection for decades. The street food scene lights up at sunset as queues of people line up on the road waiting to be seated. Simple meals are around 50 baht per dish, which are best shared in a group. Visit a couple of these, or ask a local for advice as everyone seems to have a particular hidden favourite.  \nIndian curries are served in restaurants around Phahurat Road and Chakphet Road. These roads tend to be deserted after dark, so you might want to head off by taxi when dinner time is over. If all this sounds too exotic or adventurous for you, there are some tourist-friendly Western and Thai restaurants in the Old Siam Plaza. It also has some fast-food outlets and a food court for those on a budget."
+      }
+    ]
+  },
+  {
+    "id": "vaping",
+    "question": "can I vape in Thailand?",
+    "note": "Specific legal fact in a short section. Stage 2 answer contradicted its source once",
+    "filter": null,
+    "best_distance": 0.475,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "No, you cannot vape in Thailand. Vaping and e-cigarettes are illegal in the country, and possession can lead to fines, deportation, or even imprisonment [1]. While enforcement against foreigners is rare in practice, the law is strictly against vapes [4]. There are no legal vape shops or sales of vapes in Thailand [1]. You can generally bring in a 30-day supply of prescription medicines, but vapes are explicitly banned [2]. \n\nTherefore, vaping is not permitted and is illegal in Thailand.",
+    "answer_seconds": 31.9,
+    "sources": [
+      {
+        "where": "Thailand > Stay safe > Vaping",
+        "distance": 0.475,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Stay safe > Vaping\nThailand has extremely harsh laws regarding e-cigarettes — possession can theoretically carry a sentence of up to 10 years. In practice, enforcement against foreigners appears rare and usually results in an on-the-spot fine. Vaping is visibly common in tourist areas, and vapes are sold openly in Bangkok and Pattaya despite being illegal. There are virtually no reports of problems with customs when bringing a personal vape into the country."
+      },
+      {
+        "where": "Thailand > Get in > Customs requirements",
+        "distance": 0.728,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Get in > Customs requirements\nYou can legally import up to 1 liter of alcohol, and one of 200 cigarettes, 50 cigars or 250g of loose tobacco duty-free. Vapes and e-cigarettes are illegal.  \nYou can generally bring in a 30-day supply of prescription medicines for personal use, but narcotic drugs require a permit in advance from the Narcotics Control Division. Penalties for smuggling in illegal drugs are extremely harsh."
+      },
+      {
+        "where": "Thailand > Drink",
+        "distance": 0.733,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Drink\nThailand is infamous for its nightlife, which ranges from acoustic guitar and smoking perfectly legal blunts at a beachside hut to superstar DJs and fancy cocktails at hip nightclubs. The Full Moon Party in Ko Phangan draws backpackers all around the world, every Thai beach resort has its nightlife area, and the offerings in Bangkok run the gamut from smoky jazz clubs to enormous open-air beer gardens where kuk thung and mor lam country music singers from Isaan croon nightly.  \nThailand also has a large sex industry, which to tourists is most visible in the flashy go-go bars of Bangkok, Pattaya, and Patong (Phuket), which are very much targeted at visitors. While these are thinly disguised fronts for prostitution, legally a grey area in Thailand with all the risks that entails, it's generally OK to visit them only for drinks and the show.  \nIn 2022, cannabis was completely legalized and over 10,000 retailers sprouted up overnight. In 2025, the government tightened up the rules and medical marijuana prescriptions are now required, although they're straightforward even for visitors to obtain. There are restrictions on where you can smoke, and almost all other drugs remain strictly banned, with draconian penalties. See Drugs for details."
+      },
+      {
+        "where": "Thailand > Stay safe",
+        "distance": 0.777,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Stay safe\nThe number one cause of death for visitors to Thailand is motorcycle accidents, especially on the often narrow, mountainous and twisty roads of Phuket and Samui. Drive defensively, wear a helmet, don't drink and avoid travel at night.  \nViolent crime is in general rare, and the foreigners who get into trouble are typically those that get into drunken fights.  \nE-cigarettes and vapes are strictly illegal. Being caught with one at the airport or in the city can lead to large fines, deportation and even imprisonment.  \nSunscreen containing oxybenzone or octinoxate is banned in all marine national parks to protect coral reefs. Violators face a fine of 100,000 THB.  \nUnder the Playing Cards Act, possessing more than 120 playing cards without a government seal is illegal and can lead to imprisonment."
+      }
+    ]
+  },
+  {
+    "id": "best_time",
+    "question": "what is the best time of year to visit Thailand?",
+    "note": "Paragraph-style content, not listings",
+    "filter": null,
+    "best_distance": 0.644,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "The best time of year to visit Thailand is from November to the end of February, known as the Cool season. During this period, it doesn't rain much and temperatures are at their lowest, offering a pleasant climate, especially in the south. While the northern mountains can be cooler, this season is generally the most popular time to visit. However, flights and accommodation can be expensive and difficult around Christmas, New Year’s, or Chinese New Year [1].",
+    "answer_seconds": 35.5,
+    "sources": [
+      {
+        "where": "Thailand > Understand > Climate",
+        "distance": 0.644,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Understand > Climate\nThailand is largely tropical. It's hot and humid all year around with temperatures in the 28-35°C range (82-95°F), a degree of relief provided only in the mountains in the far north of Thailand. There are, however, three seasons:  \n- Cool: From Nov to the end of Feb, it doesn't rain much and temperatures are at their lowest, although you will barely notice the difference in the south and will only need to pack a sweater if hiking in the northern mountains, where temperatures can fall as low as 5°C. This is the most popular time to visit and, especially around Christmas and New Year's or at Chinese New Year a few weeks later, finding flights and accommodation can be expensive and difficult.\n- Hot: From Mar-Apr, Thailand swelters in temperatures as high as 40°C (104°F) and heat indices in the 50s°C (122-140°F), with April generally being the hottest month. Pleasant enough when sitting on the beach with a drink in hand, but not the best time of year to go temple-tramping in Bangkok.\n- Rainy: From May-Oct, although it only really gets underway in Sep, when tropical monsoons hit most of the country. This doesn't mean it rains non-stop, but when it does it pours and flooding is not uncommon.  \nThere are local variations to these general patterns. In particular, the Central Gulf Coast of Thailand (including Ko Samui) has the rains reversed, with the dry peak season being May-Oct and the rainy off-season in Nov-Feb."
+      },
+      {
+        "where": "Thailand > Stay healthy > Air quality",
+        "distance": 0.765,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Stay healthy > Air quality\nThe \"burning season\" across central and northern Thailand occurs every January-April, where farmers burn off the remnants of their crops in the dry season. Dry air and forest fires also contribute to cause significant air pollution, especially in Northern Thailand. If you have respiratory trouble, reconsider travelling in Northern Thailand during these months. N95 masks can help, and air quality around Thailand can be monitored on the Air4Thai website."
+      },
+      {
+        "where": "Thailand",
+        "distance": 0.822,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia)\nThailand (Thai: ประเทศไทย Prathet Thai or เมืองไทย Mueang Thai) is among the most visited countries on Earth, and for good reason. You can find thick jungle as green as can be, crystal blue waters that feel more like a warm bath than a swim in the ocean, and food that can curl your nose hairs while tap dancing across your taste buds. Bustling, yet safe; cheap, and equipped with every amenity you need, there is something for every interest and every price bracket, from beachfront backpacker hostels to some of the best luxury hotels in the world.  \nDespite the heavy flow of tourism, Thailand retains its quintessential identity, with a culture and history all its own and a carefree people famed for their smiles and their fun-seeking sanuk lifestyle. Many travellers come to Thailand and extend their stay well beyond their original plans, and others never find a reason to leave."
+      },
+      {
+        "where": "Thailand > Get around",
+        "distance": 0.866,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Get around\nThailand is a large country, but the good news is that there are plenty of affordable and comfortable ways to get around. Domestic flights are a good option for lengthy trips like Bangkok to Phuket or Chiang Mai, with very competitive fares on the main routes if booked in advance, while plush VIP intercity buses ply the highways to every city of any size and there's a reasonable train network as well.  \nRenting a car or motorbike to drive yourself is a more questionable proposition, since while the road network is quite good, Thailand's traffic safety record has a lot of room for improvement and large cities, especially Bangkok, are snarled in perpetual traffic jams. Nevertheless, rentals for a step-in 125/150cc bike start from about 1000 baht/week including helmet, making this an attractive option to get around and explore nearby areas. Most any hotel or lodging will be more than happy to help you arrange a rental."
+      }
+    ]
+  },
+  {
+    "id": "greeting",
+    "question": "how do I greet people in Thailand?",
+    "note": "Question words ('greet') differ from the heading ('The wai')",
+    "filter": null,
+    "best_distance": 0.681,
+    "retrieval_check": "⚠️ expected source #2",
+    "answer_check": "👀 check by hand",
+    "answer": "In Thailand, the traditional greeting is the \"wai,\" where you press your hands together in front of your chest and bow slightly. This gesture is derived from Hindu cultural influence and is widely practiced [2]. \n\nWhen greeting someone, follow these guidelines:\n- Subordinates should salute superiors first; do not wai service people or street vendors [2].\n- The higher your hands go, the more respectful the gesture [2].\n- As a foreign visitor, you do not need to know how to perform the wai properly. A slight bow is sufficient for ordinary occasions [2]. For business meetings, most Thais will shake hands with foreigners instead of performing the wai [2].\n\nThus, if someone makes a wai to you, a slight bow or a handshake is appropriate and acceptable [2].",
+    "answer_seconds": 58.5,
+    "sources": [
+      {
+        "where": "Thailand > Respect > What to do",
+        "distance": 0.681,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Respect > What to do\n- Respect for elders is important, and it is customary to use honorifics with people you are unfamiliar with. The most common way of addressing someone you don't know or someone senior to you: use the term Khun followed by the person's first name (applicable to both men and women).\n- Show respect to monks. Monks are highly respected in Thai society, and the importance of showing respect to them cannot be overstated. It is customary for Thai men to spend some time living as a monk at least once in their lifetime. If you cross paths with a monk in public, lower your head a little and greet them with the 'wai' gesture. If you are on public transportation, give up your seat for them. You do not have to be a practising Buddhist to acknowledge a monk; just be polite.\n- Ask questions about someone's vocation and education. Thai people do this to ascertain how they should address and interact with you.\n- Attempt to learn the local language. Thai people know that Thai is difficult to learn, and they will very much appreciate your efforts to speak it, even if your knowledge of the language is rudimentary. Demonstrating that you can read and write Thai will very easily wow and win over many people.\n- Try to experience the local cuisine and learn more about Thai culture. Thai people appreciate the few foreigners attempting to learn more about their culture and way of life. Doing this will allow you to strike up friendships with Thais.\n- Share food and snacks with people you're close to. In an office setting, this is common and expected.\n- When meeting people, exchange gifts. This is common and expected."
+      },
+      {
+        "where": "Thailand > Respect > The wai",
+        "distance": 0.71,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Respect > The wai\nThe traditional greeting known as the wai, where you press your hands together as is in prayer and bow slightly, is derived from the Hindu cultural influence from India, and still widely practised. Among Thais, there are strict rules of hierarchy that dictate how and when the wai should be given. In brief, subordinates salute superiors first. You should not wai service people or street vendors. The higher your hands go, the more respectful you are. You will also often see Thais doing a wai as they walk past temples and spirit houses.  \nAs a foreign visitor, you are not really expected to know how to wai properly, nor to reciprocate when wai'd to; while you're unlikely to cause offense if you do, you may well look slightly strange. If somebody makes a wai to you, a slight bow alone is more than sufficient for ordinary occasions, and for business, most Thais will shake hands with foreigners instead of waiing anyway."
+      },
+      {
+        "where": "Thailand > Respect > Other",
+        "distance": 0.757,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Respect > Other\n- When answering the phone, it is common for Thais to say khrab (male) or kha (female). These two words mean \"yes\". Thai people proficient in English will normally say \"yes\" when picking up the phone. This should not be construed as rude manners.\n- When answering the phone, some Thai people might say waa, which literally means \"what is it\" or \"tell me\". Again, this may be seen as rude manners in other parts of the world, but Thai people do not intend to be rude; this is simply a matter of culture.\n- The head is considered the most exalted part of the body, feet the lowliest. Never touch or pat a Thai on the head, including children. If you accidentally touch or bump someone's head, apologize immediately or you'll be perceived as very rude. Similarly, do not touch people with your feet, or even point with them. If someone is sitting with outstretched feet, avoid stepping over them, as this is very rude and could even spark a confrontation. Squeeze around them or ask them to move. Even if the person is sleeping, it is best to go around, as others are likely to notice.\n- Thais are conservative compared to Westerners. Public displays of affection are rarely seen, even handholding by married couples, and are generally considered to be distasteful, though due to the dependence of the Thai economy on tourism, Thais grudgingly tolerate such displays by foreigners. Don't make out in public. You'll embarrass yourself and inflame Thai sensibilities.\n- It is considered impolite and disrespectful to visibly sniff food before eating it, particularly when eating in someone's home (this is true even if the sniffing is done in appreciation).\n- Do not audibly blow your nose in public, especially not at the dinner table, but it is perfectly acceptable to pick your nose at any time or place."
+      },
+      {
+        "where": "Thailand > Talk",
+        "distance": 0.787,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Talk\nPublic signage is generally bilingual, written in both Thai and English. There is also some prevalence of Japanese and Chinese signs. Where there is English, it will usually be fairly phonetic - for example \"Sawatdee\" (meaning hello) is pronounced just as it reads: sa-wat-dee. There is no universal agreement on how to transcribe Thai letters into English (RTGS however, is a kind of semi-official system), so Khao San Road for example is also commonly spelled Kao Sarn, Kao Sahn, Khao San, Koh Saan, Khaosan, and many other variations. And ถนน can be transcribed as Thanon before the name, or translated as Road or Street after the name. Maps with names in both Thai and English make it easier for locals to try to help you.  \nAlthough English is taught in Thai schools, proficiency is generally poor. Some may even deny that they know it; Thais are generally self-conscious about their language skills. Try to be patient, understanding, and encouraging. That said, most well-educated upper and middle class Thais speak at least a basic conversational level of English.  \nMost \"front desk\" people in the travel industry speak at least enough English to communicate, and many are relatively fluent; some also speak one or more other languages popular with their clientèle, such as Chinese, Japanese, German, etc."
+      }
+    ]
+  },
+  {
+    "id": "off_topic",
+    "question": "what is the capital of France?",
+    "note": "Not covered: retrieval should be weak and the answer should say it couldn't find it",
+    "filter": null,
+    "best_distance": 1.283,
+    "retrieval_check": "✅ correctly weak",
+    "answer_check": "✅ said it couldn't find it",
+    "answer": "I couldn't find that in the travel guides.",
+    "answer_seconds": 21.1,
+    "sources": [
+      {
+        "where": "Bangkok",
+        "distance": 1.283,
+        "url": "https://en.wikivoyage.org/wiki/Bangkok",
+        "text": "Bangkok (Bangkok Metropolitan Area)\nBangkok (Thai: กรุงเทพฯ Krung Thep) is the capital and largest city of Thailand. With a population of over eleven million inhabitants, Bangkok is by far Thailand's main city, with the urban sprawl comprising nearly half of Thailand's population, and the largest city on the Southeast Asian mainland. Its high-rise buildings, heavy traffic congestion, intense heat and naughty nightlife do not immediately give you a warm welcome — but don't let your first impression mislead you. It is one of Asia's most cosmopolitan cities with magnificent temples and palaces, authentic canals, busy markets, opulent shopping malls and a vibrant nightlife that has something for everyone.  \nFor years, it was only a small trading post at the banks of the Chao Phraya River, until King Rama I, the first monarch of the present Chakri dynasty, turned it into the capital of Siam in 1782, after the burning of Ayutthaya by Burmese invaders. Since then, Bangkok has turned into a national treasure house and functions as Thailand's spiritual, cultural, political, commercial, educational and diplomatic centre."
+      },
+      {
+        "where": "Thailand > Cities",
+        "distance": 1.373,
+        "url": "https://en.wikivoyage.org/wiki/Thailand",
+        "text": "Thailand (Southeast Asia) > Cities\n- Bangkok (กรุงเทพมหานคร) — Thailand's bustling, frenetic capital, known among the Thai as Krung Thep\n- Ayutthaya (พระนครศรีอยุธยา) — a historical city, UNESCO World Heritage Site and old capital of Siam (full name is Phra Nakhon Si Ayutthaya)\n- Chiang Mai (เชียงใหม่) — de facto capital of Northern Thailand and the heart of Lanna culture\n- Chiang Rai (เมืองเชียงราย) — gateway to the Golden Triangle, ethnic minorities and mountain treks\n- Hat Yai (หาดใหญ่) — the largest city in Southern Thailand, near the Malaysian border, and home to an eclectic mix of Southern Thais, Thai-Chinese and Malay Muslims\n- Kanchanaburi (กาญจนบุรี) — home of the Bridge over the River Kwai and numerous World War II museums\n- Nakhon Ratchasima (นครราชสีมา) — largest city of the Isaan region, also known as Khorat.\n- Pattaya (พัทยา) — one of the main tourist destinations, known for its wild nightlife\n- Sukhothai (สุโขทัย) — Thailand's first capital, still with amazing ruins"
+      },
+      {
+        "where": "Dhaka > Understand",
+        "distance": 1.408,
+        "url": "https://en.wikivoyage.org/wiki/Dhaka",
+        "text": "Dhaka (Dhaka Division) > Understand\nDhaka (DHAH-kah) emerged as a cosmopolitan city during the Mughal Empire. Today, Dhaka is South Asia's second most populous capital after Delhi and an important financial center alongside Mumbai and Karachi.  \nModern Dhaka is a thriving, colourful and congested metropolis. Being one of the most densely populated places on the planet, Dhaka can be one of the most frenetic cities in the world. Its streets and rivers are filled with colourful chaos. The city plays host to the highest number of rickshaws in the world. Dhaka is also the center of Bangladesh's textile industry, the country's principal foreign exchange earner. Experiencing the city for the first time may seem overwhelming."
+      },
+      {
+        "where": "Krabi Town",
+        "distance": 1.41,
+        "url": "https://en.wikivoyage.org/wiki/Krabi_Town",
+        "text": "Krabi Town (Krabi Province)\nKrabi (กระบี่), the capital of Krabi Province, sits a little upstream from the mouth of the Krabi River and is mainly visited en route to the nearby beaches of Had Yao, Ao Nang or Rai Leh (aka Railay). Krabi is 784 km south of Bangkok by road."
+      }
+    ]
+  },
+  {
+    "id": "saint_martin_ferry",
+    "question": "how do I get from Teknaf to Saint Martins Island?",
+    "note": "Ferry details sit under 'Get in > By bus' (bus to Teknaf, then the ship). Good answer: ships at 9-9:30AM, ~2 h, none in the off-season (May-Aug/Sep)",
+    "filter": null,
+    "best_distance": 0.56,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "To get from Teknaf to Saint Martins Island, you can take a ship (ferry) from Teknaf to Saint Martins Island. Mid-level ships run daily and take about 1½ to 2 hours. The ships are named Kutubdia, Keary Sindabad, and Shundorbon Service. The fare ranges from Tk 450 to Tk 2500 as of January 2012 [1].\n\nThe journey starts at 9:00 AM to 9:30 AM from Teknaf and returns from Saint Martins Island around 3:00 PM to 3:30 PM [1]. The largest and safest ship, LCT Kutubdia, takes about 2 hours or less and offers scenic views of Teknaf Hill and Myanmar while cruising along the Naf River [1].\n\nYou will arrive at the Saint Martins Island Ferry Terminal, located in the northeastern part of the island [1].\n\nFor booking a return ticket, you can go to the Keari Marzaan restaurant (phone: +88 01727 266077, 01819 682091), just before Saint Martin's Resort, off the main road. The one-way fare was Tk 300 and the return fare was Tk 750 as of 2011 [1].\n\nAlternatively, Keari Sindbad has its own port about 3 km further north from the main port. Their ferry departs at 9:30 AM daily (during peak season) or Thursday and Friday only during off-peak season, and returns from Saint Martins Island around 3:00 PM. Roundtrip tickets cost Tk 650 (main deck), Tk 700 (open deck), or Tk 750 (bridge deck) [2].",
+    "answer_seconds": 92.1,
+    "sources": [
+      {
+        "where": "Saint Martins Island > Get in > By bus",
+        "distance": 0.56,
+        "url": "https://en.wikivoyage.org/wiki/Saint_Martins_Island",
+        "text": "Saint Martins Island (Chittagong Division) > Get in > By bus\nGetting to Saint Martins Island by bus is a two-step process. First you'll need to come Teknaf which is on the very southern tip of Bangladesh, near Myanmar. One can come Teknaf by bus from Dhaka, Chittagong and Cox's Bazar. Dhaka to Teknaf bus fare is Tk 850-950 non-A/C and Tk 1300-1700 A/C as of January 2012. Several bus services depart from Fakirapool, Dhaka to Teknaf. Maximum bus starts at night and the journey is near about 11-12 hours.  \nFrom Teknaf, mid-level ships run daily and take around 1½-2 hours, named Kutubdia, Keary Sindabad, and Shundorbon Service. The fare ranges from Tk 450-2500 as of January 2012. All the ships and cruises stars journey from Teknaf to Saint Martin at 9AM-9:30AM and return journey starts from Saint Martin at 3PM-3:30PM. During the off-season (May–August/September) these ships do not provide services because of bad weather. The peak season is September–April. The total distance from Dhaka to the island is 510 km.  \nFrom Teknaf, you can cruise to Saint Martin's Island with the largest and the safest ship, LCT Kutubdia, and reach Saint Martin's comfortably in 2 hours or less. LCT Kutubdia cruise journey is a pleasant one as you will see the spectacular views of Teknaf Hill on one side and Myanmar on the other side while she cruises along the Naf River. You will arrive at the Saint Martins Island Ferry Terminal, at the northeastern part of the island.  \nFerries depart the island around 3PM. If you do not already have a round-trip ticket, you can book the return leg at the Keari Marzaan restaurant (+88 01727 266077, 01819 682091, just before Saint Martin's Resort, off the main road). The restaurant only caters to day-trippers on tours arranged by Keari Tours. The one-way fare was Tk 300 and the return fare was Tk 750 as of 2011."
+      },
+      {
+        "where": "Teknaf > Get in",
+        "distance": 0.62,
+        "url": "https://en.wikivoyage.org/wiki/Teknaf",
+        "text": "Teknaf (Chittagong Division) > Get in\n- Buses running from Cox's Bazar (Tk 70-120, 2 hours) are crowded and pass through nice scenery as you get closer to Teknaf. If you're trying to head straight to Saint Martins Island and don't want to stay the night in Teknaf, try for a 6AM bus from Cox's Bazar and specify which ferry port you want to get off at - you may make it.  \nYou can take a bus straight from Dhaka to Teknaf.\nSaudia: Leave at 8.30PM daily (to Dhaka 6:30PM)\nS. ALAM: leaves Dhaka daily at 10:30PM (to Dhaka 6:15PM)  \n- The main ferry port is about 5 km north of town on the road to Cox's Bazar. Eagle I leaves here at around 10AM daily.\n- Keari Sindbad (+880 1727 266077) has its own port about 3 km further north from the main port on the same road. Their service is a little more reliable and costs about the same. The ferry leaves at 9:30AM daily (during peak season, or Thursday & Friday only during off peak season), then leaves Saint Martins Island around 3:00PM. Roundtrip tickets to Saint Martins Island run Tk 650 for main deck, 700 for open deck and 750 for bridge deck."
+      },
+      {
+        "where": "Saint Martins Island > Get in > By plane",
+        "distance": 0.625,
+        "url": "https://en.wikivoyage.org/wiki/Saint_Martins_Island",
+        "text": "Saint Martins Island (Chittagong Division) > Get in > By plane\nBy plane you have to reach firstly in Cox's Bazar from Dhaka/Chittagong (inter-country) by Biman Bangladesh Airlines or with private airlines like Rigent Airlines, United Airlines, and US Bangla Airlines. The fare from Dhaka-Cox's Bazar is Tk 4000-6200 as of January 2021. Cox's Bazar airport is the only airport near Teknaf.  \nAfter reaching Cox's Bazar by Plane, from Cox's Bazar there are several ways to get to Teknaf. Private car rental services cost Tk 300. The public buses from Cox's Bazar to Teknaf cost Tk 150. Another way is for a group to rent a mid-level micro bus or jeep and travel to Teknaf."
+      },
+      {
+        "where": "Teknaf > Go next",
+        "distance": 0.729,
+        "url": "https://en.wikivoyage.org/wiki/Teknaf",
+        "text": "Teknaf (Chittagong Division) > Go next\n- Saint Martins Island - a beautiful tropical island and one of the most relaxing places in the country - this is likely the reason you're in Teknaf in the first place.\n- Myanmar is close but the border is closed. The Myanmar army has planted landmines to ward off illegal crossing and smugglers."
+      }
+    ]
+  },
+  {
+    "id": "bd_visa_on_arrival",
+    "question": "can I get a visa on arrival in Bangladesh, and how much does it cost?",
+    "note": "Deep heading (Get in > Visas > Visa On Arrival). Good answer: US$51 or EUR 51 in cash, 30 days, extendable by 30",
+    "filter": null,
+    "best_distance": 0.363,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "Yes, you can get a visa on arrival in Bangladesh. The cost is US$51 or €51, with all taxes included [1]. This visa is available for tourists, investors, and business travelers entering by air, sea, or road (but not by train) [1]. The fee must be paid in cash at immigration, and you must have at least US$500 in cash or credit, a return/onward ticket, and a verified hotel booking or tour company appointment [1]. \n\nThis visa is valid for a maximum of 30 days and may be extended for an additional 30 days [2]. \n\n[1] and [2] both confirm the cost and availability of the Visa On Arrival.",
+    "answer_seconds": 73.2,
+    "sources": [
+      {
+        "where": "Bangladesh > Get in > Visas > Visa On Arrival",
+        "distance": 0.363,
+        "url": "https://en.wikivoyage.org/wiki/Bangladesh",
+        "text": "Bangladesh (South_Asia) > Get in > Visas > Visa On Arrival\nAll EU and European passports; Australian and New Zealand passports; North American, Central American and South American passports; Middle Eastern passports; Russian passports; South Korean passports; Japanese passports; Singaporean passports and Malaysian passports are eligible for a Visa On Arrival in Bangladesh. The passport must be valid for six months after arrival in Bangladesh and it must have two blank pages for immigration stamps. Tourists, investors and business travellers can get a single-entry 30 day Visa On Arrival in Bangladesh if you can demonstrate the following:\n- a verified hotel booking or a booking with a Bangladeshi tour company or a business appointment in Bangladesh;\n- US$500 in cash or credit;\n- a onward air ticket or international train ticket or international bus ticket;\n- and if entering Bangladesh by air, sea or road but not on a train.  \nThe Visa On Arrival fee must be paid in cash when entering Bangladesh and the cost per person is US$51 or €51, with all taxes included. You will have to acquire cash in USD or euros before arriving at immigration, since they don't accept payment by card or in local currencies. If you're coming from India, you may need to exchange rupees for dollars at an informal money changer in the last city or town before the border."
+      },
+      {
+        "where": "Bangladesh > Get in > Visas > Visa Situation by Country",
+        "distance": 0.424,
+        "url": "https://en.wikivoyage.org/wiki/Bangladesh",
+        "text": "Bangladesh (South_Asia) > Get in > Visas > Visa Situation by Country\n- Australian citizens - All types of visas cost A$150 from the Bangladesh High Commission in Canberra. For further information, visit the High Commission's official website: here. Australian citizens, according to the current visa database, can pay US$51 for a Visa On Arrival of a maximum of 30 days. Tourist visas are issued upon arrival, costing US$51, for a maximum of 30 days at all international airports in Bangladesh and all major land ports of entry into Bangladesh. This Visa On Arrival may be extended for an additional 30 days.\n- Belgian citizens - Tourists can get visas which are issued upon arrival in Bangladesh for a maximum of 30 days at all international airports and all major land ports of entry into Bangladesh and this visa may be extended for an additional 30 days later. A single-entry tourist visa allows you to stay one month (up to three on special request) and needs to be used within three months of being delivered. It is usually delivered one week after the request has been submitted. The visa office is open from 09:30 to 11:30. The official website of the Bangladeshi Embassy in Brussels has more information. You might need to provide the following documents when submitting your request:\n- Plane tickets to/from Bangladesh (optional)\n- Hotel booking in Bangladesh (at least the first one)\n- Completed Machine Readable Visa Application Form (you can get the blank form by e-mail if you phone the embassy)\n- Two photographs\n- Your passport\n- €51 application fee\n- Canadian citizens - A single-entry visa for 3 months is C$80 and a multiple-entry visa is C$158. The visa information for Canada is here. Tourist visas are issued upon arrival, costing US $51, for a maximum of 30 days at all international airports as well as major land ports in Bangladesh and may be extended for an additional 30 days."
+      },
+      {
+        "where": "Bangladesh > Get in > Visas > Visa Situation by Country",
+        "distance": 0.448,
+        "url": "https://en.wikivoyage.org/wiki/Bangladesh",
+        "text": "Bangladesh (South_Asia) > Get in > Visas > Visa Situation by Country\n- EU citizens - All EU passport holders, especially tourists and investors can get a single entry visa which is issued upon arrival in Bangladesh for a maximum of 30 days at all international airports and all major land ports of entry into Bangladesh and this Visa On Arrival may be extended for an additional 30 days later. The cost per person is US $51 or €51, with all taxes included.\n- UK citizens - A single-entry visa is £40, double entry is £52, 3 entries for £75, and £104 for 4 entries. Applying for a visa from the UK is detailed here. In addition to the Bangladeshi High Commission in London, the UK also has Bangladeshi Deputy High Commissions in Birmingham and Manchester: . Tourist visas, costing US $51 or €51, are issued upon arrival for a maximum of 30 days at all international airports in Bangladesh and may be extended for an additional 30 days. In November 2022 however UK passport was issued only 15 days on arrival at Dhaka airport.\n- US citizens - The embassy is in Washington D.C.: . The visa fee is US$160 if obtained from within the United States, and can be applied for by mail. There are also consulates in Los Angeles and New York who will answer most questions and issue visas. Ensure you read the 'visa requirements' sections of the website carefully. A U.S. cashier's check, money order or bank draft should be made payable to \"Consulate General of Bangladesh\". International money orders, personal checks and cash are not accepted. Visas on Arrival are available to US tourists, investors and business travelers for up to 30 days (length may differ at some land borders), provided they have at least US$500 in cash or travellers checks; a return/onward air ticket or train ticket; and a booking with a hotel or a tour company in Bangladesh. Tourist visas are issued upon arrival for a maximum of 30 days at all international airports in Bangladesh and may be extended for an additional 30 days."
+      },
+      {
+        "where": "Bangladesh > Get in > Visas",
+        "distance": 0.477,
+        "url": "https://en.wikivoyage.org/wiki/Bangladesh",
+        "text": "Bangladesh (South_Asia) > Get in > Visas\nMost foreigners require some kind of valid visa to enter Bangladesh, though many are eligible for a 30-day visa on arrival (see section below).  \nIt's often recommended to instead apply for a visa in advance if possible, even if you're eligible for a visa on arrival (VOA), because it leaves you less at the mercy of border officials, who could decline your VOA on a whim and ruin your whole trip as soon as you fly into Dhaka. However, this kind of denial seems to be uncommon – at least in the experience of Western tourists. Depending on the details though, an advance visa may also be useful for staying in the country longer or getting permission for multiple entries.  \nThe procedure to obtain a visa in advance is to first obtain an Invitation Letter from a tour company in Bangladesh or, in case of business travellers, obtain a business appointment or an invitation from a company in Bangladesh. Then submit an online visa application at the Bangladesh government website (Visa.Gov.Bd) at least three weeks before the intended travel date. Take a printout of the completed visa application form because it has to be physically submitted as well. Then visit the nearest Bangladeshi Embassy or Bangladeshi Consulate General or Bangladeshi High Commission with all the required supporting documents, passport, applicant's photos and payment. Check the visa application instructions of the Bangladeshi diplomatic mission closest to you before applying. The visa is usually issued within five to seven working days, depending on the total volume of applications. Most Bangladeshi diplomatic missions offer a mail-in service for visa applicants, which means applicants do not have to travel to the embassy to apply for a visa in person. The benefit of applying for a visa beforehand is getting a long-term multiple-entry visa that is valid up to 60 months. Bangladesh Foreign Ministry - Diplomatic Missions Worldwide"
+      }
+    ]
+  },
+  {
+    "id": "sundarbans_from_khulna",
+    "question": "how can I visit the Sundarbans from Khulna?",
+    "note": "Good answer: multi-day safaris/package tours from Khulna (or Dhaka); DIY needs a permit and a boat from Mongla",
+    "filter": null,
+    "best_distance": 0.515,
+    "retrieval_check": "⚠️ expected source #2",
+    "answer_check": "👀 check by hand",
+    "answer": "You can visit the Sundarbans from Khulna by hiring a boat from Mongla or Dhangmari, with a permit from the Divisional Forest Office in Khulna [2]. Private tour operators in Khulna also offer package tours, such as:\n\n- Arranger Tours and Travels, 6 Farazi Para Main Road, Khulna, Tel: +880 41723031, +880 1817-403070  \n- Ever Green Tours, Tel: +880 1711-942555, +880 1911-080077  \n- Pugmark Tours and Travels, KDA Building, Shibbarirmore, Khulna, Tel: +880 1715-167740, +880 1919-298001  \n\nA 3-4 day trip costs around Tk 15,000–20,000 as of December 2018 [2]. You will need to hire a guide from Hiron Point after arriving by boat to explore the park [2].  \n\nNote: Day trips from Mongla are not recommended as they lead to a rundown wildlife center with limited attractions [2].  \n\nBoat hire from Mongla or Dhangmari is available, though boatmen may charge as much as Tk 200 (locals pay Tk 50/day), and entry to the park for foreigners is Tk 750/day [2].  \n\nFor independent travel, a guide is essential due to the similarity of waterways in the Sundarbans [3].  \n\nYou may also visit nearby villages to learn about local lifestyles [4].",
+    "answer_seconds": 78.0,
+    "sources": [
+      {
+        "where": "Khulna > Go next",
+        "distance": 0.515,
+        "url": "https://en.wikivoyage.org/wiki/Khulna",
+        "text": "Khulna (Southern Bangladesh) > Go next\n- Shat Gombuj Mosjid (The sixty dome mosque), in the Bagerhat district. One hour travel from Khulna. Take a bus from Sonadanga bus terminal or from Rupsha ferry terminal.\n- Monlga sea port, 40-minute bus ride. Take a bus from Sonadanga bus terminal or from Rupsha ferry terminal. A nice place to see the Poshur river too. Scenic beauty overlooking the Sundarban. Cross the river by Shampan boat to go to Mongla city. It is possible to hire a boat to roam around to the Sundarban.\n- Sundarbans - Khulna is a good place to arrange a trip into the Sundarbans, and there are several private operators. If you're on a budget try comparing prices among the several lined up near the BIWTC Rocket reservation office."
+      },
+      {
+        "where": "Sundarbans (Bangladesh) > Get in",
+        "distance": 0.524,
+        "url": "https://en.wikivoyage.org/wiki/Sundarbans_(Bangladesh)",
+        "text": "Sundarbans (Bangladesh) (Southern Bangladesh) > Get in\nSafaris are available from Dhaka and Khulna. These trips range from being overnight to a week and are probably the best way to experience the Sundarbans. Some of the agencies offering package tours:\n- Arranger Tours and Travels, 6 Farazi Para Main Road, Khulna, Tel: +880 41723031, +880 1817-403070,\n- Ever Green Tours, Tel: +880 1711-942555, +880 1911-080077\n- Pugmark Tours and Travels, KDA Building, Shibbarirmore, Khulna, Tel: +880 1715-167740, +880 1919-298001,\nAs of December 2018, the price for 3-4 day trip is around Tk 15-20000.  \nOrganizing your own trip from Munsiganj-Satkhira, Mongla or Khulna is possible (and cheaper, if you're a shrewd negotiator), but questionably worth the hassle. You need a permit from the Divisional Forest Office in Khulna. With permit in hand, it's possible to hire a boat from Mongla or Dhangmari to get you to Hiron Point. From Hiron Point you will have to hire a guide to take you into the park.  \nDay trips from Mongla are not very interesting, and probably better avoided. After negotiating the price of a boat down to something only slightly less ridiculous you'll most likely be taken to Karamjal Wildlife Center, where there are some tame deer to feed and some monkeys, crocs and snakes in cages. But surely you didn't come all this way to see a rundown zoo filled with depressed animals and raucous Bangladeshis. Boatmen seem to want no less than Tk 200 for the trip (locals pay Tk 50/day), and the center charges a very steep Tk 750/day entry fee for foreigners."
+      },
+      {
+        "where": "Sundarbans (Bangladesh) > Get around",
+        "distance": 0.66,
+        "url": "https://en.wikivoyage.org/wiki/Sundarbans_(Bangladesh)",
+        "text": "Sundarbans (Bangladesh) (Southern Bangladesh) > Get around\nYou have to rely on boats for visiting the various tourist spots of the Sundarbans. You can also hire your own boat but the charges are pretty steep. However, in case you wish to move around on your own, make sure to hire a guide or else the boatsmen may take you for a ride (the waterways of the Sunderbans are so similar to one another that even if your boat makes round of the same place, you won't be able to tell the difference without the services of an experienced guide)."
+      },
+      {
+        "where": "Sundarbans (Bangladesh) > Do",
+        "distance": 0.718,
+        "url": "https://en.wikivoyage.org/wiki/Sundarbans_(Bangladesh)",
+        "text": "Sundarbans (Bangladesh) (Southern Bangladesh) > Do\nApart from visiting the tourist destinations, you may also take some time-out to go to a nearby village to see the life-style of the local people and talk to them to have an insight into their lives."
+      }
+    ]
+  },
+  {
+    "id": "sundarbans_permit",
+    "question": "do I need a permit to visit the Sundarbans?",
+    "note": "The fact is in both 'Get in' and the tiny 'Fees and permits' section, so any section of the article is fine. Good answer: yes, from the Divisional Forest Office in Khulna",
+    "filter": null,
+    "best_distance": 0.658,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "Yes, you need a permit to visit the Sundarbans. The mandatory permit can be applied for at the Divisional Forest Office, located at Circuit House Road, Khulna [3].",
+    "answer_seconds": 24.2,
+    "sources": [
+      {
+        "where": "Sundarbans (Bangladesh) > Get around",
+        "distance": 0.658,
+        "url": "https://en.wikivoyage.org/wiki/Sundarbans_(Bangladesh)",
+        "text": "Sundarbans (Bangladesh) (Southern Bangladesh) > Get around\nYou have to rely on boats for visiting the various tourist spots of the Sundarbans. You can also hire your own boat but the charges are pretty steep. However, in case you wish to move around on your own, make sure to hire a guide or else the boatsmen may take you for a ride (the waterways of the Sunderbans are so similar to one another that even if your boat makes round of the same place, you won't be able to tell the difference without the services of an experienced guide)."
+      },
+      {
+        "where": "Sundarbans (Bangladesh) > Get in",
+        "distance": 0.703,
+        "url": "https://en.wikivoyage.org/wiki/Sundarbans_(Bangladesh)",
+        "text": "Sundarbans (Bangladesh) (Southern Bangladesh) > Get in\nSafaris are available from Dhaka and Khulna. These trips range from being overnight to a week and are probably the best way to experience the Sundarbans. Some of the agencies offering package tours:\n- Arranger Tours and Travels, 6 Farazi Para Main Road, Khulna, Tel: +880 41723031, +880 1817-403070,\n- Ever Green Tours, Tel: +880 1711-942555, +880 1911-080077\n- Pugmark Tours and Travels, KDA Building, Shibbarirmore, Khulna, Tel: +880 1715-167740, +880 1919-298001,\nAs of December 2018, the price for 3-4 day trip is around Tk 15-20000.  \nOrganizing your own trip from Munsiganj-Satkhira, Mongla or Khulna is possible (and cheaper, if you're a shrewd negotiator), but questionably worth the hassle. You need a permit from the Divisional Forest Office in Khulna. With permit in hand, it's possible to hire a boat from Mongla or Dhangmari to get you to Hiron Point. From Hiron Point you will have to hire a guide to take you into the park.  \nDay trips from Mongla are not very interesting, and probably better avoided. After negotiating the price of a boat down to something only slightly less ridiculous you'll most likely be taken to Karamjal Wildlife Center, where there are some tame deer to feed and some monkeys, crocs and snakes in cages. But surely you didn't come all this way to see a rundown zoo filled with depressed animals and raucous Bangladeshis. Boatmen seem to want no less than Tk 200 for the trip (locals pay Tk 50/day), and the center charges a very steep Tk 750/day entry fee for foreigners."
+      },
+      {
+        "where": "Sundarbans (Bangladesh) > Fees and permits",
+        "distance": 0.714,
+        "url": "https://en.wikivoyage.org/wiki/Sundarbans_(Bangladesh)",
+        "text": "Sundarbans (Bangladesh) (Southern Bangladesh) > Fees and permits\n- Divisional Forest Office, Circuit House Road, Khulna, +20665 is the place to apply for the mandatory permit."
+      },
+      {
+        "where": "Sundarbans (Bangladesh) > Connect",
+        "distance": 0.732,
+        "url": "https://en.wikivoyage.org/wiki/Sundarbans_(Bangladesh)",
+        "text": "Sundarbans (Bangladesh) (Southern Bangladesh) > Connect\nThe only mobile network available across the area is TeleTalk. Therefore, it is advisable to obtain one of their SIM cards to ensure that you have access to mobile reception during your visit. Without a TeleTalk SIM card, visitors may face difficulty in making calls, accessing the internet, or sending messages while in the Sundarbans. It is recommended that visitors obtain a SIM card before beginning their journey to the area to ensure uninterrupted communication."
+      }
+    ]
+  },
+  {
+    "id": "tea_gardens",
+    "question": "where can I see tea gardens in Bangladesh?",
+    "note": "No place name in the question: tests whether a short 'outline' article is found across 47 articles. Good answer: Srimangal (Sreemangal), 'tea capital of Bangladesh'",
+    "filter": null,
+    "best_distance": 0.563,
+    "retrieval_check": "⚠️ expected source #2",
+    "answer_check": "👀 check by hand",
+    "answer": "You can see tea gardens in Sri Mangal, Northeastern Bangladesh. Sri Mangal is known as the \"land of two leaves and a bud\" and is famous for its largest tea gardens in the world, including the Tea Research Institute. The tea estates are spread across the area, offering lush green terraced gardens, pineapple, rubber, and lemon plantations. The best time to visit is during the rainy season when tea is harvested by women in bright saris. [1] \n\nAdditionally, the Bangladesh Tea Research Institute is located on BTRI Road, 4 km southeast of the center of Sreemangal, which is near Sri Mangal. [2]",
+    "answer_seconds": 44.4,
+    "sources": [
+      {
+        "where": "Sylhet > See > Further afield",
+        "distance": 0.563,
+        "url": "https://en.wikivoyage.org/wiki/Sylhet",
+        "text": "Sylhet (Northeastern Bangladesh) > See > Further afield\n- Sri Mangal: Sri Mangal is famous for the largest tea gardens of the world covered by lush green carpet. One can have a look into the spectacular tea processing at Tea Research Institute. Bangladesh produces and exports a large quantity of high quality tea every year. Most of the tea estates are in Sri Mangal. It is called \"The land of two leaves and a bud\". It is also called camellia, green carpet or Tea Mountain. There are a lot of tea estates including the largest one in the world. Make sure to take the taste the seven layer tea at Sri Mangal. The terraced tea garden, pineapple, rubber and lemon plantations from a beautiful landscape. It is known as the tea capital in Bangladesh. Just offer entering into the tea estates the nice smells and green beauty will lead you many kilometres away. Also, visit the Mini Zoo created by Sirishranjan in 1972. The best time to see the tea plantations is during rainy season, which is when the tea is harvested by women in bright saris. Photographers often visit during this time.\n- Bichanakandi — Hadarpar, Goainghat; from Amberkhana Point of Sylhet City to Hadarpar Bazar by CNG taxi, or any vehicle then by boat to Bichanakandi. This is the excellent place for travellers who love nature. Near Bangladesh-India border; famous for crystal water, stone, hills, green & wide landscape.\n- Tamabil-Jaflong: Situated amidst splendid panorama, Tamabil is a border outpost on Sylhet-Shilong Road about 55 km away from Sylhet town. Besides enchanting views of the area one can also have a glimpse of the waterfalls across the border from Tamabil. Jaflong is also a scenic spot nearby amidst tea gardens and rate beauty of rolling stones from hills. Also the Kalibari temple, one of the 51 Sakthi peet, is situated near Jaflong. This place is not maintained, due to the reduced local Hindu population."
+      },
+      {
+        "where": "Srimangal > Understand",
+        "distance": 0.804,
+        "url": "https://en.wikivoyage.org/wiki/Srimangal",
+        "text": "Srimangal (Northeastern Bangladesh) > Understand\n- Bangladesh Tea Research Institute in Sreemangal (বাংলাদেশ চা গবেষণা ইনস্টিটিউট) — BTRI Road; 4 km southeast of the center of Sreemangal; Phone: +880 1711867485. The Bangladesh Tea Research Institute has made a number of contributions in evolving and standardising the quality of tea, and it introduces its research findings to the tea industry of Bangladesh."
+      },
+      {
+        "where": "Teknaf > Drink",
+        "distance": 0.808,
+        "url": "https://en.wikivoyage.org/wiki/Teknaf",
+        "text": "Teknaf (Chittagong Division) > Drink\nInquire at your hotel or at one of the local restaurants and you may be able to score some beer from Myanmar."
+      },
+      {
+        "where": "Bangladesh > See",
+        "distance": 0.847,
+        "url": "https://en.wikivoyage.org/wiki/Bangladesh",
+        "text": "Bangladesh (South_Asia) > See\nBangladesh has many UNESCO World Heritage Sites. It is a country with lots of places to visit, many of which offer unforgettable experiences but remain relatively unknown to the rest of the world. As a vacation destination Bangladesh has many facets, the main one being eco-tourism. Some of the tourist attractions include archaeological sites, historic mosques and monuments, resorts, beaches, picnic spots, forest and wildlife. Bangladesh offers opportunities for angling, water-skiing, river cruising, hiking, rowing, surfing, yachting and sea bathing as well as bringing one in close touch with Mother Nature. Bangladesh is also rich in wildlife and game birds.  \nDhaka is a pulsing, gritty conglomerate, one of the most densely populated cities in the world. Some of the many attractions for tourists, include the Lalbagh Quilla, Ahsan Manjil, Shaheed Minar, Boro Katra, Choto Katra, the National Museum and Jatiyo Songshad Bhaban (National Parliament Building). The Suhrawardy Uddan and the Ramna Park are two parks that provide green respite to city dwellers. Other tourist attractions include places like Baitul Mukarram (National Mosque), the High Court Building, and the Bangabandhu Memorial Museum. If you're visiting only one thing, then the LalBagh Qilla fort is a must-see, in the older part of town. The older part of Dhaka, known as \"Puran Dhaka\" in Bengali, is literally a city of history with hundred-year-old buildings crammed on each side of hundreds of narrow lanes. Each city block, or \"Moholla\" in Bengali, of Puran Dhaka is unique with its specialized shops and artisans and gives a taste of ancient Dhaka."
+      }
+    ]
+  },
+  {
+    "id": "sajek_from_dhaka",
+    "question": "how do I get to Sajek Valley from Dhaka?",
+    "note": "Good answer: bus to Khagrachhari, then a jeep ('Chander Gari'), CNG or motorbike, 2-3 h; vehicles often go in security convoys",
+    "filter": null,
+    "best_distance": 0.439,
+    "retrieval_check": "✅ expected source #1",
+    "answer_check": "👀 check by hand",
+    "answer": "To get to Sajek Valley from Dhaka, take a bus from Dhaka to Khagrachhari. From Khagrachhari, hire a jeep (commonly known as a Chander Gari), microbus, motorcycle, or CNG. The journey from Khagrachhari to Sajek usually takes 2–3 hours through winding mountain roads [1].",
+    "answer_seconds": 22.9,
+    "sources": [
+      {
+        "where": "Sajek Valley > Get in > From Dhaka",
+        "distance": 0.439,
+        "url": "https://en.wikivoyage.org/wiki/Sajek_Valley",
+        "text": "Sajek Valley (Chittagong Division) > Get in > From Dhaka\nMost visitors travel to Sajek via Khagrachhari.  \n- Take a bus from Dhaka to Khagrachhari.\n- From Khagrachhari, hire a jeep (commonly known as a Chander Gari), microbus, motorcycle or CNG.\n- The journey from Khagrachhari to Sajek usually takes 2–3 hours through winding mountain roads."
+      },
+      {
+        "where": "Sajek Valley > Understand",
+        "distance": 0.654,
+        "url": "https://en.wikivoyage.org/wiki/Sajek_Valley",
+        "text": "Sajek Valley (Chittagong Division) > Understand\nSajek Valley lies approximately 67 km northeast of Khagrachhari and about 95 km north of Rangamati town. Although it is part of Rangamati District, almost all visitors travel through Khagrachhari because of easier road access.  \nThe valley is located about 1,800–2,000 ft (550–610 m) above sea level and is surrounded by mountains, dense forests, grasslands and deep valleys. The Sajek River forms part of the Bangladesh–India border and gives the valley its name.  \nSajek is inhabited by several indigenous communities including Chakma, Marma, Tripura, Pankho and Lushai peoples. Their culture, traditional lifestyle and hospitality are among the main attractions for visitors."
+      },
+      {
+        "where": "Sajek Valley > Get around",
+        "distance": 0.687,
+        "url": "https://en.wikivoyage.org/wiki/Sajek_Valley",
+        "text": "Sajek Valley (Chittagong Division) > Get around\nMost attractions can be explored on foot. Motorcycles are available for local transportation between viewpoints and villages."
+      },
+      {
+        "where": "Sajek Valley > Get in > Security convoy",
+        "distance": 0.732,
+        "url": "https://en.wikivoyage.org/wiki/Sajek_Valley",
+        "text": "Sajek Valley (Chittagong Division) > Get in > Security convoy\nVehicles travelling to Sajek often move in scheduled convoys accompanied by security personnel, particularly on the Dighinala–Baghaihat–Sajek route."
+      }
+    ]
+  },
+  {
+    "id": "coxs_bazar_sleep",
+    "question": "@cox's bazar: where can I stay?",
+    "note": "Place filter with an apostrophe in the name. Long Sleep section, so it splits into several chunks",
+    "filter": {
+      "place": "Cox's Bazar"
+    },
+    "best_distance": 1.312,
+    "retrieval_check": "⚠️ expected source #2",
+    "answer_check": "👀 check by hand",
+    "answer": "You can stay at several hotels in Cox's Bazar, depending on your budget and preferences:\n\n- **Seagull Hotel** – Hotel Motel Zone; Price: ৳6,324–43,478; modern, safe, with a landscaped walkway to the beach and a hidden bar [2].  \n- **Hotel Sea Crown** – Marin Drive, Kola Toil New Beach; Price: ৳4,000–40,000; three-star deluxe hotel on the beach [2].  \n- **Mermaid Beach Resort** – Pechar Dwip; Price: ৳11,000–25,000 per night; air-conditioned rooms with excellent views, fresh seafood restaurant, reliable Wi-Fi [2].  \n- **Royal Tulip Sea Pearl Beach Resort & Spa** – Jaliapalong, Inani, Ukhia; Price not specified; luxurious rooms, two pools (one for ladies), water park, tennis, spa, gym [2].  \n- **Long Beach Hotel Cox's Bazar** – 14 Kalatoli, Hotel-Motel Zone; phone: +88 0341 51843 [2].  \n- **Sayeman Beach Resort** – Marine Drive Road, Kolatali; Price: ৳26,112–6,300; offers surfing, Thai spa, swimming pool, restaurant, and event venue [2].  \n- **Best Western Heritage** – Bypass Road, Kolatoli Circle; Price: ৳6,500–20,000; 231 rooms with TV, coffee maker, safety locker, free Wi-Fi, balconies [2][4].  \n- **Ocean Paradise** – 28–29 Hotel Motel Zone, Kolatoli Road; Price: BDT 10,000+; large hotel, 300m walk from beach [4].\n\nFor budget options, consider All Result BD (free, 9am–5pm) [4].  \n\nNote: Most budget hotels are near Laldighi Lake, while larger, more expensive hotels are in the Hotel Motel Zone or near the beach [2].",
+    "answer_seconds": 115.1,
+    "sources": [
+      {
+        "where": "Cox's Bazar > Understand",
+        "distance": 1.312,
+        "url": "https://en.wikivoyage.org/wiki/Cox's_Bazar",
+        "text": "Cox's Bazar (Chittagong Division) > Understand\nFor Bangladeshis it doesn't get much better than Cox's Bazar, the country's most popular beach resort. Sort of a Cancun of the east, it's choc-a-bloc with massive cement hotels and gaudy overdevelopment catering largely to the country's elite. To a foreigner it likely won't compare to other beach vacations you may have taken, but it's still interesting to see how the Bangladeshis live it up. The beach is crowded, especially near the Hotel Motel Zone, a large cluster of more upmarket hotels. Expect lots of attention, and expect to stay fully clothed.  \n30 km south is Inani Beach. Things should be quieter here, but still expect to draw some attention."
+      },
+      {
+        "where": "Cox's Bazar > Sleep",
+        "distance": 1.337,
+        "url": "https://en.wikivoyage.org/wiki/Cox's_Bazar",
+        "text": "Cox's Bazar (Chittagong Division) > Sleep\nMost of the budget hotels are in the area surrounding Laldighi Lake in the main town area. The massive cement beasts are closer to the beach, getting bigger and grander as you move the 2 km south to the Hotel Motel Zone.  \nHotel Sea Gull and Sayeman Beach Resort are decent choices in the centre of town. There are a few hotels/motels such as Hotel Probal and Sikat operated by the Parjatan Corporation, a government tourism organisation.  \n- Seagull Hotel — Hotel Motel Zone; Phone: +880 341-64-91; Price: ৳6,324-43,478. Seagull is probably the best hotel in Cox's Bazar. It is modern and safe, with its own landscaped walkway to the beach. It does have a hidden bar - from the reception area, walk towards the main restaurant and turn right, then through part of the kitchen and upstairs. Nice swimming pool outside.\n- Hotel Sea Crown — Marin Drive, Kola Toil New Beach; Phone: +880 341-64795; Price: ৳4,000-40,000. Sea Crown is a three star deluxe hotel on the Beach.\n- Mermaid Beach Resort — Pechar Dwip; Phone: +880 18 4141 6468-69; Price: Tk 11,000-25,000 per night. Air-conditioned rooms on a secluded part of the beach with excellent views. Has a restaurant serving fresh seafood. Reliable Wi-Fi.\n- Royal Tulip Sea Pearl Beach Resort & Spa — Jaliapalong, Inani, Ukhia; Phone: +880 34152666-80. Luxurious rooms & suites and two swimming pools (one exclusively for ladies) the resort boasts of a plethora of indoor & outdoor activities for both adults and kids which include a water park, tennis & badminton courts, 3D movie hall, billiards, amphitheater, spa and gym.\n- Long Beach Hotel Cox's Bazar — 14 Kalatoli, Hotel-Motel Zone; Phone: +88 0341 51843.\n- Sayeman Beach Resort — Marine Drive Road, Kolatali; Phone: +88 0175 569 1917; Price: ৳26,112-6,300. Surfing & water sports, thai spa, swimming pool, restaurant, and event venue.\n- Best Western Heritage — Bypass Road, Kolatoli Circle; Phone: +88 0341 526 11-17; Price: ৳6,500-20,000."
+      },
+      {
+        "where": "Cox's Bazar > Cope > ATMs",
+        "distance": 1.347,
+        "url": "https://en.wikivoyage.org/wiki/Cox's_Bazar",
+        "text": "Cox's Bazar (Chittagong Division) > Cope > ATMs\nIf you need cash, it's a good idea to get it before going inside bars or clubs. American Express, Master Card, VISA Card have accepted almost all the ATMs booth in the beach city. Check ahead to see if your bank has locations in Cox's Bazar. On the Strip, the following ATMs are safer bets:  \n- For the Standard Chartered Bank customers, there are ATMs inside the Ocean Paradise Hotel & Resort at Kolatoli Road, Hotel Motel Zone."
+      },
+      {
+        "where": "Cox's Bazar > Sleep",
+        "distance": 1.348,
+        "url": "https://en.wikivoyage.org/wiki/Cox's_Bazar",
+        "text": "Cox's Bazar (Chittagong Division) > Sleep\n- Best Western Heritage — Bypass Road, Kolatoli Circle; Phone: +88 0341 526 11-17; Price: ৳6,500-20,000.\n- Ocean Paradise — 28-29 Hotel Motel Zone, Kolatoli Road; Phone: +88 09619 675 675; Price: BDT10,000+. One of the large and better hotels. Not on the beach but a 300m walk from it.\n- Best Western Heritage — 173-01 Bypass Road, Kolatoli Circle; Phone: +880 1777744034. 231 rooms, each with 42-inch LED TV, tea and coffee maker, safety locker, parking facilities and free Wi-Fi. Most rooms also feature balconies.\n- All Result BD — Bangladesh; Hours: 9am - 5pm; Price: free."
+      }
+    ]
+  }
+]

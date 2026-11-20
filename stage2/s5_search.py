@@ -14,7 +14,7 @@ Run (from the project root):  python -m stage2.s5_search
 """
 
 from common.distances import distance_to_cosine
-from common.query_parsing import list_places, parse_input, resolve_place
+from common.query_parsing import build_search_text, list_places, parse_input, resolve_place
 from common.vector_store import open_vector_store
 from stage2.config import CHROMA_DIR, COLLECTION_NAME, EMBEDDING_MODEL, EMBEDDING_NUM_CTX
 
@@ -78,6 +78,10 @@ def main():
 
             search_filter = {"place": place}
             print(f"  (only searching chunks where place == {place!r})")
+
+            # Keep the place in the search text too, not only in the filter.
+            question = build_search_text(question, place)   # "Bangkok: street food at night"
+            print(f"  (searching for: {question!r})")
 
         # similarity_search_with_score:
         #   1. embeds the question with the same model as the chunks

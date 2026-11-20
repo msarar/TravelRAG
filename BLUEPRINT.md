@@ -104,16 +104,19 @@ Stages are **not frozen**: a fix in `common/` applies to every stage. A new stag
 - **Slow indexing:** ~1.1 s/chunk; all of Wikivoyage (~35,000 articles, ~440,000 chunks) ≈ 135 hours.
 
 ### Stage 2 — Real ingestion
-- [ ] Parse all of Wikivoyage (wikitext → clean text; `mwxml` / `mwparserfromhell`)
+- [x] Parse all of Wikivoyage: our own parser (`common/wikitext.py`, streaming `bz2` + `iterparse`) instead of `mwxml` / `mwparserfromhell`; `s1` now reads the whole dump
 - [x] Section-aware chunking with metadata (`MarkdownHeaderTextSplitter` → `RecursiveCharacterTextSplitter`): keeps every heading attached to its content
 - [x] Context line like `Dhaka > Old Dhaka > Eat` at the start of every chunk (fixes orphan chunks); `CHUNK_SIZE` 2,000
 - [x] Rebuild index (1,211 chunks, 39m 13s) and re-run test questions (14 questions, automatic runner `s7_run_questions.py`)
-- [ ] Decide how much of Wikivoyage to index, given ~1.1 s/chunk on CPU
-- [ ] Metadata filtering (e.g. only *Eat* sections in Portugal)
+- [x] Decide how much of Wikivoyage to index: **all of Thailand + Bangladesh, every quality level** (350 articles, 5,909 chunks, 95 min). All of Wikivoyage would be ~4–7 days on CPU; it can now grow region by region
+- [x] Choose articles by rule instead of by name: `WANTED_REGIONS` + `MIN_QUALITY`, two passes over the dump (IsPartOf family tree, then extract)
 - [x] Persist the index; incremental updates via LangChain's indexing API (`index()`, `SQLRecordManager`, `scoped_full`)
 - [x] Stream articles with a `BaseLoader` (`WikivoyageLoader.lazy_load()`)
-- [x] Add 21 Bangladesh articles (47 total, 1,623 chunks)
-- **Done when:** the whole corpus is indexed and any destination is queryable.
+- [x] Add 21 Bangladesh articles (47 total, 1,623 chunks), 7 Bangladesh test questions (21 total)
+- [x] `@place:` searches keep the place name in the search text (`build_search_text`)
+- [x] Final `s7` run on the 350-article index (answers 16 ✅ · 5 ⚠️ · 0 ❌; retrieval 10 ✅ · 7 ⚠️ · 3 ❌)
+- Moved to Stage 4: metadata filtering by section (e.g. only *Eat* sections)
+- **Done when:** the chosen regions are indexed incrementally (re-runs only embed what changed) and any destination in them is queryable. *(Changed from "the whole corpus": at ~1.3 s/chunk on CPU that's days, and the indexing API means it can grow later without starting over.)*
 
 ### Stage 2 results → full details in [`stage2/RESULTS.md`](stage2/RESULTS.md)
 
@@ -136,6 +139,12 @@ Stages are **not frozen**: a fix in `common/` applies to every stage. A new stag
 
 **Answers (14 questions, checked by hand): 10 ✅ · 4 ⚠️ · 0 ❌.** Both Stage 1 answer failures are fixed: the biryani places are no longer merged, and the visa answer separates visa-free from visa-on-arrival.
 
+**Step 2.5 (scaling):**
+- **Incremental indexing works:** adding 21 articles embedded only their 412 chunks (8 min) and skipped the other 1,211; an unchanged re-run took 3 s; the full Thailand + Bangladesh build embedded 4,286 new chunks and skipped 1,623.
+- **No regressions at 47 articles:** 13 of the first 14 questions got identical sources and answers. The 7 Bangladesh questions: retrieval 4 ✅ · 3 ⚠️, answers 5 ✅ · 2 ⚠️ · 0 ❌.
+- **Found:** `@place:` dropped the place from the search (fixed); spam listings in the guide get passed on as real ("All Result BD"); estimating chunks from text size undercounts outline-heavy regions (5,909 actual vs ~4,700 estimated).
+- **Final run on 350 articles:** answers **16 ✅ · 5 ⚠️ · 0 ❌**, but retrieval slipped (10 ✅ · 7 ⚠️ · 3 ❌, from 11 · 8 · 1). The `@place` fix turned weak scores (~1.3) into strong ones (~0.7) but lost Cox's Bazar's `Sleep` chunks; the bigger index lets **topic beat place** (national parks' `Climate` over Thailand's, a Thai tea village for "tea gardens in Bangladesh"). Both are Stage 4 problems: country filter, hybrid search, reranker.
+
 ### Stage 3 — Evaluation (before optimizing)
 - [ ] Write 30–50 test questions with known answers
 - [ ] Measure retrieval (right chunk in top k?) and answer quality (correct, grounded), using the local model as judge
@@ -147,6 +156,7 @@ Stages are **not frozen**: a fix in `common/` applies to every stage. A new stag
 - [ ] Reranking with a cross-encoder (e.g. Qwen3-Reranker, bge-reranker)
 - [ ] Query rewriting / multi-query
 - [ ] Parent-document retrieval
+- [ ] Metadata filtering by section (e.g. only *Eat* or *Sleep* chunks), using the `section` metadata every chunk already has (moved from Stage 2)
 - [ ] Generation fixes, measured on the Stage 1 failures: a 7–8B chat model; a stricter prompt ("copy names, addresses and prices exactly; never combine two listings")
 
 ### Stage 5 — Tools and structured data
