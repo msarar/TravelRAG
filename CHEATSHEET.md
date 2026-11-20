@@ -10,7 +10,7 @@ Plain-Python data cleaning (`common/wikitext.py` etc.) is left out on purpose.
 **Contents**
 - [Stage 0: Setup](#stage-0-setup): Ollama CLI, `OllamaEmbeddings`, `ChatOllama.invoke`
 - [Stage 1: Basic RAG](#stage-1-basic-rag): `Document`, text splitter, `Chroma`, `ChatPromptTemplate`, streaming, retriever, LCEL
-- [Stage 2: Real ingestion](#stage-2-real-ingestion): `MarkdownHeaderTextSplitter`, two-step splitting with context lines, test runner (`questions.yaml`, `llm.invoke`)
+- [Stage 2: Real ingestion](#stage-2-real-ingestion): `MarkdownHeaderTextSplitter`, two-step splitting with context lines, test runner (`questions.yaml`, `llm.invoke`), `index()` + `SQLRecordManager`, `BaseLoader`
 
 ---
 
@@ -422,14 +422,83 @@ answer = reply.content
 
 Output: `stage2/results/run_<date>_<time>.md` (to read) and `.json` (to compare runs later).
 
-### 2.4 Order of use in Stage 2
+### 2.4 Incremental indexing: `index()` + `SQLRecordManager`  *(s4)*
 
-Only the changed steps; everything else works as in Stage 1.
+```powershell
+pip install langchain-classic "sqlalchemy[asyncio]"
+```
+
+```python
+from langchain_classic.indexes import SQLRecordManager
+from langchain_core.indexing import index
+
+record_manager = SQLRecordManager(namespace="chroma/wikivoyage",
+                                  db_url="sqlite:///" + RECORD_MANAGER_DB.as_posix())
+record_manager.create_schema()          # creates the logbook table if missing
+
+result = index(chunks, record_manager, vector_store,
+               cleanup="scoped_full", source_id_key="source",
+               key_encoder="sha256", batch_size=32)
+# {"num_added": 3, "num_updated": 0, "num_skipped": 40, "num_deleted": 1}
+```
+
+| Argument | Meaning |
+|---|---|
+| `namespace` | Label on every logbook row: which collection it belongs to. New embedding model → new collection → new namespace |
+| `cleanup` | What to delete: `None` nothing · `"incremental"` per batch · `"full"` everything not seen this run · `"scoped_full"` not-seen chunks of articles seen this run |
+| `source_id_key` | Metadata key copied into the logbook as `group_id` (one per article). Required for `incremental`/`scoped_full` |
+| `key_encoder` | Hash algorithm. Default `"sha1"` prints a warning; `"sha256"` doesn't |
+| `batch_size` | Chunks per logbook check / `add_documents` call |
+
+How it decides, per chunk: **ID = hash(text) + hash(metadata as sorted JSON)**.
+Hash in the logbook → skip (just refresh `updated_at`). New → embed, add to Chroma, add a row.
+At the end, rows of the seen articles with `updated_at` before the run started → stale → deleted.
+
+The logbook (`record_manager.db`, table `upsertion_record`) has one row per chunk:
+`key` (hash), `namespace`, `group_id` (article), `updated_at` (last seen).
+
+Watch out for:
+- `index()` ignores your own IDs: the hash IS the ID.
+- Delete `chroma_db/` **and** `record_manager.db` together, never one alone.
+- The embedding model isn't in the hash: changing it re-embeds nothing unless you change the collection/namespace.
+
+### 2.5 Document loaders: `BaseLoader`  *(stage2/documents.py)*
+
+```python
+from langchain_core.document_loaders import BaseLoader
+
+class WikivoyageLoader(BaseLoader):
+    def __init__(self, raw_dir, max_articles=None):   # only stores settings
+        ...
+    def lazy_load(self):                              # YOU write this: a generator
+        for entry in entries:
+            ...
+            yield doc
+
+loader = WikivoyageLoader(RAW_DIR)
+for doc in loader.lazy_load(): ...    # one at a time (s4)
+docs = loader.load()                  # all at once, as a list (s3): free from BaseLoader
+```
+
+| Method | Who writes it | Returns |
+|---|---|---|
+| `lazy_load()` | you (with `yield`) | a generator: one `Document` per `next()` |
+| `load()` | BaseLoader (don't override) | `list(self.lazy_load())` |
+| `alazy_load()`, `aload()` | BaseLoader | async versions |
+| `load_and_split()` | BaseLoader | deprecated: split yourself |
+
+Generators: no `len()`, no slicing (`itertools.islice` instead), and they can only be
+looped over **once**: a second loop silently gets nothing.
+
+### 2.6 Order of use in Stage 2
+
+Only the changed steps; everything else works as in Stage 1. (Stage 2 has no s2.)
 
 ```
 s3  MarkdownHeaderTextSplitter.split_text → RecursiveCharacterTextSplitter.split_text
     → Document(context_line + "\n" + piece, metadata)                (section-aware chunks)
-s4  unchanged: Chroma(...) → add_documents(documents, ids)
+s4  WikivoyageLoader.count() / lazy_load() → split_one_article → SQLRecordManager.create_schema()
+    → index(chunks, record_manager, vector_store, cleanup="scoped_full", ...)   (per article, streamed)
 s5  shows metadata["section_path"] instead of start_index
 s7  yaml.safe_load → similarity_search_with_score → prompt.invoke → ChatOllama.invoke   (all test questions)
 ```

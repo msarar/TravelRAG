@@ -1,7 +1,7 @@
 """Shared helper: load the cleaned Wikivoyage articles as LangChain Documents.
 
 This is a Stage 2 helper module that the step scripts import:
-    from stage2.documents import load_documents
+    from stage2.documents import WikivoyageLoader
 It lives in stage2/ (not common/) because each stage may build its Documents
 differently (this stage will add section metadata).
 
@@ -16,15 +16,15 @@ document. That lets us filter later ("only search Bangkok") and cite sources
 """
 
 import json
+from collections.abc import Iterator
+from pathlib import Path
 
+from langchain_core.document_loaders import BaseLoader
 from langchain_core.documents import Document
 
 # Shared helpers (common/ folder).
 from common.paths import safe_filename
 from common.wikitext import extract_is_part_of, wikitext_to_text
-
-# Where s1_extract_articles.py saved the raw articles (set in stage2/config.py).
-from stage2.config import RAW_DIR
 
 
 def build_metadata(title: str, raw_wikitext: str) -> dict:
@@ -55,32 +55,76 @@ def build_metadata(title: str, raw_wikitext: str) -> dict:
     return metadata
 
 
-def load_documents() -> list[Document]:
-    """Read every article saved by s1_extract_articles.py and return clean Documents."""
+class WikivoyageLoader(BaseLoader):
+    """A LangChain document loader for the articles saved by s1_extract_articles.py.
 
-    # The index file lists which articles were extracted, e.g.
-    # [{"title": "Dhaka", "chars": 40549}, {"title": "Bangkok", ...}, ...]
-    index_path = RAW_DIR / "_index.json"
-    index_text = index_path.read_text(encoding="utf-8")   # file contents as one string
-    index = json.loads(index_text)                         # string -> Python list of dicts
+    WHAT IS A BaseLoader?
+    LangChain's standard shape for "something that produces Documents".
+    A loader only has to write ONE method, lazy_load(), as a generator
+    (with yield). BaseLoader then provides, for free:
+        load()        -> list(self.lazy_load()): every Document at once, as a list
+        alazy_load()  -> an async version (useful later, e.g. in a web API)
 
-    docs = []
-    for entry in index:
-        title = entry["title"]
+    HOW IT'S USED
+        loader = WikivoyageLoader(RAW_DIR)      # only stores settings, reads nothing yet
+        for doc in loader.lazy_load():          # one article at a time  (s4)
+            ...
+        docs = loader.load()                    # all articles in a list (s3, explore)
+    """
 
-        # 1. Read the raw wikitext from disk.
-        raw_path = RAW_DIR / (safe_filename(title) + ".wiki")
-        raw_wikitext = raw_path.read_text(encoding="utf-8")
+    def __init__(self, raw_dir: Path, max_articles: int | None = None):
+        # Just remember the settings. Nothing is read from disk here:
+        # the work happens later, when someone iterates lazy_load().
+        self.raw_dir = raw_dir
+        self.max_articles = max_articles      # None = all articles
 
-        # 2. Clean it (see common/wikitext.py), and put the title on top as a heading
-        #    so the text always says which article it came from.
-        clean_text = wikitext_to_text(raw_wikitext)
-        page_content = "# " + title + "\n\n" + clean_text
+    def _read_index(self) -> list[dict]:
+        """The article list written by s1, cut to max_articles.
 
-        # 3. Package the text and its metadata into a LangChain Document.
-        metadata = build_metadata(title, raw_wikitext)
-        doc = Document(page_content=page_content, metadata=metadata)
+        _index.json looks like [{"title": "Dhaka", "chars": 40549}, ...].
+        It only holds titles and sizes, so reading it all at once is cheap.
+        """
+        index_path = self.raw_dir / "_index.json"
+        index_text = index_path.read_text(encoding="utf-8")
+        entries = json.loads(index_text)               # string -> list of dicts
 
-        docs.append(doc)
+        if self.max_articles is not None:
+            entries = entries[:self.max_articles]      # slicing the TITLE list is fine
 
-    return docs
+        return entries
+
+    def count(self) -> int:
+        """How many articles lazy_load() will yield (our own extra method, for progress output).
+
+        A generator has no len(), so we count the entries in _index.json instead.
+        """
+        entries = self._read_index()
+        return len(entries)
+
+    def lazy_load(self) -> Iterator[Document]:
+        """Yield one clean Document per article, reading each file only when it's asked for.
+
+        This is a GENERATOR (it uses yield): every time the caller's for-loop asks
+        for the next article, this code runs until the next yield, hands over ONE
+        Document, and pauses. So only one article is in memory at a time.
+        """
+        entries = self._read_index()
+
+        for entry in entries:
+            title = entry["title"]
+
+            # 1. Read the raw wikitext from disk.
+            raw_path = self.raw_dir / (safe_filename(title) + ".wiki")
+            raw_wikitext = raw_path.read_text(encoding="utf-8")
+
+            # 2. Clean it (see common/wikitext.py), and put the title on top as a heading
+            #    so the text always says which article it came from.
+            clean_text = wikitext_to_text(raw_wikitext)
+            page_content = "# " + title + "\n\n" + clean_text
+
+            # 3. Package the text and its metadata into a LangChain Document.
+            metadata = build_metadata(title, raw_wikitext)
+            doc = Document(page_content=page_content, metadata=metadata)
+
+            # 4. Hand this ONE Document to the caller and pause until they ask for the next.
+            yield doc

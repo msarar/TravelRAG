@@ -15,6 +15,16 @@ Only `chunking.py` (plus settings and display):
 5. **`CHUNK_SIZE` 1,000 → 2,000** (includes the context line), so a list stays with the sentence that explains it.
    `CHAT_NUM_CTX` 4,096 → 6,144 to fit four bigger chunks.
 
+Later in Stage 2 (step 2.5, scaling):
+
+6. **`s4` uses LangChain's indexing API** (`index()` + `SQLRecordManager`, `cleanup="scoped_full"`,
+   `source_id_key="source"`, `key_encoder="sha256"`), called once per article. Re-runs only embed new or
+   changed chunks; the logbook is `stage2/record_manager.db`. IDs are now hashes instead of `"<title>#<n>"`.
+7. **`s2` removed**: it only wrote cleaned copies for reading. The pipeline is `s1` → `s4`; `s3` is optional inspection.
+8. **21 more Bangladesh articles** (country article, 14 "usable", 6 well-known outlines): 47 articles in total.
+9. **Streaming loader**: `load_documents()` became `WikivoyageLoader(BaseLoader)`. `s4` uses `lazy_load()`
+   (one article in memory at a time) and `count()` for progress; `s3` and `explore_sections` use `load()`.
+
 ## Numbers
 
 | | Stage 1 | Stage 2 |
@@ -28,6 +38,17 @@ Only `chunking.py` (plus settings and display):
 
 Chunk-size check before building (same pipeline, `CHUNK_SIZE` 1,000 vs 2,000): 2,092 vs 1,211 chunks.
 Only 2,000 kept the visa-free sentence ("may enter Thailand for tourism visa-free...") in the same chunk as the country list.
+
+### Step 2.5: indexing API runs
+
+| Run | Articles | Chunks | Added (embedded) | Skipped | Deleted | Time |
+|---|---|---|---|---|---|---|
+| Rebuild (`REBUILD = True`) | 26 | 1,211 | 1,211 | 0 | 0 | 37m 06s |
+| + 21 Bangladesh articles | 47 | 1,623 | **412** | **1,211** | 0 | 8m 14s |
+| Same data again (streaming loader) | 47 | 1,623 | **0** | **1,623** | 0 | **3s** |
+
+Every run ended with "now in Chroma" = chunks produced (no duplicates, nothing lost).
+The old 26 articles took ~0.1 s each to skip; only new chunks reached the embedding model.
 
 ## Retrieval: Stage 1 vs Stage 2 (`s5_search`)
 
@@ -93,4 +114,7 @@ Every answer was checked by hand against the exact chunks the model received.
 - Re-rank results so the most relevant chunk within a section wins (By boat vs By car) → **Stage 4** (reranker)
 - Possibly merge tiny sections into a neighbour; de-duplicate near-identical chunks
 - Cleaning glitch: Thailand `Work` section starts "Thailand. Thailand has also..." (a dropped template)
-- Scale beyond 26 articles: incremental/resumable indexing (LangChain indexing API), choosing which articles to index → **Stage 2, step 2.5**
+- ~~Incremental/resumable indexing~~ and ~~streaming~~: done (step 2.5)
+- Choose which articles to index for the full run (all ~35k at ~1.2–1.8 s/chunk is days) → **step 2.5c**
+- No test questions yet for the 21 Bangladesh articles
+- An article deleted from Wikivoyage is never cleaned up by `scoped_full` (needs an occasional `cleanup="full"` run)

@@ -110,7 +110,9 @@ Stages are **not frozen**: a fix in `common/` applies to every stage. A new stag
 - [x] Rebuild index (1,211 chunks, 39m 13s) and re-run test questions (14 questions, automatic runner `s7_run_questions.py`)
 - [ ] Decide how much of Wikivoyage to index, given ~1.1 s/chunk on CPU
 - [ ] Metadata filtering (e.g. only *Eat* sections in Portugal)
-- [ ] Persist the index; incremental updates via LangChain's indexing API
+- [x] Persist the index; incremental updates via LangChain's indexing API (`index()`, `SQLRecordManager`, `scoped_full`)
+- [x] Stream articles with a `BaseLoader` (`WikivoyageLoader.lazy_load()`)
+- [x] Add 21 Bangladesh articles (47 total, 1,623 chunks)
 - **Done when:** the whole corpus is indexed and any destination is queryable.
 
 ### Stage 2 results → full details in [`stage2/RESULTS.md`](stage2/RESULTS.md)

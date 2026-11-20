@@ -20,8 +20,8 @@ Run (from the project root):  python -m stage2.explore_sections
 
 from langchain_text_splitters import MarkdownHeaderTextSplitter
 
-from stage2.config import CHUNK_SIZE
-from stage2.documents import load_documents
+from stage2.config import CHUNK_SIZE, RAW_DIR
+from stage2.documents import WikivoyageLoader
 
 # Which article to look at. Try others too: "Bangkok/Khao San Road", "Thailand", ...
 ARTICLE_TITLE = "Thailand"
@@ -65,7 +65,8 @@ def section_path(metadata: dict) -> str:
 
 def main():
     # 1. Load the cleaned article (same Documents as Stage 1 used).
-    docs = load_documents()
+    loader = WikivoyageLoader(RAW_DIR)
+    docs = loader.load()
     article = find_article(docs, ARTICLE_TITLE)
 
     if article is None:

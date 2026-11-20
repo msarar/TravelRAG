@@ -1,4 +1,11 @@
-"""Stage 2, piece 3: split the Documents into section-aware chunks, and check them.
+"""Stage 2, piece 3 (OPTIONAL, for inspection): split into chunks and check them.
+
+Nothing later reads this script's output: s4_build_index splits the articles
+itself, with the same chunking.py code. Run this to SEE the chunks and their
+stats before spending a long time embedding (e.g. after changing chunking.py
+or CHUNK_SIZE). The pipeline is just s1 -> s4.
+(Stage 2 has no s2: Stage 1's s2 only wrote cleaned copies for reading, and
+chunks.jsonl below shows the same text exactly as it gets embedded.)
 
 WHY SPLIT?
   - An embedding is ONE vector for a whole piece of text. If you embed the entire
@@ -28,8 +35,8 @@ import json
 # The splitting itself lives in chunking.py, and the settings (CHUNK_SIZE,
 # CHUNK_OVERLAP, CHUNKS_FILE) in config.py, so step 4 can split in exactly the same way.
 from stage2.chunking import split_into_chunks
-from stage2.config import CHUNK_OVERLAP, CHUNK_SIZE, CHUNKS_FILE
-from stage2.documents import load_documents
+from stage2.config import CHUNK_OVERLAP, CHUNK_SIZE, CHUNKS_FILE, RAW_DIR
+from stage2.documents import WikivoyageLoader
 
 # A chunk whose text (not counting the context line) is shorter than this is
 # "tiny". In Stage 1, chunks this small were almost all bare headings.
@@ -143,8 +150,10 @@ def save_chunks(chunks):
 
 
 def main():
-    # 1. Load the 26 cleaned Documents (from documents.py).
-    docs = load_documents()
+    # 1. Load ALL cleaned Documents as a list (load(), not lazy_load()):
+    #    the stats below need every chunk at once.
+    loader = WikivoyageLoader(RAW_DIR)
+    docs = loader.load()
     print(f"Loaded {len(docs)} Documents.")
 
     # 2. Split (see chunking.py).

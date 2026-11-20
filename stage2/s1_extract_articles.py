@@ -35,6 +35,33 @@ WANTED_TITLES = {
     "Krabi Town",    # "Krabi" itself is only a disambiguation page
     "Ao Nang",
     "Ko Phi Phi",
+
+    # --- Bangladesh, beyond Dhaka --------------------------------------------
+    "Bangladesh",               # country article: visas, money, safety (outline)
+
+    # "usable" articles: real listings (getting there, eat, sleep)
+    "Chittagong",
+    "Cox's Bazar",
+    "Bandarban District",
+    "Teknaf",
+    "Brahmanbaria",
+    "Sylhet",
+    "Khulna",
+    "Bagerhat",
+    "Jessore",
+    "Kushtia",
+    "Benapole",
+    "Rajshahi",
+    "Rangpur (Bangladesh)",     # "(Bangladesh)" is part of the exact title
+    "Dinajpur (Bangladesh)",
+
+    # well-known places, but thinner "outline" articles
+    "Srimangal",
+    "Sundarbans (Bangladesh)",
+    "Saint Martins Island",     # no apostrophe in this title
+    "Sajek Valley",
+    "Rangamati",
+    "Kuakata",
 }
 
 # Big cities are split into district articles named "City/District",

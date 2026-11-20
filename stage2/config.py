@@ -20,9 +20,9 @@ DUMP_FILE = PROJECT_ROOT / "data" / "enwikivoyage-latest-pages-articles.xml.bz2"
 # Everything Stage 2 produces lives inside stage2/.
 DATA_DIR = STAGE_DIR / "data"
 RAW_DIR = DATA_DIR / "raw"                 # s1: raw wikitext per article
-CLEAN_DIR = DATA_DIR / "clean"             # s2: cleaned text, for reading only
 CHUNKS_FILE = DATA_DIR / "chunks.jsonl"    # s3: every chunk, for reading only
 CHROMA_DIR = STAGE_DIR / "chroma_db"       # s4: the vector index
+RECORD_MANAGER_DB = STAGE_DIR / "record_manager.db"   # s4: the indexing logbook (hash, article, last seen)
 
 # --- Ollama models ---------------------------------------------------------
 EMBEDDING_MODEL = "qwen3-embedding:0.6b"
@@ -53,3 +53,9 @@ CHUNK_OVERLAP = 150
 # --- Vector database -------------------------------------------------------
 # A "collection" is like a sheet in an Excel file: one per embedding model.
 COLLECTION_NAME = "wikivoyage"
+
+# --- Indexing logbook (record manager) --------------------------------------
+# Labels every logbook row with the collection it belongs to, so one logbook
+# could track several collections without mixing them up.
+# New embedding model -> new COLLECTION_NAME -> new namespace automatically.
+RECORD_MANAGER_NAMESPACE = "chroma/" + COLLECTION_NAME

@@ -95,17 +95,26 @@ Phuket Town, Patong, Krabi Town, Ao Nang, Ko Phi Phi and Thailand: 26 articles,
 
 ## Running Stage 2
 
-Same steps and same 26 articles, with `stage2` instead of `stage1`
-(e.g. `python -m stage2.s4_build_index`), plus:
+Same idea as Stage 1, with `stage2` instead of `stage1`. The pipeline itself is
+just **s1 → s4**; the other scripts are for inspecting, searching and testing:
 
 | Step | Command | What it does |
 |---|---|---|
+| 1 | `python -m stage2.s1_extract_articles` | Pulls the chosen articles out of the dump |
+| 3 | `python -m stage2.s3_split_documents` | *Optional:* shows the chunks and their stats, writes `chunks.jsonl` |
+| 4 | `python -m stage2.s4_build_index` | Embeds into Chroma with LangChain's indexing API: only new or changed chunks are embedded, and it resumes after a crash |
+| 5 | `python -m stage2.s5_search` | Search only |
+| 6 | `python -m stage2.s6_ask` | Full RAG with sources |
 | 7 | `python -m stage2.s7_run_questions` | Runs every question in `questions.yaml`, writes a report to `stage2/results/` (~10 min) |
-| – | `python -m stage2.explore_sections` | Shows how one article splits into sections (for inspection) |
+| – | `python -m stage2.explore_sections` | Shows how one article splits into sections |
+
+There is no `s2` in Stage 2: it only wrote cleaned copies for reading, which
+`s3`'s `chunks.jsonl` now covers. In `s4`, set `REBUILD = True` only to start
+from zero (it deletes `chroma_db/` and `record_manager.db` together).
 
 What's new: articles are split **by section first** (`MarkdownHeaderTextSplitter`), and
 every chunk starts with a context line like `Thailand > Get in > Entry requirements`.
-`CHUNK_SIZE` is 2000, giving 1,211 chunks. Settings are in `stage2/config.py`;
+`CHUNK_SIZE` is 2000. Stage 2 covers 47 articles (the Stage 1 set plus 21 more in Bangladesh): 1,623 chunks. Settings are in `stage2/config.py`;
 results are in `stage2/RESULTS.md`.
 
 ## Status
